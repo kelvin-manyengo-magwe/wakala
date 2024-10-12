@@ -1,11 +1,11 @@
 import { PermissionsAndroid, Platform } from 'react-native';
 
 
-async function SmsPermission() {
-    if(Platform.Os === 'android') {
+const SmsPermission = async () => {
+    if(Platform.OS === 'android') {
             try {
                     const granted = await PermissionsAndroid.request(
-                                PermissionsAndroid.Permissions.READ_SMS,
+                                PermissionsAndroid.PERMISSIONS.READ_SMS,
                                     {
                                            title: 'Sms Permission',
                                            message: 'This app needs to access your sms messages',
@@ -22,9 +22,11 @@ async function SmsPermission() {
                                     }
             }
                 catch(err) {
-                        console.warn('Sms Permission Error: ', err);
+                        console.log('Sms Permission Error: ', err);
                     }
         }
+
+        return false;
 }
 
 export default SmsPermission;

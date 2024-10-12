@@ -52,7 +52,7 @@ function App(): React.JSX.Element {
                 };
 
                     checkPermission();
-        }, [])
+        }, []);
 
   return (
         <View style={styles.centerContainer}>
