@@ -5,13 +5,13 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import SmsPermission from './SmsCatcher/SmsPermission';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
-  StatusBar,
+  StatusBar, Alert,
   StyleSheet,
   Text,
   useColorScheme,
@@ -39,9 +39,26 @@ function App(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+        useEffect(() =>{
+                const checkPermission= async () => {
+                        const isPermissionGranted = await SmsPermission();
+                                if(isPermissionGranted) {
+                                        Alert.alert("Permission is successfully granted.","You can now read sms messages");
+                                        console.log("Permission is successfully granted")
+                                    } else {
+                                        Alert.alert("Permission Denied","You cannot read sms messages.");
+                                        console.log("Permission Denied");
+                                    }
+                };
+
+                    checkPermission();
+        }, [])
+
   return (
         <View style={styles.centerContainer}>
-                <Text style={{ fontStyle: 'bold', fontSize: 17}}>Reading Sms messages</Text>
+                <Text style={{ fontStyle: 'bold', fontSize: 17}}>
+                        Checking Sms permisssions...
+                </Text>
         </View>
   );
 }
