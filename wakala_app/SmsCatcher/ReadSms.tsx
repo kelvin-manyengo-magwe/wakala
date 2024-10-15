@@ -2,12 +2,15 @@ import { View, Text, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import SmsAndroid from 'react-native-get-sms-android';
 import SmsPermission from './SmsPermission';
+import SmsListener from './SmsListener';
 
 
-const [messages, setmessages] = useState<string[]>([]);
 
 
 export const ReadSms =  () => {
+
+const [messages, setmessages] = useState<string[]>([]);
+
 
     const startReadSms = async () => {
                 const permissionGRanted= await SmsPermission();
@@ -17,8 +20,9 @@ export const ReadSms =  () => {
                             }
 
                                         const filter = {
-                                                        box: 'inbox',
-                                                        read: 0
+                                                        box: 'inbox', // for the receive sms
+                                                        read: 0,
+                                                        maxCount: 1, // fetch most recent messages
                                                     };
 
                                                         SmsAndroid.list(
@@ -42,11 +46,8 @@ export const ReadSms =  () => {
         return (
                     <View style={styles.messageContent}>
                             {messages.length > 0 ?
-                                (messages.map((message, index)=> (
-                                      <Text key={index}>
-                                            {message.body}
-                                      </Text>
-                                ))):
+                                    <SmsListener messages={messages} setmessages={setmessages} />
+                                :
                                     (
                                         <Text>No text messages available</Text>
                                     )}
