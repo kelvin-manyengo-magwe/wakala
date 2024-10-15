@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import SmsAndroid from 'react-native-get-sms-android';
 import SmsPermission from './SmsPermission';
-import SmsListener from './SmsListener';
+import { SmsListener } from './SmsListener';
 
 
 
@@ -21,7 +21,7 @@ const [messages, setmessages] = useState<string[]>([]);
 
                                         const filter = {
                                                         box: 'inbox', // for the receive sms
-                                                        read: 0,
+                                                        read: 0, //0 for unread,1 for red
                                                         maxCount: 1, // fetch most recent messages
                                                     };
 
