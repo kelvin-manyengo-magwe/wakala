@@ -8,23 +8,9 @@
 import React, { useEffect } from 'react';
 import SmsPermission from './SmsCatcher/SmsPermission';
 import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar, Alert,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import { SafeAreaView, ScrollView, StatusBar, Alert, StyleSheet, Text, useColorScheme, View, } from 'react-native';
+import { ReadSms } from './SmsCatcher/ReadSms';
+import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions, } from 'react-native/Libraries/NewAppScreen';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -57,7 +43,8 @@ function App(): React.JSX.Element {
   return (
         <View style={styles.centerContainer}>
                 <Text style={{ fontStyle: 'bold', fontSize: 17}}>
-                        Checking Sms permisssions...
+                            Start Reading Sms
+                        <ReadSms />
                 </Text>
         </View>
   );

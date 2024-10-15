@@ -1,7 +1,7 @@
 import { PermissionsAndroid, Platform } from 'react-native';
 
 
-const SmsPermission = async () => {
+const SmsPermission = async (): Promise<boolean> => {
     if(Platform.OS === 'android') {
             try {
                     const hasPermission= await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_SMS);
