@@ -40,7 +40,14 @@ const [messages, setmessages] = useState<string[]>([]);
             }
 
             useEffect(()=> {
-                        startReadSms();
+
+                    //setting up polling to check sms after 5sec
+                    const intervalId= setInterval(() => {
+                            startReadSms();
+                    }, 5000);
+
+                        //clearing interval when components unmounts
+                            return () => clearInterval(intervalId);
                 },[]);
 
         return (
