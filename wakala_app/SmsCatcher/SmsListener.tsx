@@ -14,9 +14,12 @@ export const SmsListener = ({ messages, setMessages }: smsListenerProps) => {
                 const message= sms.body;
                 const address= sms.address;
 
-                console.log(`Received new sms `, message, address);
-                Alert.alert(`New sms`,`From: ${address}\nMessage: ${message}`);
-                setMessages((prevMessages) => [...prevMessages, sms]);
+
+                    console.log(`Received new sms `, message, address);
+                    //setting after to update state after the new message
+                setMessages((prevMessages) => [...prevMessages, message, address]);
+
+
          };
 
 
