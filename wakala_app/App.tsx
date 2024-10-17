@@ -36,11 +36,13 @@ function App(): React.JSX.Element {
                     checkPermission();
         }, []);
 
+        ReadSms();
+
   return (
         <View style={[styles.centerContainer]}>
                 <Text style={{ fontStyle: 'bold', fontSize: 17}}>
                             Start Reading Sms
-                        <ReadSms />
+
                 </Text>
         </View>
   );
