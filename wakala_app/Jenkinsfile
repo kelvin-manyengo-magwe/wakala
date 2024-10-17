@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools {
+        nodejs '20.13.1'
+    }
     environment {
         ANDROID_HOME = "C:/Users/hp/AppData/Local/Android/Sdk"
         GRADLE_HOME = "${env.WORKSPACE}/android/gradle"

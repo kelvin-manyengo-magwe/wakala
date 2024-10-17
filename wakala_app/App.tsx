@@ -19,11 +19,7 @@ type SectionProps = PropsWithChildren<{
 
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
         useEffect(() =>{
                 const checkPermission= async () => {
@@ -41,7 +37,7 @@ function App(): React.JSX.Element {
         }, []);
 
   return (
-        <View style={styles.centerContainer}>
+        <View style={[styles.centerContainer]}>
                 <Text style={{ fontStyle: 'bold', fontSize: 17}}>
                             Start Reading Sms
                         <ReadSms />
@@ -52,7 +48,11 @@ function App(): React.JSX.Element {
 
 const styles = StyleSheet.create({
     centerContainer: {
-        margin: 'auto'
+        display: 'flex',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f0f5fa',
     }
 });
 
