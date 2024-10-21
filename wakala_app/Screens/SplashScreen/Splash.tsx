@@ -1,17 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, StatusBar } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { AppStackParamList } from '../../navigation/routes';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 
-export const Splash = () => {
+
+type SplashScreenProp = StackNavigationProp<AppStackParamList, 'Splash'>;
+
+interface SplashScreenProps {
+    navigation: SplashScreenProp
+};
+
+export const Splash = ({navigation}: SplashScreenProps) => {
+
+                useEffect(() => {
+                    setTimeout(() => {
+                        navigation.navigate('MessageScreen');
+                    }, 3000);
+                },[]);
 
         return (
         <>
                 <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
 
                            <View style={styles.splashContainer}>
-                                    <Text style={styles.splashText}>
+                                    <Text style={styles.splashWakala}>
                                             Wakala
+                                    </Text>
+                                    <Text style={styles.splashMessage}>
+                                           Fuatilia miamala yako kwa urahisi
                                     </Text>
                             </View>
 
@@ -22,13 +40,21 @@ export const Splash = () => {
 
 const styles= StyleSheet.create({
     splashContainer: {
-        margin: 'auto'
+        display: 'flex',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     linearGradient: {
         flex: 1,
     },
-    splashText: {
+    splashWakala: {
         fontSize: 50,
+        fontWeight: 'bold',
+        color: 'black'
+    },
+    splashMessage: {
+        fontSize: 18,
         fontWeight: 'bold',
         color: 'black'
     }

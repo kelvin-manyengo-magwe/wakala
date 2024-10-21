@@ -1,5 +1,6 @@
 import { Splash } from '../Screens/SplashScreen/Splash';
 import { Welcome } from '../Screens/WelcomeScreen/Welcome';
+import { MessageScreen } from '../Screens/SplashScreen/MessageScreen';
 import React from 'react';
 
 export type AppStackParamList = {
@@ -15,5 +16,9 @@ export const routes = [
     {
         name: 'Welcome',
         component: Welcome
+    },
+    {
+        name: 'MessageScreen',
+        component: MessageScreen
     }
 ];
