@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, Stylesheet } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 
@@ -7,7 +7,7 @@ export const Splash = () => {
 
         return (
             <View style={styles.splashContainer}>
-                    <Text style={[fontSize: 24, fontStyle: 'bold']}>
+                    <Text style={styles.splashText}>
                          Splash Screen
                     </Text>
             </View>
@@ -15,8 +15,12 @@ export const Splash = () => {
 }
 
 
-const styles= Stylesheet.create([
+const styles= StyleSheet.create({
     splashContainer: {
-        margin: auto
+        margin: 'auto'
+    },
+    splashText: {
+        fontSize: 24,
+        fontStyle: 'bold'
     }
-]);
+});

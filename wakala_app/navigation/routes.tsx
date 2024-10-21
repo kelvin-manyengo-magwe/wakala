@@ -3,8 +3,8 @@ import { Welcome } from '../Screens/WelcomeScreen/Welcome';
 import React from 'react';
 
 export type AppStackParamList = {
-    Splash: 'undefined',
-    Welcome: 'undefined'
+    Splash: undefined,
+    Welcome: undefined
 };
 
 export const routes = [

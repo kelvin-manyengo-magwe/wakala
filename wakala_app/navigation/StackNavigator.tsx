@@ -6,17 +6,19 @@ import { routes, AppStackParamList } from './routes';
 
 const Stack= createStackNavigator<AppStackParamList>();
 
-export const StackNavigator = () => {
+const StackNavigator = () => {
 
     return (
         <NavigationContainer>
-                <Stack.Navigation initialRouteName="Splash" screenOptions={{headerShown: false}}>
+                <Stack.Navigator initialRouteName="Splash" screenOptions={{headerShown: false}}>
                         {routes.map((route,index) => (
                                 <Stack.Screen key={index}
                                                 name={route.name as keyof AppStackParamList}
                                                 component={route.component} />
                         ))}
-                </Stack.Navigation>
+                </Stack.Navigator>
         </NavigationContainer>
     )
 }
+
+export default StackNavigator;

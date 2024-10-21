@@ -11,6 +11,7 @@ import type {PropsWithChildren} from 'react';
 import { SafeAreaView, ScrollView, StatusBar, Alert, StyleSheet, Text, useColorScheme, View, } from 'react-native';
 import { ReadSms } from './SmsCatcher/ReadSms';
 import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions, } from 'react-native/Libraries/NewAppScreen';
+import StackNavigator from './navigation/StackNavigator';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -39,12 +40,9 @@ function App(): React.JSX.Element {
         ReadSms();
 
   return (
-        <View style={[styles.centerContainer]}>
-                <Text style={{ fontStyle: 'bold', fontSize: 17}}>
-                            Start Reading Sms
-
-                </Text>
-        </View>
+        <>
+                <StackNavigator />
+        </>
   );
 }
 
