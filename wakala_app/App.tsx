@@ -26,7 +26,7 @@ function App(): React.JSX.Element {
                 const checkPermission= async () => {
                         const isPermissionGranted = await SmsPermission();
                                 if(isPermissionGranted) {
-                                        Alert.alert("Permission is successfully granted.","You can now read sms messages");
+                                       // Alert.alert("Permission is successfully granted.","You can now read sms messages");
                                         console.log("Permission is successfully granted")
                                     } else {
                                         Alert.alert("Permission Denied","You cannot read sms messages.");

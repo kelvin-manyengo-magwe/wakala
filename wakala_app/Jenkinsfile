@@ -1,11 +1,11 @@
 pipeline {
     agent any
     tools {
-        nodejs '20.13.1'
+        nodejs 'NodeJS 20.13.1'
     }
     environment {
-        ANDROID_HOME = "C:/Users/hp/AppData/Local/Android/Sdk"
-        GRADLE_HOME = "${env.WORKSPACE}/android/gradle"
+        ANDROID_HOME = "C:\\Users\\hp\\AppData\\Local\\Android\\Sdk"
+        GRADLE_HOME = "C:\\Users\\hp\\.gradle"
     }
 
     stages {
@@ -15,33 +15,30 @@ pipeline {
             }
         }
 
-        stage('Set Up Node.js') {
+        stage('Verify Node.js') {
             steps {
-                script {
-                    def nodejs = tool name: 'NodeJS 20.13.1', type: 'NodeJSInstallation' //Defining NodeJS version
-                    env.PATH = "${nodejs}/bin:${env.PATH}"
-                }
                 sh 'node -v'  //verifying Node.js installation
             }
         }
 
-        stage('Install Dependancies') {
+        stage('Install Dependencies') {
             steps {
                 sh 'npm install'
+                if (returnStatus != 0) {
+                        error 'Failed to install dependencies!'
+                    }
             }
         }
 
         stage('Build Android APK') {
             steps {
-                dir('android') {
-                    sh './gradlew assembleDebug' //for development and debug version of the application
-                }
+                    sh 'cd android && ./gradlew assembleDebug' //for development and debug version of the application
             }
         }
 
         stage('Archive APK') {
             steps {
-                archivArtifacts artifacts: 'android/app/build/outputs/apk/debug/app-debug.apk', fingerprint: true
+                archiveArtifacts artifacts: 'android/app/build/outputs/apk/debug/app-debug.apk', fingerprint: true
             }
         }
     }

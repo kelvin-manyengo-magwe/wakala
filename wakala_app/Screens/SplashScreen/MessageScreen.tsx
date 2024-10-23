@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, StatusBar } from 'react-native';
 import { AppStackParamList } from '../../navigation/routes';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 
+type MessageScreenProp = StackNavigationProp<AppStackParamList, 'MessageScreen'>;
+
+interface MessageScreenProps {
+    navigation: MessageScreen
+}
 
 
-export const MessageScreen = () => {
+export const MessageScreen = ({ navigation }: MessageScreenProps) => {
+
+            useEffect(()=>{
+                setTimeout(()=>{
+                        navigation.navigate('Welcome');
+                    }, 3000)
+            },[]);
 
         return (
             <>
