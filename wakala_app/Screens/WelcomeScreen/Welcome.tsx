@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, StatusBar } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 
 export const Welcome = () => {
 
         return (
-            <View style={styles.splashContainer}>
-                    <Text style={styles.welcomeText}>
-                            Welcome Page
-                    </Text>
-            </View>
+        <>
+               <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
+
+                <View style={styles.splashContainer}>
+                        <Text style={styles.welcomeText}>
+                                  Welcome Wakala,
+                        </Text>
+                </View>
+        </>
         )
 }
 
@@ -21,6 +25,7 @@ const styles= StyleSheet.create({
     },
     welcomeText: {
         fontSize: 24,
-        fontStyle: 'bold'
+        fontWeight: 'bold',
+        color: 'black'
     }
 });
