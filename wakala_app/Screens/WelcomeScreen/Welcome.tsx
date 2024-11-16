@@ -11,7 +11,7 @@ export const Welcome = () => {
                <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
 
                 <View className="bg-blue-500" style={styles.splashContainer}>
-                        <Text className="text-lg flex-1 justify-center" style={styles.welcomeText}>
+                        <Text className="text-lg" style={styles.welcomeText}>
                                   Welcome Wakala,
                         </Text>
                 </View>
