@@ -11,13 +11,13 @@ export const Welcome = () => {
                <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
 
                 <View style={styles.splashContainer}>
-                            <View className="mt-2" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }} >
+                            <View className="mt-2 pl-4 flex flex-row items-center space-x-6 justify-start">
                                     <View style={styles.circle}>
                                             <View style={styles.greenDot}></View>
                                     </View>
 
                                     <Text className="text-2xl" style={styles.welcomeText}>
-                                            Welcome Wakala,
+                                            Welcome{"\n"}Wakala
                                     </Text>
                             </View>
                 </View>
