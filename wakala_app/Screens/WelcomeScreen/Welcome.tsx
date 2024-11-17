@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, StatusBar } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { NativeWindStyleSheet } from 'nativeWind';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 
 
 export const Welcome = () => {
@@ -13,6 +14,7 @@ export const Welcome = () => {
                 <View style={styles.splashContainer}>
                             <View className="mt-2 pl-4 flex flex-row items-center space-x-6 justify-start">
                                     <View style={styles.circle}>
+                                            <Fontisto name="person" size={50} />
                                             <View style={styles.greenDot}></View>
                                     </View>
 
