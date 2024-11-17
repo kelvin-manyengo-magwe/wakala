@@ -3,12 +3,12 @@ import BackgroundFetch from 'react-native-background-fetch';
 import { ReadSms } from '../SmsCatcher/ReadSms';
 
 
-const BackgroundRunning = () => {
+const BackgroundRunning = (): null => {
 
         useEffect(() => {
                  //configuring background fetch
                  BackgroundFetch.configure({
-                    minimumFetchInterval: 1,  //Fetch every 1 minutes
+                    minimumFetchInterval: 15,  //Fetch every 1 minutes
                     stopOnTerminate: false,  //continue even after app is closed
                     startOnBoot: true,
                  },  async(taskId) => {

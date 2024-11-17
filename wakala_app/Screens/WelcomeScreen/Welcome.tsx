@@ -14,7 +14,7 @@ export const Welcome = () => {
                 <View style={styles.splashContainer}>
                             <View className="mt-2 pl-4 flex flex-row items-center space-x-6 justify-start">
                                     <View style={styles.circle}>
-                                            <Fontisto style={styles.person} name="person" size={50} />
+                                            <Fontisto style={styles.person} name="person" color="black" size={50} />
                                             <View style={styles.greenDot}></View>
                                     </View>
 
