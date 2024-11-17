@@ -14,7 +14,7 @@ export const Welcome = () => {
                 <View style={styles.splashContainer}>
                             <View className="mt-2 pl-4 flex flex-row items-center space-x-6 justify-start">
                                     <View style={styles.circle}>
-                                            <Fontisto name="person" size={50} />
+                                            <Fontisto style={styles.person} name="person" size={50} />
                                             <View style={styles.greenDot}></View>
                                     </View>
 
@@ -53,5 +53,10 @@ const styles= StyleSheet.create({
         position: 'absolute',
         top: 4,
         left: 5
+    },
+    person: {
+        position: 'absolute',
+        top: 6,
+        left: 16
     }
 });
