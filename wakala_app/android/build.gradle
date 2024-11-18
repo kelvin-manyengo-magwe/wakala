@@ -20,9 +20,7 @@ buildscript {
 
 allprojects {
     repositories {
-        maven {
-            url("${project(':react-native-background-fetch').projectDir}/libs")
-        }
+
     }
 }
 

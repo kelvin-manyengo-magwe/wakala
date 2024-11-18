@@ -1,39 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import BackgroundFetch from 'react-native-background-fetch';
+import BackgroundService from 'react-native-background-actions';
 import { ReadSms } from '../SmsCatcher/ReadSms';
 
 
 const BackgroundRunning = (): null => {
 
-        useEffect(() => {
-                 //configuring background fetch
-                  const configureBackgroundFetch = async () => {
-                             const onEvent = async (taskId) => {
-                                           console.log(`[BackgroundFetch] task: `, taskId);
+       const sleep = (time) => { // function to make the sleep success of promise periodically for long running background task
+                new Promise((resolve) => setTimeout(()=> resolve(),time)
+       } ; //the only success part of the promise
 
-                                               //doing the background task
-                                                   ReadSms();
-                                                     //signal the OS that background task is finish
-                                                        BackgroundFetch.finish(taskId);
-                                               };
+        const veryIntenseTask = async(taskDataArguments) => {
+                    const { delay } = taskDataArguments;
 
-                                               //to stop the background task when exceeded the time limit
-                                               const timeOut = async (taskId) => {
-                                                            console.log(`[BackgroundFetch] Timeout task: `, taskId);
+                    await new Promise( async(resolve) => {
+                        for(i= 0; BackgroundService.isRunning(); i++) {
+                                console.log(i);
+                                ReadSms();
+                                await sleep(delay);
+                        }
+                    });
+        };
 
-                                                            BackgroundFetch.finish(taskId);
-                                               };
+        const options = {
+            taskName: 'Sms BackgroundService',
+            taskTitle: 'Wakala Background service',
+            taskDesc: 'Running Background sms service',
+            taskIcon: {
+                name: 'ic_launcher',
+                type: 'mipmap',
+            },
+            color: '#ff00ff',
+            linkingURI: 'yourSchemeHere://chat/jane', // See Deep Linking for more info
+            parameters: {
+                delay: 1000,
+            },
+        };
 
 
-                                               try {
-                                                    const status = await BackgroundFetch.configure({minimumFetchInterval: 1}, onEvent, timeOut);
+        await BackgroundService.start(veryIntensiveTask, options);
+        await BackgroundService.updateNotification({taskDesc: 'New ExampleTask description'}); // Only Android, iOS will ignore this call
+        // iOS will also run everything here in the background until .stop() is called
+        await BackgroundService.stop();
 
-                                                    console.log(`[BackgroundFetch] configure status: `, status);
-                                               } catch(error) {
-                                                       console.log(`Background fetch configuration error: `, error);
-                                               }
-                  };
-        },[]);
 
         return null;
 }
