@@ -20,8 +20,8 @@ const BackgroundRunning = (): null => {
 
                             console.log(BackgroundService.isRunning(),delay);
 
-                            try {
-                                        for(i= 0; BackgroundService.isRunning(); i++) {
+
+                                        for(let i= 0; BackgroundService.isRunning(); i++) {
                                                                         console.log(i);
 
                                                                       debugLog(`Readsms component running in background`);
@@ -31,35 +31,45 @@ const BackgroundRunning = (): null => {
                                                                 }
 
 
-                                                            const options = {
-                                                                        taskName: 'Sms BackgroundService',
-                                                                        taskTitle: 'Wakala Background service',
-                                                                        taskDesc: 'Running Background sms service',
-                                                                        taskIcon: {
-                                                                            name: 'ic_launcher',
-                                                                            type: 'mipmap',
-                                                                        },
-                                                                        color: '#ff00ff',
-                                                                        linkingURI: 'yourSchemeHere://chat/jane', // See Deep Linking for more info
-                                                                        parameters: {
-                                                                            delay: 1000,
-                                                                        },
-                                                                    };
 
-                                                    debugLog(`Attemping to start the background service.`);
-                                                 await BackgroundService.start(veryIntensiveTask, options);
-                                                    debugLog(`BackgroundService started successfully`);
 
-                                                 await BackgroundService.updateNotification({taskDesc: 'New ExampleTask description'}); // Only Android, iOS will ignore this call
-                                                        debugLog(`Backgroundservice notification updated successfully`);
-                                                                    // iOS will also run everything here in the background until .stop() is called
-                            } catch(error) {
-                                    debugLog(`Error starting background service: ${error}`);
-                            }
+
 
         };
 
+            useEffect(() => {
+                    const startBackgroundService = async() => {
+                                        const options = {
+                                                         taskName: 'Sms BackgroundService',
+                                                         taskTitle: 'Wakala Background service',
+                                                         taskDesc: 'Running Background sms service',
+                                                         taskIcon: {
+                                                               name: 'ic_launcher',
+                                                               type: 'mipmap',
+                                                                     },
+                                                         color: '#ff00ff',
+                                                         linkingURI: 'yourSchemeHere://chat/jane', // See Deep Linking for more info
+                                                         parameters: {
+                                                                delay: 1000,
+                                                                       },
+                                                          };
+                            try {
 
+
+                                                 debugLog(`Attemping to start the background service.`);
+                                          await BackgroundService.start(veryIntenseTask, options);
+                                             debugLog(`BackgroundService started successfully`);
+
+                                          await BackgroundService.updateNotification({taskDesc: 'New ExampleTask description'}); // Only Android, iOS will ignore this call
+                                              debugLog(`Backgroundservice notification updated successfully`);
+                                                                    // iOS will also run everything here in the background until .stop() is called
+                            } catch(error) {
+                                    debugLog(`Error on starting BackgroundService async request: ${error}`);
+                            }
+                    };
+
+                    startBackgroundService();
+            },[]);
 
 
         return null;
