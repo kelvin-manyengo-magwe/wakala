@@ -7,12 +7,9 @@ import { SmsListener } from './SmsListener';
 
 
 
-export const ReadSms =  () => {
-
-const [messages, setmessages] = useState<string[]>([]);
+export const ReadSms = async () => {
 
 
-    const startReadSms = async () => {
                 const permissionGRanted= await SmsPermission();
                         if(!permissionGRanted) {
                                 Alert.alert("Permission Denied","Unable to read sms messages without permission");
@@ -25,41 +22,26 @@ const [messages, setmessages] = useState<string[]>([]);
                                                         maxCount: 1, // fetch most recent messages
                                                     };
 
-                                                        SmsAndroid.list(
-                                                            JSON.stringify(filter),
-                                                                (fail) => {
-                                                                        console.log('Failed to read sms messages', fail);
-                                                                    },
-                                                                (count, smsList) => {
-                                                                        const messageArray = JSON.parse(smsList);
-                                                                            console.log(messageArray);
 
-                                                                                setmessages(messageArray);
-                                                                    }
-                                                            );
-            }
 
-            useEffect(()=> {
+                //ReadSms component to return either a promise or value
+        return new Promise((resolve,reject) => {
+                    SmsAndroid.list(
+                            JSON.stringify(filter),
+                                (fail) => {
+                                    console.log(`Failed to read sms messages`, fail);
+                                            //if the promise fail
+                                    reject(fail);
+                                },
+                                (count, smsList) => {
+                                           const messageArray = JSON.parse(smsList);
+                                           console.log(messageArray);
+                                                //resolve method called after success promise
+                                            resolve(messageArray);
+                                }
+                    );
+        });
 
-                    //setting up polling to check sms after 5sec
-                    const intervalId= setInterval(() => {
-                            startReadSms();
-                    }, 5000);
-
-                        //clearing interval when components unmounts
-                            return () => clearInterval(intervalId);
-                },[]);
-
-        return (
-                    <View style={styles.messageContent}>
-                            {messages.length > 0 ?
-                                    <SmsListener messages={messages} setmessages={setmessages} />
-                                :
-                                    (
-                                        <Text>No text messages available</Text>
-                                    )}
-                    </View>
-            )
     }
 
 
