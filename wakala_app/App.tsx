@@ -9,7 +9,7 @@ import React, { useEffect } from 'react';
 import SmsPermission from './SmsCatcher/SmsPermission';
 import type {PropsWithChildren} from 'react';
 import { SafeAreaView, ScrollView, StatusBar, Alert, StyleSheet, Text, useColorScheme, View, } from 'react-native';
-import BackgroundRunning from './BackgroundRunning/BackgroundRunning';
+import { SmsOnReceiveEvent } from './src/SmsPolling/SmsOnReceiveEvent';
 import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions, } from 'react-native/Libraries/NewAppScreen';
 import StackNavigator from './navigation/StackNavigator';
 
@@ -37,7 +37,10 @@ function App(): React.JSX.Element {
                     checkPermission();
         }, []);
 
-                BackgroundRunning();
+                    //separating the effects for on mount component
+               useEffect(() => {
+                        SmsOnReceiveEvent();
+               },[]);
 
   return (
         <>

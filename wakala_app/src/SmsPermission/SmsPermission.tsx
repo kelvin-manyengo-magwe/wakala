@@ -34,7 +34,6 @@ const SmsPermission = async (): Promise<boolean> => {
                     }
         }
 
-        return false;
 }
 
 export default SmsPermission;
