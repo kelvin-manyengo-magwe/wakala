@@ -60,7 +60,7 @@ public class SmsReceiver extends BroadcastReceiver {
                         if(reactContext == null) {
                                 Log.e("React Context Value is empty");
                         } else if(!reactContext.hasActiveCatalystInstance()) {
-                                Loge.e("React Context does not have active react native runtime");
+                                Log.w(TAG, "React Context does not have active react native runtime");
                         }
                 }
         }
