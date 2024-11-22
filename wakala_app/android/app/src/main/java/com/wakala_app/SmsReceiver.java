@@ -25,26 +25,30 @@ public class SmsReceiver extends BroadcastReceiver {
                         Bundle bundle = intent.getExtras();
 
                         if(bundle != null) {
-                                Object[] pdus = (Object[]) bundle.get("pdus");  //pdus protocol data units(raw form of data of sms messages)
-                                smsMessages[] messages = new smsMessages[pdus.length];
+                               try {
+                                       Object[] pdus = (Object[]) bundle.get("pdus");  //pdus protocol data units(raw form of data of sms messages)
+                                       smsMessages[] messages = new smsMessages[pdus.length];
 
-                                for(int i = 0; i < pdus.length; i++) {
-                                         messages[i] = SmsMessage.createFromPdu((byte[]))
-                                        pdus[i];
-                                }
+                                       for(int i = 0; i < pdus.length; i++) {
+                                               messages[i] = SmsMessage.createFromPdu((byte[]))
+                                               pdus[i];
+                                       }
 
-                                for(Smsmessage message: messages) {
-                                        String messageBody = message.getMessageBody();
-                                        String origninalAddress = message.getOriginatingAddress();
+                                       for(Smsmessage message: messages) {
+                                               String messageBody = message.getMessageBody();
+                                               String origninalAddress = message.getOriginatingAddress();
 
-                                        //by use of writable map to transfer data to javascript frontend
-                                        WritableMap eventData = Arguments.createMap(); //creating empty string of writable map
+                                               //by use of writable map to transfer data to javascript frontend
+                                               WritableMap eventData = Arguments.createMap(); //creating empty string of writable map
 
-                                        eventData.putString("body", messageBody);
-                                        eventData.putString("address", origninalAddress);
+                                               eventData.putString("body", messageBody);
+                                               eventData.putString("address", origninalAddress);
 
-                                        sendEventToReact(SMS_RECEIVED_EVENT, eventData);
-                                }
+                                               sendEventToReact(SMS_RECEIVED_EVENT, eventData);
+                                       }
+                               } catch(Exception e) {
+                                       Log.e(TAG, "Exception: " + e.getMessage());
+                               }
                         }
                 }
         }

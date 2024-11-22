@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ReadSms from './ReadSms';
 import SmsPermission from './SmsPermission';
 import { PermissionsAndroid, Alert, DeviceEventEmitter } from 'react-native';
 
