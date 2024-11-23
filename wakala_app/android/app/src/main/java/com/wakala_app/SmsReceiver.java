@@ -1,4 +1,4 @@
-package com.wakala_app
+package com.wakala_app;
 
 import android.content.BroadcastReceiver;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -7,11 +7,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
+import android.telephony.SmsMessage;
+import android.util.Log;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 
 public class SmsReceiver extends BroadcastReceiver {
 
         private static final String SMS_RECEIVED_EVENT = "sms_onReceive";
+        private static final String TAG = "SmsReceiver";
         private ReactApplicationContext reactContext;   //react-native functionality to emit event for javascript functionality
 
         //a constructor reactContext subclass to use reactContext data pass
@@ -19,7 +24,7 @@ public class SmsReceiver extends BroadcastReceiver {
                 this.reactContext = reactContext;
         }
 
-        @override
+        @Override
         public void onReceive(Context context, Intent intent) {
                 if(intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
                         Bundle bundle = intent.getExtras();
@@ -27,14 +32,14 @@ public class SmsReceiver extends BroadcastReceiver {
                         if(bundle != null) {
                                try {
                                        Object[] pdus = (Object[]) bundle.get("pdus");  //pdus protocol data units(raw form of data of sms messages)
-                                       smsMessages[] messages = new smsMessages[pdus.length];
+                                       SmsMessage[] messages = new SmsMessage[pdus.length];
 
                                        for(int i = 0; i < pdus.length; i++) {
-                                               messages[i] = SmsMessage.createFromPdu((byte[]))
-                                               pdus[i];
+                                               messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
+
                                        }
 
-                                       for(Smsmessage message: messages) {
+                                       for(SmsMessage message: messages) {
                                                String messageBody = message.getMessageBody();
                                                String origninalAddress = message.getOriginatingAddress();
 
@@ -53,7 +58,7 @@ public class SmsReceiver extends BroadcastReceiver {
                 }
         }
 
-        private sendEventToReact(String SMS_RECEIVED_EVENT, WritableMap eventData) {
+        private void sendEventToReact(String SMS_RECEIVED_EVENT, WritableMap eventData) {
                 ReactContext reactContext = this.reactContext;
 
 
@@ -62,7 +67,7 @@ public class SmsReceiver extends BroadcastReceiver {
                                 .emit(SMS_RECEIVED_EVENT, eventData);
                 }  else {
                         if(reactContext == null) {
-                                Log.e("React Context Value is empty");
+                                Log.e(TAG, "React Context Value is empty");
                         } else if(!reactContext.hasActiveCatalystInstance()) {
                                 Log.w(TAG, "React Context does not have active react native runtime");
                         }

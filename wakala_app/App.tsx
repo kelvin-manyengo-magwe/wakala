@@ -6,12 +6,12 @@
  */
 
 import React, { useEffect } from 'react';
-import SmsPermission from './SmsCatcher/SmsPermission';
+import SmsPermission from './src/SmsPermission/SmsPermission';
 import type {PropsWithChildren} from 'react';
 import { SafeAreaView, ScrollView, StatusBar, Alert, StyleSheet, Text, useColorScheme, View, } from 'react-native';
 import { SmsOnReceiveEvent } from './src/SmsPolling/SmsOnReceiveEvent';
 import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions, } from 'react-native/Libraries/NewAppScreen';
-import StackNavigator from './navigation/StackNavigator';
+import StackNavigator from './src/navigation/StackNavigator';
 
 type SectionProps = PropsWithChildren<{
   title: string;

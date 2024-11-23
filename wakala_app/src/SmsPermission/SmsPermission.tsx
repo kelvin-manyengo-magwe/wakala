@@ -1,5 +1,5 @@
 import { PermissionsAndroid, Platform } from 'react-native';
-
+import React from 'react';
 
 const SmsPermission = async (): Promise<boolean> => {
     if(Platform.OS === 'android') {
