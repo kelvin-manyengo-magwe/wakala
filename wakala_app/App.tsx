@@ -37,10 +37,9 @@ function App(): React.JSX.Element {
                     checkPermission();
         }, []);
 
-                    //separating the effects for on mount component
-               useEffect(() => {
+
                         SmsOnReceiveEvent();
-               },[]);
+
 
   return (
         <>
