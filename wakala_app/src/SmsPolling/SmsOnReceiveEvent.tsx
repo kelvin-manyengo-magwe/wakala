@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NativeModules, NativeEventEmitter } from 'react-native';
 
 
 export const SmsOnReceiveEvent = () => {
 
             useEffect(() => {
-                    const SmsReceiverModule = NativeModules.SmsReceiver;  //smsReceiver module to bridge gap from javascript
+                    const  { SmsReceiverModule } = NativeModules;  //smsReceiver module to bridge gap from javascript
 
+                                console.log(SmsReceiverModule);
                         if(SmsReceiverModule) {
                                 const SmsReceiverEventEmitter = new SmsReceiverEventEmitter(SmsReceiverModule);
+                                            console.log(SmsReceiverEventEmitter);
 
                                         SmsReceiverEventEmitter.addListener("sms_onReceive", (event) => {
                                                                         console.log('New sms Received: ',event);
