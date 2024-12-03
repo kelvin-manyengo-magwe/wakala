@@ -19,7 +19,7 @@ public class SmsReceiverModule extends ReactContextBaseJavaModule {
 
     @Override
     public String getName() {
-        return "SmsReceiver"; // the name used to access the module in javascript
+        return "SmsReceiverModule"; // the name used to access the module in javascript
     }
 
 
@@ -39,6 +39,16 @@ public class SmsReceiverModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void stopReceiver() {
         getReactApplicationContext().unregisterReceiver(smsReceiver);
+    }
+
+    @ReactMethod
+    public void addListener(String eventName) {
+        //for adding listeners
+    }
+
+    @ReactMethod
+    public void removeListeners(Integer count) {
+        //for removing listeners
     }
 
 }

@@ -9,7 +9,7 @@ export const SmsOnReceiveEvent = () => {
 
                                 console.log(SmsReceiverModule);
                         if(SmsReceiverModule) {
-                                const SmsReceiverEventEmitter = new SmsReceiverEventEmitter(SmsReceiverModule);
+                                const SmsReceiverEventEmitter = new NativeEventEmitter(SmsReceiverModule);
                                             console.log(SmsReceiverEventEmitter);
 
                                         SmsReceiverEventEmitter.addListener("sms_onReceive", (event) => {
