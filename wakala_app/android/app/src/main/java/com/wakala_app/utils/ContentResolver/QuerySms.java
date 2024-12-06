@@ -1,4 +1,4 @@
-package com.wakala_app.utils.ContentResolver
+package com.wakala_app.utils.ContentResolver;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -46,8 +46,10 @@ public class QuerySms {
                 }
 
         } catch (Exception e) {
-                Log.e("QuerySms","Error querying sms messages: " + e.getMesssage(),e);
+                Log.e("QuerySms","Error querying sms messages: " + e.getMessage(), e);
         }
+
+        return smsList;
 
     }
 }
