@@ -49,6 +49,9 @@ public class SmsReceiver extends BroadcastReceiver {
                                                eventData.putString("body", messageBody);
                                                eventData.putString("address", origninalAddress);
 
+                                               Log.d(TAG, "Sms received: " + messageBody);
+                                               Log.d(TAG, "Sender address: " + origninalAddress);
+
                                                sendEventToReact(SMS_RECEIVED_EVENT, eventData);
                                        }
                                } catch(Exception e) {

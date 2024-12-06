@@ -12,8 +12,8 @@ export const SmsOnReceiveEvent = () => {
                                 const SmsReceiverEventEmitter = new NativeEventEmitter(SmsReceiverModule);
                                             console.log(SmsReceiverEventEmitter);
 
-                                        SmsReceiverEventEmitter.addListener("sms_onReceive", (event) => {
-                                                                        console.log('New sms Received: ',event);
+                                        SmsReceiverEventEmitter.addListener("sms_onReceive", (sms) => {
+                                                                        console.log('New sms Received: ',sms);
                                                 });
 
                                          return () => SmsReceiverEventEmitter.removeAllListeners('sms_onReceive');
