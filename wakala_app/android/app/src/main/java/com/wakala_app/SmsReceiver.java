@@ -21,14 +21,20 @@ public class SmsReceiver extends BroadcastReceiver {
 
         //a constructor reactContext subclass to use reactContext data pass
 
-        Log.d(TAG, "Sms receiver component is triggered.");
-        public SmsReceiver(ReactApplicationContext reactContext) {
+                //no argument constructor is required in broadcast receiver
+        public SmsReceiver() {
+
+                Log.d(TAG, "Sms receiver component is starting....");
+        }
+
+        public void setReactContext(ReactApplicationContext reactContext) {
                 this.reactContext = reactContext;
+                Log.d(TAG, "The ReactApplicationContext is set in SmsReceiver.");
         }
 
         @Override
         public void onReceive(Context context, Intent intent) {
-                        Log.d(TAG, "Sms receiver component is triggered");
+                        Log.d(TAG, "onReceive method is triggered...");
 
                 if(intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
                         Bundle bundle = intent.getExtras();

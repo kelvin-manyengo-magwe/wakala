@@ -17,7 +17,8 @@ public class SmsReceiverModule extends ReactContextBaseJavaModule {
     public SmsReceiverModule(ReactApplicationContext reactContext) {
         super(reactContext);  //passes the reactContext to ReactContextBaseJavaModule
 
-        this.smsReceiver = new SmsReceiver(reactContext);
+        this.smsReceiver = new SmsReceiver();
+        this.smsReceiver.setReactContext(reactContext);  //setting the ReactApplicationContext explicitly
         registerReceiver();  //registering receiver to listen to new incomming messages
     }
 
@@ -25,6 +26,8 @@ public class SmsReceiverModule extends ReactContextBaseJavaModule {
     public String getName() {
         return "SmsReceiverModule"; // the name used to access the module in javascript
     }
+
+    //setter method for react context
 
 
     private void registerReceiver() {
