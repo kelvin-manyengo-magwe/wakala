@@ -18,6 +18,7 @@ public class QuerySms {
     }
 
     public List<HashMap<String, String>> getAllSms() {  //returning the hashmap results
+        Log.d("SmsReader", "getAllSms() called. Attempting to fetch SMS messages...");
 
         List<HashMap<String, String>> smsList = new ArrayList<>(); //creating the empty array of hashMap
 
@@ -28,26 +29,39 @@ public class QuerySms {
 
         try(Cursor cursor = context.getContentResolver().query(smsUri, smsDetails, null, null, "date DESC")) {
                 if(cursor != null) { //sms were found
+
+                    Log.d("QuerySms", "Cursor obtained. Found " + cursor.getCount() + " messages.");
+
                         HashMap<String, String> sms = new HashMap<>();  //creating new hash map
 
-                    sms.put("id", cursor.getString(cursor.getColumnIndexOrThrow("_id")));
-                    sms.put("sender", cursor.getString(cursor.getColumnIndexOrThrow("address")));
-                    sms.put("message", cursor.getString(cursor.getColumnIndexOrThrow("body")));
-                    sms.put("date", cursor.getString(cursor.getColumnIndexOrThrow("date")));
+                        while(cursor.moveToNext()) {
+                            sms.put("id", cursor.getString(cursor.getColumnIndexOrThrow("_id")));
+                            sms.put("sender", cursor.getString(cursor.getColumnIndexOrThrow("address")));
+                            sms.put("message", cursor.getString(cursor.getColumnIndexOrThrow("body")));
+                            sms.put("date", cursor.getString(cursor.getColumnIndexOrThrow("date")));
 
-                        smsList.add(sms);
+                            smsList.add(sms);
 
-                        Log.d("QuerySms","ID: " + sms.get("id") +
-                                "       Sender: " + sms.get("sender") +
-                                "       Message: " + sms.get("message") +
-                                "       Date: " + sms.get("date"));
+                            Log.d("QuerySms","ID: " + sms.get("id") +
+                                    "       Sender: " + sms.get("sender") +
+                                    "       Message: " + sms.get("message") +
+                                    "       Date: " + sms.get("date"));
+
+                        }
+
                 } else {
-                        Log.d("QuerySms", "No Sms messages found");
+                        Log.w("QuerySms", "Cursor is null.No Sms messages found");
                 }
 
+        }  catch (SecurityException e) {
+            Log.e("QuerySms", "SecurityException: Missing permissions to read SMS.", e);
+
         } catch (Exception e) {
-                Log.e("QuerySms","Error querying sms messages: " + e.getMessage(), e);
+            Log.e("QuerySms", "Error fetching SMS: " + e.getMessage(), e);
+
         }
+
+        Log.d("QuerySms","Finished querying sms messages. Total sms: " + smsList.size());
 
         return smsList;
 

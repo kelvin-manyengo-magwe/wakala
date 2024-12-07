@@ -33,7 +33,9 @@
               </activity>
 
             <!-- registering Sms static Broadcast receiver -->
-            <receiver android:name=".SmsReceiver" android:exported="true">
+            <receiver android:name=".SmsReceiver"
+                      android:enabled="true"
+                      android:exported="true">
                 <intent-filter>
                     <action android:name="android.provider.Telephony.SMS_RECEIVED" /> <!-- a triggered receiver when new sms arrives -->
                 </intent-filter>

@@ -20,14 +20,19 @@ public class SmsReceiver extends BroadcastReceiver {
         private ReactApplicationContext reactContext;   //react-native functionality to emit event for javascript functionality
 
         //a constructor reactContext subclass to use reactContext data pass
+
+        Log.d(TAG, "Sms receiver component is triggered.");
         public SmsReceiver(ReactApplicationContext reactContext) {
                 this.reactContext = reactContext;
         }
 
         @Override
         public void onReceive(Context context, Intent intent) {
+                        Log.d(TAG, "Sms receiver component is triggered");
+
                 if(intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
                         Bundle bundle = intent.getExtras();
+
 
                         if(bundle != null) {
                                try {
