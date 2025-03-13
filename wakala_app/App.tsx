@@ -12,12 +12,13 @@ import { SafeAreaView, ScrollView, StatusBar, Alert, StyleSheet, Text, useColorS
 import { SmsOnReceiveEvent } from './src/SmsPolling/SmsOnReceiveEvent';
 import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions, } from 'react-native/Libraries/NewAppScreen';
 import StackNavigator from './src/navigation/StackNavigator';
+import { enableScreens } from 'react-native-screens';
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-
+enableScreens();
 
 function App(): React.JSX.Element {
 
