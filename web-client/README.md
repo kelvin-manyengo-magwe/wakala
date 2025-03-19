@@ -1,6 +1,6 @@
-# React + TypeScript + Vite
+# Wakala-web-client frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Web client tech stack is React + Typescript + Vite. The web client is deployed at Vercel **(https://wakala-i8hi9ob8z-kelvin-manyengo-magwes-projects.vercel.app/)**
 
 Currently, two official plugins are available:
 
