@@ -1,27 +1,38 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, StatusBar } from 'react-native';
+import { Text, View, StyleSheet, StatusBar, Pressable } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { NativeWindStyleSheet } from 'nativeWind';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
 
-export const Welcome = () => {
+export const Welcome = ({ navigation }) => {
 
         return (
         <>
                <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
 
-                <View style={styles.splashContainer}>
-                            <View className="mt-2 pl-4 flex flex-row items-center space-x-6 justify-start">
-                                    <View style={styles.circle}>
+
+                            <View style={styles.welcomeContainer}>
+                                    {/*<View style={styles.circle}>
                                             <Fontisto style={styles.person} name="person" color="black" size={50} />
                                             <View style={styles.greenDot}></View>
-                                    </View>
+                                    </View> The cicle with green dot (online) and showing person at center*/}
 
                                     <Text className="text-2xl" style={styles.welcomeText}>
-                                            Welcome{"\n"}Wakala
+                                            Karibu Wakala
                                     </Text>
                             </View>
+
+
+                <View style={styles.getStartedButtonContainer}>
+                          <Pressable style={({ pressed }) => [
+                                styles.getStartedButton, {backgroundColor: pressed ? 'darkred' : 'red'}
+                                ]}
+                                onPress={() => navigation.navigate('Home')}>
+                                   <Text style={styles.getStartedButtonFont}>
+                                        Get Started ...
+                                   </Text>
+                          </Pressable>
                 </View>
         </>
         )
@@ -30,11 +41,15 @@ export const Welcome = () => {
 
 const styles= StyleSheet.create({
     welcomeContainer: {
-        margin: 'auto'
+        marginTop: 10,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     welcomeText: {
         fontWeight: 'bold',
-        color: 'black'
+        color: 'black',
+        fontSize: 30
     },
     circle: {
         borderRadius: 40,
@@ -58,5 +73,23 @@ const styles= StyleSheet.create({
         position: 'absolute',
         top: 6,
         left: 16
+    },
+    getStartedButton: {
+        backgroundColor: 'red',
+        alignItems: 'center',
+        borderRadius: 10,
+        padding: 15
+    },
+    getStartedButtonFont: {
+       fontWeight: 'bold',
+       fontSize: 18,
+       color: 'white'
+    },
+    getStartedButtonContainer: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        paddingBottom: 20
     }
 });
