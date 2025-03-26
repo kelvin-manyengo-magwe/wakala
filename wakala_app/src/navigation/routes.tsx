@@ -6,7 +6,9 @@ import React from 'react';
 
 export type AppStackParamList = {
     Splash: undefined,
-    Welcome: undefined
+    Welcome: undefined,
+    MessageScreen: undefined,
+    Home: undefined,
 };
 
 export const routes = [

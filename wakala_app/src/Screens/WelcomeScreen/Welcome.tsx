@@ -19,7 +19,7 @@ export const Welcome = ({ navigation }) => {
                                     </View> The cicle with green dot (online) and showing person at center*/}
 
                                     <Text className="text-2xl" style={styles.welcomeText}>
-                                            Karibu Wakala
+                                            Karibu wakala
                                     </Text>
                             </View>
 
@@ -27,10 +27,9 @@ export const Welcome = ({ navigation }) => {
                 <View style={styles.getStartedButtonContainer}>
                           <Pressable style={({ pressed }) => [
                                 styles.getStartedButton, {backgroundColor: pressed ? 'darkred' : 'red'}
-                                ]}
-                                onPress={() => navigation.navigate('Home')}>
+                                ]} onPress={() => navigation.navigate('Home')}>
                                    <Text style={styles.getStartedButtonFont}>
-                                        Get Started ...
+                                        Anza Sasa ...
                                    </Text>
                           </Pressable>
                 </View>
