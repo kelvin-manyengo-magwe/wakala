@@ -25,7 +25,7 @@ export const Home = () => {
                               </View>
                      </View>
 
-                     <View style={styles.welcomeMessage}>
+                     <View style={styles.greetingContainer}>
                             <Text>Habari za jioni, Magwe</Text>
                      </View>
 

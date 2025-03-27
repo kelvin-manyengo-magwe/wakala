@@ -27,11 +27,12 @@ export const styles = StyleSheet.create({
        },
        wakalaFont: {
             fontWeight: 'bold',
-            fontSize: 20,
+            fontSize: 18,
             color: 'black'
        },
-       welcomeMessage: {
+       greetingContainer: {
             marginVertical: 10,
             marginHorizontal: 10
-       }
+       },
+
 });
