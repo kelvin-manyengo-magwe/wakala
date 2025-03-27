@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, Text, StyleSheet, View, StatusBar } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import { styles } from './styles';
+import { SlidingCard } from '../../components/SlidingCard/SlidingCard';
 
 export const Home = () => {
 
@@ -28,43 +29,11 @@ export const Home = () => {
                             <Text>Habari za jioni, Magwe</Text>
                      </View>
 
+                     <SlidingCard />
+
             </View>
     )
 };
 
 
 
-const styles = StyleSheet.create({
-       whiteBackground : {
-            flex: 1,
-            backgroundColor: 'white'
-       },
-       header: {
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            /*elevation: 4,
-            shadowRadius: 4,
-            shadowColor: 'black',
-            shadowOpacity: 0.1,
-            shadowOffset: { width: 0, height: 2 },*/
-            paddingHorizontal: 10
-       },
-       iconContainer: {
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-       },
-       iconSpacing: {
-            marginHorizontal: 8
-       },
-       wakalaFont: {
-            fontWeight: 'bold',
-            fontSize: 20,
-            color: 'black'
-       },
-       welcomeMessage: {
-            marginVertical: 10,
-            marginHorizontal: 10
-       }
-});
