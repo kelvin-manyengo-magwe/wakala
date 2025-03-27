@@ -10,12 +10,12 @@ import { styles } from './styles';
 
 
     interface slidingCardProps {
-        data: {
+        cardData: {
                 id: number; content: JSX.Element
         }[];
     }
 
-    export const SlidingCard = ({ data }: slidingCardProps) => {
+    export const SlidingCard = ({ cardData }: slidingCardProps) => {        //making component ready to accept the props
 
             const [activeIndex, setActiveIndex] = useState(0);
             const flatListRef = useRef<FlatList>(null);     //creates mutable cards that persits upon changability. Initial value null when component initially renders
@@ -26,7 +26,7 @@ import { styles } from './styles';
                     useEffect(() => {
                       timer.current = setInterval(() => {
                         setActiveIndex((prevIndex) => {
-                          const nextIndex = (prevIndex + 1) % data.length; // Loop back to first card
+                          const nextIndex = (prevIndex + 1) % cardData.length; // Loop back to first card
                           flatListRef.current?.scrollToIndex({ index: nextIndex, animated: true });
                           return nextIndex;
                         });
@@ -49,7 +49,7 @@ import { styles } from './styles';
                             <SafeAreaProvider styles={styles.slidingCardContainer}>
                                   <SafeAreaView>
                                             <FlatList
-                                                    data={data}
+                                                    data={cardData}
                                                     horizontal
                                                     ref={flatListRef}
                                                     pagingEnabled
@@ -57,8 +57,8 @@ import { styles } from './styles';
                                                     showsHorizontalScrollIndicator={false}
                                                     keyExtractor={(item) => item.id}
                                                     renderItem={({ item }) => (
-                                                      <View style={[styles.card, { backgroundColor: item.color }]}>
-                                                        <Text style={styles.cardText}>{item.text}</Text>
+                                                      <View style={styles.card}>
+                                                        <Text style={styles.cardText}>{item.content}</Text>
                                                       </View>
                                                     )}
                                                   />
@@ -66,7 +66,7 @@ import { styles } from './styles';
 
                                             {/* Dot Indicators */}
                                              <View style={styles.dotsContainer}>
-                                                   {data.map((_, index) => (
+                                                   {cardData.map((_, index) => (
                                                           <View
                                                                key={index}
                                                                style={[

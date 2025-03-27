@@ -3,6 +3,8 @@ import { TouchableOpacity, Text, StyleSheet, View, StatusBar } from 'react-nativ
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { styles } from './styles';
 import { SlidingCard } from '../../components/SlidingCard/SlidingCard';
+import { CardData } from '../../components/SlidingCard/CardData';
+
 
 export const Home = () => {
 
@@ -29,7 +31,7 @@ export const Home = () => {
                             <Text>Habari za jioni, Magwe</Text>
                      </View>
 
-                     <SlidingCard />
+                     <SlidingCard cardData={CardData} />
 
             </View>
     )

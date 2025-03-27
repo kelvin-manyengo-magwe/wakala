@@ -11,6 +11,8 @@ export const styles = StyleSheet.create({
   card: {
     width: card_width,
     height: card_height,
+    borderWidth: 2,
+    borderColor: 'black',
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
