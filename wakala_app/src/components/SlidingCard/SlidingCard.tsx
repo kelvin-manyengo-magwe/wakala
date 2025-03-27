@@ -9,18 +9,18 @@ import { styles } from './styles';
  export const card_height = width * 0.5  //height of card 50% of screen
 
 
-    export const SlidingCard = () => {
+    interface slidingCardProps {
+        data: {
+                id: number; content: JSX.Element
+        }[];
+    }
+
+    export const SlidingCard = ({ data }: slidingCardProps) => {
 
             const [activeIndex, setActiveIndex] = useState(0);
             const flatListRef = useRef<FlatList>(null);     //creates mutable cards that persits upon changability. Initial value null when component initially renders
             const timer = useRef<ReturnType<typeof setInterval> | null>(null);  // gets the return of setInterval f(x) and return null if none
 
-                const data = [
-                    {id: 1, color: "#E0E0E0", text: "Card 1"},
-                    {id: 2, color: "#FF0000", text: "Card 2"},
-                    {id: 3, color: "#4DB6AC", text: "Card 3"},
-                    {id: 4, color: '#E53935', text: "Card 4"},
-                ];
 
                   // Automatically slide every 3 seconds
                     useEffect(() => {
