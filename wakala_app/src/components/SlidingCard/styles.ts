@@ -50,6 +50,10 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 15,
         color: 'black',
-        marginVertical: 5,
+        marginBottom: 5,
+    },
+    mixxByYasLogo: {
+        width: 45,
+        height: 30,
     },
 });
