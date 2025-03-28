@@ -17,12 +17,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    gap: 10,
-    paddi: 10,
-    marginHorizontal: 10,
+    padding: 10,
     marginHorizontal: (width - card_width)/2,
      },
-     cardText: {
+     cardItems: {
         fontSize: 24,
         marginBottom: 10,
         fontWeight: "bold",
@@ -37,15 +35,21 @@ export const styles = StyleSheet.create({
       dot: {
         width: 10,
         height: 10,
+        borderWidth: 1,
         borderRadius: 5,
         marginHorizontal: 5,
         backgroundColor: "gray",
       },
-     slidingCardContainer: {
+    cardContent: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 5,
+        paddingLeft: 18,
+    },
+    cardText: {
+        fontWeight: 'bold',
+        fontSize: 15,
+        color: 'black',
         marginVertical: 5,
-     },
-    item: {
-        marginBottom: 8,
-        fontSize: 16,
     },
 });
