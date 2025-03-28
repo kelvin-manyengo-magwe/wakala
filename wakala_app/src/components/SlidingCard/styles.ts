@@ -56,5 +56,7 @@ export const styles = StyleSheet.create({
         width: 45,
         height: 30,
     },
-
+    indentText: {
+        paddingLeft: 60,
+    },
 });

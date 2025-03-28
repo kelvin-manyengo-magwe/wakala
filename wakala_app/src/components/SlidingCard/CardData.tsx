@@ -77,7 +77,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
                                     </Text>
 
                                     <Text style={styles.cardText}>
-                                            <Image style={styles.mnoBaseLogo} source={ require("../../../assets/images/icons/halo-pesa-logo.png") } /> HaloPesa: 20,000 TZShs
+                                            <Image style={styles.mnoBaseLogo} source={ require("../../../assets/images/icons/halo-pesa-logo.png") } /> HaloPesa:{"\n"}
+                                            <Text style={styles.indentText}>20,000 TZShs</Text>
                                     </Text>
                                     <Text style={styles.cardText}>
                                              <Image style={styles.mnoBaseLogo} source={ require("../../../assets/images/icons/airtel-money-logo.png") } /> Airtel money: 20,000 TZShs
