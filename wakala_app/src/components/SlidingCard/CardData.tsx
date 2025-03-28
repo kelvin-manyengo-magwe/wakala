@@ -3,12 +3,14 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Foundation from 'react-native-vector-icons/Foundation';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { styles } from './styles';
+
 
 export const CardData = [
     {
           id: 1,
           content: (
-                    <View>
+                    <View style={styles.cardContent}>
                             <Text>
                                 <SimpleLineIcons name="trophy" size={20} /> Mitandao inayofanya vizuri
                             </Text>

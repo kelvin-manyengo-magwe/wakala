@@ -11,15 +11,20 @@ export const styles = StyleSheet.create({
   card: {
     width: card_width,
     height: card_height,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: 'black',
     borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
+    flex: 1,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    gap: 10,
+    paddi: 10,
+    marginHorizontal: 10,
     marginHorizontal: (width - card_width)/2,
      },
      cardText: {
         fontSize: 24,
+        marginBottom: 10,
         fontWeight: "bold",
         color: "white",
      },
@@ -39,4 +44,8 @@ export const styles = StyleSheet.create({
      slidingCardContainer: {
         marginVertical: 5,
      },
+    item: {
+        marginBottom: 8,
+        fontSize: 16,
+    },
 });
