@@ -52,8 +52,9 @@ export const styles = StyleSheet.create({
         color: 'black',
         marginBottom: 5,
     },
-    mixxByYasLogo: {
+    mnoBaseLogo: {
         width: 45,
         height: 30,
     },
+
 });

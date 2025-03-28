@@ -6,7 +6,7 @@ import { styles } from './styles';
 
  export const { width } = Dimensions.get("window");
  export const card_width = width * 0.9; // Make the card 80% of the screen width
- export const card_height = width * 0.4  //height of card 50% of screen
+ export const card_height = width * 0.5  //height of card 50% of screen
 
 
     interface slidingCardProps {

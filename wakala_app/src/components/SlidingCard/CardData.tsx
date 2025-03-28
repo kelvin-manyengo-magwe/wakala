@@ -19,7 +19,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
                                 </Text>
 
                                 <Text style={styles.cardText}>
-                                        <Image style={styles.mixxByYasLogo} source={ require("../../../assets/images/icons/mixx-by-yas-logo.png")} /> Tigo - miamala 50
+                                        <Image style={styles.mnoBaseLogo} source={ require("../../../assets/images/icons/mixx-by-yas-logo.png")} /> Tigo - miamala 50
                                 </Text>
                                 <Text style={styles.cardText}>
                                        <FontAwesome6 name="sack-dollar" size={20} /> Mapato : milioni 1.2 TZShs
@@ -63,7 +63,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
                                     </Text>
 
                                     <Text style={styles.cardText}>
-                                             <FontAwesome6 name="sack-dollar" size={20} /> Kiasi cha jumla: milion 3 TZShs
+                                             <FontAwesome6 name="sack-dollar" size={20} /> Kiasi cha jumla: 3,000,000 TZShs
                                     </Text>
                             </View>
                   )
@@ -71,13 +71,25 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
         {
                   id: 4,
                   content: (
-                            <View style={styles.cardContent}>
+                            <View>
                                     <Text style={styles.cardText}>
-                                        <SimpleLineIcons name="trophy" size={20} /> Mitandao inayofanya vizuri
+                                            <Foundation name="graph-bar" size={20} /> Mapato kwa kila Mtandao
                                     </Text>
-                                    <Text style={styles.cardText}>Tigo - miamala 50</Text>
+
                                     <Text style={styles.cardText}>
-                                        <Foundation name="graph-trend" size={20} /> +15% kutoka jana
+                                            <Image style={styles.mnoBaseLogo} source={ require("../../../assets/images/icons/halo-pesa-logo.png") } /> HaloPesa: 20,000 TZShs
+                                    </Text>
+                                    <Text style={styles.cardText}>
+                                             <Image style={styles.mnoBaseLogo} source={ require("../../../assets/images/icons/airtel-money-logo.png") } /> Airtel money: 20,000 TZShs
+                                    </Text>
+                                    <Text style={styles.cardText}>
+                                             <Image style={styles.mnoBaseLogo} source={ require("../../../assets/images/icons/mixx-by-yas-logo.png") } /> Mixx by Yas: 20,000 TZShs
+                                    </Text>
+                                    <Text style={styles.cardText}>
+                                             <Image style={styles.mnoBaseLogo} source={ require("../../../assets/images/icons/mpesa-logo.jpg") } /> M-Pesa: 20,000 TZShs
+                                    </Text>
+                                    <Text style={styles.cardText}>
+                                             <Image style={styles.mnoBaseLogo} source={ require("../../../assets/images/icons/t-pesa-logo.jpg") } /> T-Pesa: 20,000 TZShs
                                     </Text>
                             </View>
                   )
