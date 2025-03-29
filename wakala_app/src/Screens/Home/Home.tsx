@@ -33,6 +33,8 @@ export const Home = () => {
 
                      <SlidingCard cardData={CardData} />
 
+
+
             </View>
     )
 };
