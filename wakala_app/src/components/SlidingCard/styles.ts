@@ -54,9 +54,6 @@ export const styles = StyleSheet.create({
     },
     mnoBaseLogo: {
         width: 45,
-        height: 30,
-    },
-    indentText: {
-        paddingLeft: 60,
+        height: 35,
     },
 });

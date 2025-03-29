@@ -6,6 +6,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { styles } from './styles';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Octicons from 'react-native-vector-icons/Octicons';
 
 
 
@@ -77,8 +78,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
                                     </Text>
 
                                     <Text style={styles.cardText}>
-                                            <Image style={styles.mnoBaseLogo} source={ require("../../../assets/images/icons/halo-pesa-logo.png") } /> HaloPesa:{"\n"}
-                                            <Text style={styles.indentText}>20,000 TZShs</Text>
+                                            <Image style={styles.mnoBaseLogo} source={ require("../../../assets/images/icons/halo-pesa-logo.png") } /> HaloPesa:
+                                            <Text style={{paddingLeft: 20 }}>20,000 TZShs</Text>
                                     </Text>
                                     <Text style={styles.cardText}>
                                              <Image style={styles.mnoBaseLogo} source={ require("../../../assets/images/icons/airtel-money-logo.png") } /> Airtel money: 20,000 TZShs
@@ -100,11 +101,19 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
                   content: (
                             <View style={styles.cardContent}>
                                     <Text style={styles.cardText}>
-                                        <SimpleLineIcons name="trophy" size={20} /> Mitandao inayofanya vizuri
+                                        <FontAwesome6 name="sack-dollar" size={20} /> Kamisheni Uliyopata
                                     </Text>
-                                    <Text style={styles.cardText}>Tigo - miamala 50</Text>
                                     <Text style={styles.cardText}>
-                                        <Foundation name="graph-trend" size={20} /> +15% kutoka jana
+                                            Leo: 150,000 TZshs
+                                    </Text>
+                                    <Text style={styles.cardText}>
+                                            <Image style={styles.mnoBaseLogo} source={ require("../../../assets/images/icons/mpesa-logo.jpg") } />
+                                                Mtandao bora: M-pesa (70,000 TZshs)
+                                    </Text>
+
+                                    <Text style={styles.cardText}>
+                                            <Octicons name="diamond" size={20} />
+                                                Wiki hii: 1,200,000 TZshs
                                     </Text>
                             </View>
                   )
