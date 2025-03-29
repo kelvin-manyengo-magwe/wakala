@@ -22,5 +22,5 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
 
 
 
-**For web client frontend visit url https://wakala-i8hi9ob8z-kelvin-manyengo-magwes-projects.vercel.app/**
+**For web client frontend visit url https://wakala.vercel.app/**
 #   Structure on how Sms flows
