@@ -3,7 +3,7 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
 
  #  The MNO's list we automate real-time tracking.
 <p align="center">
-   <img src="https://raw.githubusercontent.com/kelvin-manyengo-magwe/wakala/wakala_app/assets/airtel-money-logo.png" width="200" />
+   <img src="https://raw.githubusercontent.com/kelvin-manyengo-magwe/main/wakala/wakala_app/assets/airtel-money-logo.png" width="200" />
    <img src="![halo-pesa-logo](https://github.com/user-attachments/assets/51bad36f-6859-45c7-bd79-633e288f177c)" width="200" />
    <img src="![t-pesa-logo](https://github.com/user-attachments/assets/cc63914e-6884-4c73-9193-9c2dced009b5)" width="200" />
    <img src="![mixx-by-yas-logo](https://github.com/user-attachments/assets/dd2de9e8-1214-4913-bddf-dea6718da449)" width="200" />
