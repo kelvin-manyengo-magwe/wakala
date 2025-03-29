@@ -3,11 +3,11 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
 
  #  The MNO's list we automate real-time tracking.
 <p align="center">
-   <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/airtel-money-logo.png" width="200" />
-   <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/halo-pesa-logo.png" width="200" />
-   <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/mixx-by-yas-logo.png" width="200" />
-   <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/mpesa-logo.jpg" width="200" />
-   <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/t-pesa-logo.jpg" width="200" />
+   <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/airtel-money-logo.png" width="200" height="200" />
+   <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/halo-pesa-logo.png" width="200" height="200" />
+   <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/mixx-by-yas-logo.png" width="200" height="200" />
+   <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/mpesa-logo.jpg" width="200" height="200" />
+   <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/t-pesa-logo.jpg" width="200" height="200" />
 </p>
 
 
