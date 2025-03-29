@@ -2,8 +2,13 @@
 Introducing our cutting-edge Wakala Transaction Monitoring Application – a disruptive solution designed to revolutionize financial services for local agents (wakala). Harnessing real-time analytics and seamless UI/UX, our platform delivers unparalleled transparency and scalability in tracking transactions. With innovative features and data-driven insights, it empowers users to optimize performance, streamline operations, and stay ahead in a digital-first landscape. Experience a new era of financial monitoring that’s agile, intelligent, and built for the future.
 
  #  The MNO's list we automate real-time tracking.
-![halo-pesa-logo](https://github.com/user-attachments/assets/56dbb1ca-979d-4e23-a3b6-f626d3b65bce)
- ![t-pesa-logo](https://github.com/user-attachments/assets/51f93f1a-309c-4eed-accf-c567d97bf469)
+<p>
+   <img src="![airtel-money-logo](https://github.com/user-attachments/assets/2ed578fc-1dd9-4138-b6c6-6072a1b10ddb)" width="200" />
+   <img src="![halo-pesa-logo](https://github.com/user-attachments/assets/51bad36f-6859-45c7-bd79-633e288f177c)" width="200" />
+   <img src="![t-pesa-logo](https://github.com/user-attachments/assets/cc63914e-6884-4c73-9193-9c2dced009b5)" width="200" />
+   <img src="![mixx-by-yas-logo](https://github.com/user-attachments/assets/dd2de9e8-1214-4913-bddf-dea6718da449)" width="200" />
+   <img src="![mpesa-logo](https://github.com/user-attachments/assets/c3eec5f8-b8c4-4771-bbcb-72b82f43b0d3)" width="200" />
+</p>
 
 
 #Example of transactions performed by Halotel Agent.
