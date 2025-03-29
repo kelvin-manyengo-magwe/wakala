@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
        whiteBackground : {
             flex: 1,
-            backgroundColor: 'white'
+            backgroundColor: 'white',
        },
        header: {
             flexDirection: 'row',

@@ -4,6 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { styles } from './styles';
 import { SlidingCard } from '../../components/SlidingCard/SlidingCard';
 import { CardData } from '../../components/SlidingCard/CardData';
+import { TotalSummary } from '../../components/TotalSummary/TotalSummary';
 
 
 export const Home = () => {
@@ -33,7 +34,7 @@ export const Home = () => {
 
                      <SlidingCard cardData={CardData} />
 
-
+                    <TotalSummary />
 
             </View>
     )
