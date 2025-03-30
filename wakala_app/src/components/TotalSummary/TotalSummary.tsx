@@ -12,9 +12,9 @@ export const totalSummaryWidth = width * 0.9;
 
 
             return (
-                            <View style={styles.summaryContainer}>
+                    <View style={styles.summaryContainer}>
 
-                            </View>
+                    </View>
 
             )
     };
