@@ -37,7 +37,7 @@ export const Home = () => {
 
 
 
-                     <View>
+                     <View style={styles.contentContainers}>
                                 <View style={styles.slidingCardWrapper}>
                                         <SlidingCard cardData={CardData} />
                                 </View>

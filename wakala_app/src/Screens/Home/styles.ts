@@ -45,5 +45,9 @@ export const styles = StyleSheet.create({
       slidingCardWrapper: {
           flexGrow: 0, //disallow sliding card from shrinking
            height: 250,
-          }
+      },
+      contentContainer: {
+          flex: 1,  //allowing the border box items to expand
+          alignItems: 'center',  //centering the contents
+      },
 });

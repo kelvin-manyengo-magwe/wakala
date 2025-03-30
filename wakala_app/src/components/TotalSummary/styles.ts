@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         width: totalSummaryWidth, // 90% of screen width
         height: totalSummaryHeight, // 20% of screen height
         borderWidth: 1,
-        borderColor: 'black', // Add border color for visibility
+        borderColor: 'rgba(0,0,0,0.3)', // Add border color for visibility
         borderRadius: 10, // Rounded corners for better aesthetics
 
     },
