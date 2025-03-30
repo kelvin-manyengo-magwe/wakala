@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
        whiteBackground : {
-            flex: 1,
+            flexGrow: 1,
             backgroundColor: 'white',
        },
        header: {
@@ -34,5 +34,16 @@ export const styles = StyleSheet.create({
             marginVertical: 10,
             marginHorizontal: 10
        },
-
+       centerContainer: {
+            alignItems: 'center',
+            justifyContent: 'center',
+       },
+      summaryParentContainer: {
+            marginTop: 10,
+            alignItems: 'center',
+      },
+      slidingCardWrapper: {
+          flexGrow: 0, //disallow sliding card from shrinking
+           height: 250,
+          }
 });

@@ -11,6 +11,7 @@ export const Home = () => {
 
 
     return (
+
             <View style={styles.whiteBackground}>
                      <View style={styles.header}>
                               <View>
@@ -32,11 +33,21 @@ export const Home = () => {
                             <Text>Habari za jioni, Magwe</Text>
                      </View>
 
-                     <SlidingCard cardData={CardData} />
 
-                    <TotalSummary />
 
+
+
+                     <View>
+                                <View style={styles.slidingCardWrapper}>
+                                        <SlidingCard cardData={CardData} />
+                                </View>
+
+                                 <View style={styles.summaryParentContainer}>
+                                        <TotalSummary />
+                                 </View>
+                     </View>
             </View>
+
     )
 };
 

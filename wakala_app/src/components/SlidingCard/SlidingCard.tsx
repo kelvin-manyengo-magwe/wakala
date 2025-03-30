@@ -48,20 +48,20 @@ import { styles } from './styles';
                         <>
                             <SafeAreaProvider styles={styles.slidingCardContainer}>
                                   <SafeAreaView>
-                                            <FlatList
-                                                    data={cardData}
-                                                    horizontal
-                                                    ref={flatListRef}
-                                                    pagingEnabled
-                                                    onMomentumScrollEnd={onScrollEnd}
-                                                    showsHorizontalScrollIndicator={false}
-                                                    keyExtractor={(item) => item.id}
-                                                    renderItem={({ item }) => (
-                                                      <View style={styles.card}>
-                                                        <Text style={styles.cardItems}>{item.content}</Text>
-                                                      </View>
-                                                    )}
-                                                  />
+                                                  <FlatList
+                                                          data={cardData}
+                                                          horizontal
+                                                          ref={flatListRef}
+                                                          pagingEnabled
+                                                          onMomentumScrollEnd={onScrollEnd}
+                                                          showsHorizontalScrollIndicator={false}
+                                                          keyExtractor={(item) => item.id}
+                                                          renderItem={({ item }) => (
+                                                              <View style={styles.card}>
+                                                                      <Text style={styles.cardItems}>{item.content}</Text>
+                                                              </View>
+                                                  )}/>
+
 
 
                                             {/* Dot Indicators */}
@@ -78,9 +78,6 @@ import { styles } from './styles';
                                              </View>
                                   </SafeAreaView>
                             </SafeAreaProvider>
-
-
-
                         </>
                 )
 }
