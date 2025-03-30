@@ -35,8 +35,8 @@ If everything is set up _correctly_, you should see your new app running in your
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
 ### React native vector icons link
-The icons used in the project are stored in top level directory at /root/assets/Fonts https://oblador.github.io/react-native-vector-icons/.
-On the instructions on how to use the icon visit url https://www.npmjs.com/package/react-native-vector-icons.
+The icons used in the project are stored in top level directory at /root/assets/Fonts **https://oblador.github.io/react-native-vector-icons/**.
+On the instructions on how to use the icon visit url **https://www.npmjs.com/package/react-native-vector-icons**.
 
 ###  Graphs
 The graphs used are from dependancy called react-native-gifted charts. The documentation on how to use it found in the url **https://www.npmjs.com/package/react-native-gifted-charts**. The npm web app consists of different charts on how to use it its documentation found in link **https://gifted-charts.web.app/**.
