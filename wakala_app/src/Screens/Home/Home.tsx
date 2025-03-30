@@ -5,6 +5,8 @@ import { styles } from './styles';
 import { SlidingCard } from '../../components/SlidingCard/SlidingCard';
 import { CardData } from '../../components/SlidingCard/CardData';
 import { TotalSummary } from '../../components/TotalSummary/TotalSummary';
+import { DepositsWithdrawalBarChart } from '../../components/Graphs/DepositsWithdrawalBarChart/DepositsWithdrawalBarChart';
+
 
 
 export const Home = () => {
@@ -44,6 +46,10 @@ export const Home = () => {
 
                                  <View style={styles.summaryParentContainer}>
                                         <TotalSummary />
+                                 </View>
+
+                                 <View>
+                                         <DepositsWithdrawalBarChart />
                                  </View>
                      </View>
             </View>
