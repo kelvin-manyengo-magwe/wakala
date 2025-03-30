@@ -3,12 +3,14 @@ import { totalSummaryHeight, totalSummaryWidth, width } from './TotalSummary';
 
 
 export const styles = StyleSheet.create({
-    summaryContainer: {
-        width: totalSummaryWidth, // 90% of screen width
-        height: totalSummaryHeight, // 20% of screen height
+    totalSummarySpace: {
+        width: totalSummaryWidth,
+        height: totalSummaryHeight,
         borderWidth: 1,
         borderColor: 'rgba(0,0,0,0.3)', // Add border color for visibility
         borderRadius: 10, // Rounded corners for better aesthetics
+    },
+    summaryContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
@@ -20,7 +22,7 @@ export const styles = StyleSheet.create({
     },
     infoContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
         marginBottom: 10,
     },
@@ -37,5 +39,12 @@ export const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
+    },
+    summaryHeading: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: 'black',
+        padding: 10,
+
     },
 });
