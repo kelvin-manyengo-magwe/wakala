@@ -10,7 +10,7 @@ export const DepositsWithdrawalBarChart = () => {
                               label: 'Yas',
                               spacing: 2,
                               labelWidth: 30,
-                              labelTextStyle: {color: 'gray'},
+                              labelTextStyle: {color: 'black'},
                               frontColor: '#177AD5',
                             },
                             {value: 20, frontColor: '#ED6665'},
@@ -19,7 +19,7 @@ export const DepositsWithdrawalBarChart = () => {
                               label: 'M-Pesa',
                               spacing: 2,
                               labelWidth: 30,
-                              labelTextStyle: {color: 'gray'},
+                              labelTextStyle: {color: 'black'},
                               frontColor: '#177AD5',
                             },
                             {value: 40, frontColor: '#ED6665'},
@@ -28,7 +28,7 @@ export const DepositsWithdrawalBarChart = () => {
                               label: 'Airtel money',
                               spacing: 2,
                               labelWidth: 30,
-                              labelTextStyle: {color: 'gray'},
+                              labelTextStyle: {color: 'black'},
                               frontColor: '#177AD5',
                             },
                             {value: 25, frontColor: '#ED6665'},
@@ -37,7 +37,7 @@ export const DepositsWithdrawalBarChart = () => {
                               label: 'Halopesa',
                               spacing: 2,
                               labelWidth: 30,
-                              labelTextStyle: {color: 'gray'},
+                              labelTextStyle: {color: 'black'},
                               frontColor: '#177AD5',
                             },
                             {value: 20, frontColor: '#ED6665'},
@@ -46,7 +46,7 @@ export const DepositsWithdrawalBarChart = () => {
                               label: 'TTCL',
                               spacing: 2,
                               labelWidth: 30,
-                              labelTextStyle: {color: 'gray'},
+                              labelTextStyle: {color: 'black'},
                               frontColor: '#177AD5',
                             },
                             {value: 40, frontColor: '#ED6665'},
@@ -54,14 +54,14 @@ export const DepositsWithdrawalBarChart = () => {
 
                       const renderTitle = () => {
                                 return(
-                                  <View style={{marginVertical: 30}}>
-                                          <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold', textAlign: 'center', }}>
+                                  <View style={{marginVertical: 20, alignItems: 'center',}}>
+                                          <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center', }}>
                                                     Chati ya Amana dhidi ya Uondoaji
                                           </Text>
-                                  <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 24, backgroundColor: 'yellow' }}>
+                                  <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 10,}}>
                                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                                      <View style={{ height: 12, width: 12, borderRadius: 6, backgroundColor: '#177AD5', marginRight: 8, }} />
-                                                            <Text style={{ width: 60, height: 16, color: 'lightgray', }}>
+                                                      <View style={{ height: 12, width: 12, borderRadius: 6, marginRight: 8, }} />
+                                                            <Text style={{ width: 60, height: 16, }}>
                                                                 Amana
                                                             </Text>
                                                       </View>
@@ -69,7 +69,7 @@ export const DepositsWithdrawalBarChart = () => {
                                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
 
                                             <View style={{ height: 12, width: 12, borderRadius: 6, backgroundColor: '#ED6665', marginRight: 8, }} />
-                                                      <Text style={{ width: 60, height: 16, color: 'lightgray', }}>
+                                                      <Text style={{ width: 60, height: 16, }}>
                                                             Uondoaji
                                                       </Text>
                                             </View>
@@ -81,24 +81,35 @@ export const DepositsWithdrawalBarChart = () => {
             return (
                     <View
                             style={{
-                              backgroundColor: '#333340',
-                              paddingBottom: 40,
-                              borderRadius: 10,
+                                marginBottom: 20,
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                paddingBottom: 40,
+                                borderRadius: 10,
+                                marginHorizontal: 10,
+
                             }}>
-                            {renderTitle()}
-                            <BarChart
-                              data={barData}
-                              barWidth={8}
-                              spacing={24}
-                              roundedTop
-                              roundedBottom
-                              hideRules
-                              xAxisThickness={0}
-                              yAxisThickness={0}
-                              yAxisTextStyle={{color: 'gray'}}
-                              noOfSections={3}
-                              maxValue={75}
-                            />
+                                    <View>
+                                            {renderTitle()}
+                                    </View>
+
+                                    <View>
+                                            <BarChart
+
+                                                                                  data={barData}
+                                                                                  barWidth={16}
+                                                                                  spacing={24}
+                                                                                  roundedTop
+                                                                                  roundedBottom
+                                                                                  hideRules
+                                                                                  xAxisThickness={0}
+                                                                                  yAxisThickness={0}
+                                                                                  yAxisTextStyle={{color: 'black'}}
+                                                                                  noOfSections={3}
+                                                                                  maxValue={75}
+                                                                                />
+                                    </View>
                     </View>
                 )
     };

@@ -45,7 +45,7 @@ export const Home = () => {
                                         <TotalSummary />
                                  </View>
 
-                                 <View>
+                                 <View style={styles.depositsWithdrawal}>
                                          <DepositsWithdrawalBarChart />
                                  </View>
                      </View>
