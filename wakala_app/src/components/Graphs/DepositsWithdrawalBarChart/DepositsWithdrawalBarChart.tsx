@@ -1,5 +1,6 @@
 import { BarChart } from 'react-native-gifted-charts';
 import { Text, View } from 'react-native';
+import { styles } from './styles';
 
 
 
@@ -54,61 +55,43 @@ export const DepositsWithdrawalBarChart = () => {
 
                       const renderTitle = () => {
                                 return(
-                                  <View style={{marginVertical: 20, alignItems: 'center',}}>
-                                          <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center', }}>
+                                  <View style={styles.legendContainer}>
+                                          <Text style={styles.legendText}>
                                                     Chati ya Amana dhidi ya Uondoaji
                                           </Text>
-                                  <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 10,}}>
-                                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                                      <View style={{backgroundColor: '#177AD5', height: 12, width: 12, borderRadius: 6, marginRight: 8, }} />
-                                                            <Text style={{ width: 60, height: 16, }}>
-                                                                Amana
-                                                            </Text>
-                                                      </View>
+                                          <View style={styles.uondoajiAmanaContainer}>
+                                                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                                              <View style={{backgroundColor: '#177AD5', height: 12, width: 12, borderRadius: 6, marginRight: 8, }} />
+                                                                    <Text style={{ width: 60, height: 16, }}>
+                                                                        Amana
+                                                                    </Text>
+                                                    </View>
 
-                                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
 
-                                            <View style={{ height: 12, width: 12, borderRadius: 6, backgroundColor: '#ED6665', marginRight: 8, }} />
-                                                      <Text style={{ width: 60, height: 16, }}>
-                                                            Uondoaji
-                                                      </Text>
-                                            </View>
-                                  </View>
+                                                    <View style={styles.uondoajiContainer} />
+                                                              <Text style={styles.uondoajiText}>
+                                                                    Uondoaji
+                                                              </Text>
+                                                    </View>
+
+                                          </View>
                                 </View>
                                 )
                             }
 
             return (
                     <View
-                            style={{
-                                marginBottom: 20,
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                paddingBottom: 40,
-                                borderRadius: 10,
-                                marginHorizontal: 10,
-
-                            }}>
+                            style={{marginBottom: 20, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingBottom: 40, borderRadius: 10, marginHorizontal: 10, }}>
                                     <View>
                                             {renderTitle()}
                                     </View>
 
                                     <View>
-                                            <BarChart
-
-                                                                                  data={barData}
-                                                                                  barWidth={16}
-                                                                                  spacing={24}
-                                                                                  roundedTop
-                                                                                  roundedBottom
-                                                                                  hideRules
-                                                                                  xAxisThickness={0}
-                                                                                  yAxisThickness={0}
-                                                                                  yAxisTextStyle={{color: 'black'}}
-                                                                                  noOfSections={3}
-                                                                                  maxValue={75}
-                                                                                />
+                                            <BarChart data={barData}
+                                                      barWidth={16} spacing={24} roundedTop roundedBottom
+                                                      hideRules xAxisThickness={0} yAxisThickness={0}
+                                                      yAxisTextStyle={{color: 'black'}} noOfSections={3} maxValue={75} />
                                     </View>
                     </View>
                 )
