@@ -3,6 +3,9 @@ import { Welcome } from '../Screens/WelcomeScreen/Welcome';
 import { MessageScreen } from '../Screens/SplashScreen/MessageScreen';
 import { Home } from '../Screens/Home/Home';
 import React from 'react';
+import { BottomNavigationTab } from './BottomNavigationTab/BottomNavigationTab';
+
+
 
 export type AppStackParamList = {
     Splash: undefined,
@@ -25,7 +28,7 @@ export const routes = [
         component: MessageScreen
     },
     {
-        name: 'Home',
-        component: Home
-    }
+        name: 'mainApp',
+        component: BottomNavigationTab
+    },
 ];

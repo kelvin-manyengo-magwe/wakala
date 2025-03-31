@@ -28,7 +28,7 @@ export const Welcome = ({ navigation }) => {
                 <View style={styles.getStartedButtonContainer}>
                           <Pressable style={({ pressed }) => [
                                 styles.getStartedButton, {backgroundColor: pressed ? 'darkred' : 'red'}
-                                ]} onPress={() => navigation.navigate('Home')}>
+                                ]} onPress={() => navigation.navigate('mainApp')}>
                                    <Text style={styles.getStartedButtonFont}>
                                         Anza Sasa ...
                                    </Text>
