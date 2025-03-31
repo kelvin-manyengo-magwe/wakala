@@ -60,7 +60,7 @@ export const DepositsWithdrawalBarChart = () => {
                                           </Text>
                                   <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 10,}}>
                                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                                      <View style={{ height: 12, width: 12, borderRadius: 6, marginRight: 8, }} />
+                                                      <View style={{backgroundColor: '#177AD5', height: 12, width: 12, borderRadius: 6, marginRight: 8, }} />
                                                             <Text style={{ width: 60, height: 16, }}>
                                                                 Amana
                                                             </Text>
