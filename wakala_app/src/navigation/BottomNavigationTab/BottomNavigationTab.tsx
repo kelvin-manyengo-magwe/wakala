@@ -14,11 +14,11 @@ export const BottomNavigationTab = () => {
 
         return (
                     <Tab.Navigator>
-                                <Tab.Screen name={Home} component={Home} />
-                                <Tab.Screen name={Transactions} component={Transactions} />
-                                <Tab.Screen name={Settings} component={Settings} />
-                                <Tab.Screen name={Reports} component={Reports} />
-                                <Tab.Screen name={Mno} component={Mno} />
+                                <Tab.Screen name="Home" component={Home} />
+                                <Tab.Screen name="Transactions" component={Transactions} />
+                                <Tab.Screen name="Settings" component={Settings} />
+                                <Tab.Screen name="Reports" component={Reports} />
+                                <Tab.Screen name="Mno" component={Mno} />
                         </Tab.Navigator>
 
             )

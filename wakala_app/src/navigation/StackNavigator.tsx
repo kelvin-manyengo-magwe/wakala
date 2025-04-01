@@ -17,7 +17,7 @@ const StackNavigator = () => {
                                                 name={route.name as keyof AppStackParamList}
                                                 component={route.component} />
                         ))}
-                    <Stack.Screen name="mainApp" component={BottomNavigationTab} />
+                                <Stack.Screen name="mainApp" component={BottomNavigationTab} />
 
                 </Stack.Navigator>
         </NavigationContainer>

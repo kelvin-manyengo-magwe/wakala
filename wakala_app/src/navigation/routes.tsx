@@ -27,8 +27,5 @@ export const routes = [
         name: 'MessageScreen',
         component: MessageScreen
     },
-    {
-        name: 'mainApp',
-        component: BottomNavigationTab
-    },
+
 ];
