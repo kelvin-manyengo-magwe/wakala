@@ -20,19 +20,19 @@ export const BottomNavigationTab = () => {
                                   let iconName;
                                   // Set icons for each route
                                   switch (route.name) {
-                                    case 'Home':
+                                    case 'Nyumbani':
                                       iconName = 'home-outline';
                                       break;
-                                    case 'Mno':
+                                    case 'Mitandao':
                                       iconName = 'cellular-outline';
                                       break;
-                                    case 'Transactions':
+                                    case 'Miamala':
                                       iconName = 'swap-horizontal-outline';
                                       break;
-                                    case 'Reports':
+                                    case 'Ripoti':
                                         iconName = 'document-text-outline';
                                         break;
-                                    case 'Settings':
+                                    case 'Mipangilio':
                                         iconName = 'settings-outline';
                                         break;
                                               }
@@ -44,11 +44,11 @@ export const BottomNavigationTab = () => {
 
 
                     })}>
-                                <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-                                <Tab.Screen name="Transactions" component={Transactions} />
-                                <Tab.Screen name="Mno" component={Mno} />
-                                <Tab.Screen name="Reports" component={Reports} />
-                                <Tab.Screen name="Settings" component={Settings} />
+                                <Tab.Screen name="Nyumbani" component={Home} options={{ headerShown: false }} />
+                                <Tab.Screen name="Miamala" component={Transactions} />
+                                <Tab.Screen name="Mitandao" component={Mno} />
+                                <Tab.Screen name="Ripoti" component={Reports} />
+                                <Tab.Screen name="Mipangilio" component={Settings} />
                         </Tab.Navigator>
 
             )
