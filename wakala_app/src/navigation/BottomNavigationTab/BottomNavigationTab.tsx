@@ -15,7 +15,8 @@ export const BottomNavigationTab = () => {
 
         return (
                     <Tab.Navigator
-                        screenOptions={({ route }) => ({
+                        screenOptions={({ route,
+                                    }) => ({
                                 tabBarIcon: ({ color, size }) => {
                                   let iconName;
                                   // Set icons for each route
@@ -40,7 +41,16 @@ export const BottomNavigationTab = () => {
                                             },
                                             tabBarActiveTintColor: '#177AD5', // Active tab color
                                             tabBarInactiveTintColor: 'gray', // Inactive tab color
-                                            tabBarLabelStyle: { fontSize: 12 ,marginBottom: 4} // Styling the label below the icon
+                                            tabBarLabelStyle: { fontSize: 12 ,marginBottom: 4 }, // Styling the label below the icon,
+                                            headerStyle: {
+                                                  height: 50, // Adjust header height for compactness
+                                                },
+                                            headerTitleStyle: {
+                                                textAlignVertical: 'center',
+                                             },
+                                                headerTitleContainerStyle: {
+                                                  alignItems: 'center',
+                                                },
 
 
                     })}>
