@@ -40,7 +40,8 @@ import Octicons from 'react-native-vector-icons/Octicons';
                                             <Fontisto name="person" size={20} /> Wateja Bora
                                     </Text>
                                     <Text style={styles.cardText}>
-                                            <FontAwesome6 name="medal" size={20} /> Neema Shillingi - miamala 30
+                                            <FontAwesome6 style={{ paddingBottom: 5, }} name="medal" size={20} /> Neema Shillingi - miamala 30 {'\n'}
+                                            <FontAwesome6 name="medal" size={20} />James Nasuwa - miamala 20
                                     </Text>
                                     <Text style={styles.cardText}>
                                             <FontAwesome name="money" size={20} /> Kiasi: 7,000,000 TZShs
