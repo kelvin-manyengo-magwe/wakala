@@ -40,11 +40,11 @@ export const BottomNavigationTab = () => {
                                             },
                                             tabBarActiveTintColor: '#177AD5', // Active tab color
                                             tabBarInactiveTintColor: 'gray', // Inactive tab color
-                                            tabBarLabelStyle: { fontSize: 12 ,marginBottom: 4}, // Styling the label below the icon
+                                            tabBarLabelStyle: { fontSize: 12 ,marginBottom: 4} // Styling the label below the icon
 
 
                     })}>
-                                <Tab.Screen name="Home" component={Home} />
+                                <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
                                 <Tab.Screen name="Transactions" component={Transactions} />
                                 <Tab.Screen name="Mno" component={Mno} />
                                 <Tab.Screen name="Reports" component={Reports} />
