@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 
 export const Transactions = () => {
-             const [searchQuery, setSearchQuery] = useState('');
+             const [searchQuery, setSearchQuery] = useState('');  //the search input entered by the user
               const [filteredTransactions, setFilteredTransactions] = useState(data); // Filtered list of transactions
 
               // Sample transaction data
@@ -36,19 +36,19 @@ export const Transactions = () => {
                             onChangeText={handleSearch}
                           />
 
-                          {/* Transactions List */}
-                          <FlatList
-                            data={filteredTransactions}
-                            keyExtractor={(item) => item.id}
-                            renderItem={({ item }) => (
-                              <View style={styles.transactionItem}>
-                                <Text style={styles.transactionName}>{item.name}</Text>
-                                 <Text style={styles.transactionAmount}>{item.amount}</Text>
-                                          </View>
-                                        )}
-                                        ListEmptyComponent={<Text style={styles.emptyText}>Hakuna miamala inayolingana</Text>} // "No matching transactions" in Swahili
-                                      />
-                                    </View>
+                                  {/* Transactions List */}
+                                  <FlatList
+                                        data={filteredTransactions}
+                                        keyExtractor={(item) => item.id}
+                                        renderItem={({ item }) => (
+                                            <View style={styles.transactionItem}>
+                                                     <Text style={styles.transactionName}>{item.name}</Text>
+                                                     <Text style={styles.transactionAmount}>{item.amount}</Text>
+                                             </View>
+                                                    )}
+                                                    ListEmptyComponent={<Text style={styles.emptyText}>Hakuna miamala inayolingana</Text>} // "No matching transactions" in Swahili
+                                  />
+                    </View>
 
             )
     }
