@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
         mnoLogo: {
             width: 100,
             height: 85,
+            borderRadius: 10,
         },
         mnoLogoContainer: {
             marginHorizontal: 10,
