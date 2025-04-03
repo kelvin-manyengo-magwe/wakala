@@ -21,6 +21,7 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
 ![customer transaction message](https://github.com/user-attachments/assets/4ce8de89-c9b3-48ce-984e-b8472e952a06)
 
 
-
+# Deployements.
 Wakala web app (web client) frontend is deployed at vercel visit url **https://wakala.vercel.app/**. For the backend is deployed at laravel cloud, visit url **https://wakala-web-backend-main-6pijkc.laravel.cloud/**.
+
 #   Structure on how Sms flows
