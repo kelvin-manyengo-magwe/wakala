@@ -6,7 +6,7 @@ import { SlidingCard } from '../../components/SlidingCard/SlidingCard';
 import { CardData } from '../../components/SlidingCard/CardData';
 import { TotalSummary } from '../../components/TotalSummary/TotalSummary';
 import { DepositsWithdrawalBarChart } from '../../components/Graphs/DepositsWithdrawalBarChart/DepositsWithdrawalBarChart';
-
+import { MnoServicePanel } from '../../components/MnoServicePanel/MnoServicePanel';
 
 
 export const Home = () => {
@@ -43,6 +43,10 @@ export const Home = () => {
 
                                          <View style={styles.summaryParentContainer}>
                                                 <TotalSummary />
+                                         </View>
+
+                                         <View style={styles.mnoServicePanel}>
+                                                <MnoServicePanel />
                                          </View>
 
                                          <View style={styles.depositsWithdrawal}>

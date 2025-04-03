@@ -39,18 +39,12 @@ export const BottomNavigationTab = () => {
                                               }
                                               return <Ionicons style={styles.iconsStyle} name={iconName} size={size} color={color} />;
                                             },
-                                            tabBarActiveTintColor: '#177AD5', // Active tab color
-                                            tabBarInactiveTintColor: 'gray', // Inactive tab color
-                                            tabBarLabelStyle: { fontSize: 12 ,marginBottom: 4 }, // Styling the label below the icon,
-                                            headerStyle: {
-                                                  height: 50, // Adjust header height for compactness
-                                                },
-                                            headerTitleStyle: {
-                                                textAlignVertical: 'center',
-                                             },
-                                                headerTitleContainerStyle: {
-                                                  alignItems: 'center',
-                                                },
+                                            tabBarActiveTintColor: styles.tabBarActiveTintColor.color, // Active tab color
+                                            tabBarInactiveTintColor: styles.tabBarInActiveTintColor.color, // Inactive tab color
+                                            tabBarLabelStyle: styles.tabBarLabelStyle, // Styling the label below the icon,
+                                            headerStyle: styles.headerStyle,
+                                            headerTitleStyle: styles.headerTitleStyle,
+                                            headerTitleContainerStyle: styles.headerTitleContainerStyle,
 
 
                     })}>

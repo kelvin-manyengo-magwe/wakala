@@ -50,4 +50,8 @@ export const styles = StyleSheet.create({
           flex: 1,  //allowing the border box items to expand
           alignItems: 'center',  //centering the contents
       },
+      mnoServicePanel: {
+          marginTop: 10,
+          marginHorizontal: 15,
+      },
 });
