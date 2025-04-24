@@ -16,7 +16,7 @@ export const SmsOnReceiveEvent = () => {
                                                                         console.log('New sms Received: ',sms);
                                                 });
 
-                                         return () => SmsRe+ceiverEventEmitter.removeAllListeners('sms_onReceive');
+                                         return () => SmsReceiverEventEmitter.removeAllListeners('sms_onReceive');
                         } else {
                             console.warn("SmsReceiverModule is not available.");
 
