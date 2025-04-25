@@ -36,37 +36,54 @@ public class SmsReceiver extends BroadcastReceiver {
         public void onReceive(Context context, Intent intent) {
                         Log.d(TAG, "onReceive method is triggered...");
 
-                if(intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
+                if("android.provider.Telephony.SMS_RECEIVED".equals(intent.getAction()))      //avoiding null pointer exception
+                {
                         Bundle bundle = intent.getExtras();
 
 
                         if(bundle != null) {
                                try {
                                        Object[] pdus = (Object[]) bundle.get("pdus");  //pdus protocol data units(raw form of data of sms messages)
-                                       SmsMessage[] messages = new SmsMessage[pdus.length];
 
-                                       for(int i = 0; i < pdus.length; i++) {
-                                               messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
+                                                if(pdus == null || pdus.length == 0) return;
+
+                                                StringBuilder fullMessage = new StringBuilder();
+                                                String senderAddress = null;
+
+                                       String format = bundle.getString("format");
+
+                                       for(Object pdu: pdus) {          //looping through each pdu
+                                               SmsMessage sms;
+
+                                               if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                                                       sms = SmsMessage.createFromPdu((byte[]) pdu, format); // <- use format
+                                               } else {
+                                                       sms = SmsMessage.createFromPdu((byte[]) pdu); // <- fallback for older Android
+                                               }
+
+                                               if(senderAddress == null) {
+                                                        senderAddress = sms.getOriginatingAddress();
+                                               }
+
+                                               fullMessage.append(sms.getMessageBody());
 
                                        }
 
-                                       for(SmsMessage message: messages) {
-                                               String messageBody = message.getMessageBody();
-                                               String origninalAddress = message.getOriginatingAddress();
+
 
                                                //by use of writable map to transfer data to javascript frontend
                                                WritableMap eventData = Arguments.createMap(); //creating empty string of writable map
 
-                                               eventData.putString("body", messageBody);
-                                               eventData.putString("address", origninalAddress);
+                                               eventData.putString("body", fullMessage.toString());
+                                               eventData.putString("address", senderAddress);
 
-                                               Log.d(TAG, "Sms received: " + messageBody);
-                                               Log.d(TAG, "Sender address: " + origninalAddress);
+                                               Log.d(TAG, "Full Message received: " + fullMessage);
+                                               Log.d(TAG, "Sender address: " + senderAddress);
 
                                                sendEventToReact(SMS_RECEIVED_EVENT, eventData);
-                                       }
+
                                } catch(Exception e) {
-                                       Log.e(TAG, "Exception: " + e.getMessage());
+                                       Log.e(TAG, "Exception: " + e.getMessage(),e);
                                }
                         }
                 }
