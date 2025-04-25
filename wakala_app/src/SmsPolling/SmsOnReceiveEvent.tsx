@@ -21,6 +21,8 @@ export const SmsOnReceiveEvent = () => {
 
                                                                      if(parsed) {
                                                                             saveSmsToPouchDB(parsed);
+                                                                         } else {
+                                                                                console.warn('Could not parse sms', sms.body);
                                                                          }
                                                 });
 
