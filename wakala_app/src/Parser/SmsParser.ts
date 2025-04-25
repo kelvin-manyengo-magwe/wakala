@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 
 
 interface smsEvent {
@@ -55,6 +56,6 @@ interface parsedData {
                 }
             catch(err) {
                         console.error('Failed to parse', err);
-                        return null
+                        return null;
                     }
         }

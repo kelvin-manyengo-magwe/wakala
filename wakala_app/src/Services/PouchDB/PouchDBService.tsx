@@ -1,4 +1,5 @@
-import PouchDB from 'pouchdb';
+import 'react-native-get-random-values';
+import PouchDB from 'pouchdb-react-native';
 
 
 const db = new PouchDB('sms-database');
