@@ -1,8 +1,15 @@
 import 'react-native-get-random-values';
-import PouchDB from 'pouchdb-react-native';
+import PouchDB from 'pouchdb';
 import { useEffect } from 'react';
+import AsyncStorageAdapter from 'pouchdb-adapter-asyncstorage';
 
-const db = new PouchDB('wakala_sms_db');
+
+//registering adapter plugin
+PouchDB.plugin(AsyncStorageAdapter);
+
+const db = new PouchDB('wakala_sms_db',{
+                        adapter: 'asyncstorage',
+                        });
 
 //showing sms to the console
 const showPouchDbconsole = async () => {
