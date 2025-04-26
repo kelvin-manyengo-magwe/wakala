@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NativeModules, NativeEventEmitter } from 'react-native';
 import { SmsParser } from '../Parser/SmsParser';
+import { saveToRealm } from '../Services/Database/models/DatabaseService';
 
 
 
@@ -17,6 +18,9 @@ export const SmsOnReceiveEvent = () => {
                                         SmsReceiverEventEmitter.addListener("sms_onReceive", (sms) => {
                                                                         console.log('New sms Received: ',sms);
 
+                                                //saving the transaction to the realm
+                                                    const parsedData = SmsParser(sms);
+                                                        saveToRealm(parsedData);
 
                                                 });
 

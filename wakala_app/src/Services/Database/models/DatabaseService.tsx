@@ -1,5 +1,8 @@
-import { getRealm } from '../Realm/Realm';
+import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
+import { getRealm } from '../Realm/Realm';
+import { ReadRealm } from '../Realm/ReadRealm';
+
 
 
 export const saveToRealm = async (data: any) => {
@@ -21,6 +24,8 @@ export const saveToRealm = async (data: any) => {
         createdAt: new Date(),
       });
     });
+
+        ReadRealm();
 
     console.log('✅ Successfully saved SMS to Realm');
   } catch (error) {

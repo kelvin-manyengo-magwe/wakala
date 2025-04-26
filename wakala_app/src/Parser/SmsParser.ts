@@ -1,3 +1,4 @@
+import 'react-native-get-random-values';  //being added at the first for generating globally unique id no's
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -38,7 +39,7 @@ interface parsedData {
                             }
 
                         const parsed: parsedData = {
-                                          _id: uuidv4(),
+                                          _id: uuidv4(), //best for globally unique id
                                           customer_name: nameMatch[1].trim(),
                                           customer_no: phoneMatch[1],
                                           date: new Date(dateMatch[1].replace(/\//g, '-')).toISOString(),
