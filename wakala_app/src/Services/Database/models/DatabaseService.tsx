@@ -25,7 +25,9 @@ export const saveToRealm = async (data: any) => {
       });
     });
 
-        ReadRealm();
+
+    const transactions = realm.objects('deposits_transaction');
+        console.log('All transactions Data: ', JSON.stringify(transactions, null, 2));
 
     console.log('✅ Successfully saved SMS to Realm');
   } catch (error) {
