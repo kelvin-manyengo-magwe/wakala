@@ -10,7 +10,7 @@ export const saveToRealm = async (data: any) => {
 
   try {
     realm.write(() => {
-      realm.create('Transactions', {
+      realm.create('deposits_transaction', {
         _id: uuidv4(),  // Unique id for each saved sms
         customer_name: data.customer_name,
         customer_no: data.customer_no,
