@@ -1,6 +1,6 @@
 
 
-export const SmsSchema = {
+export const TransactionsSchema = {
   name: 'deposits_transaction',  // Collection name
   primaryKey: '_id',  // Unique ID for every SMS
   properties: {
