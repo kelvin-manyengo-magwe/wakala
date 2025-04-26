@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NativeModules, NativeEventEmitter } from 'react-native';
 import { SmsParser } from '../Parser/SmsParser';
-import { saveSmsToPouchDB } from '../Services/PouchDB/PouchDBService';
+
 
 
 export const SmsOnReceiveEvent = () => {
@@ -17,13 +17,7 @@ export const SmsOnReceiveEvent = () => {
                                         SmsReceiverEventEmitter.addListener("sms_onReceive", (sms) => {
                                                                         console.log('New sms Received: ',sms);
 
-                                                                     const parsed = SmsParser(sms);
 
-                                                                     if(parsed) {
-                                                                            saveSmsToPouchDB(parsed);
-                                                                         } else {
-                                                                                console.warn('Could not parse sms', sms.body);
-                                                                         }
                                                 });
 
                                          return () => SmsReceiverEventEmitter.removeAllListeners('sms_onReceive');
