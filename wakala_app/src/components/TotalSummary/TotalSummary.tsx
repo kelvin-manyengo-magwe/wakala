@@ -4,6 +4,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 
 
+
 export const { width } = Dimensions.get("window");
 export const totalSummaryHeight = width * 0.4;
 export const totalSummaryWidth = width * 0.9;
