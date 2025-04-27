@@ -40,7 +40,15 @@ export const totalSummaryWidth = width * 0.9;
                             });
                     };
 
-                        loadSummary()
+                        loadSummary();
+
+                            return () => {
+                                        if(realmInstance && !realmInstance.isClosed) {
+                                                const transactions = realmInstance.objects<TransactionsSchema>('deposits_transaction');
+                                                    transactions.removeAllListeners();  //closing the listeners
+                                                        realmInstance.close();          //closing the realm database schema
+                                            }
+                                }
             },[]);
 
 
