@@ -1,6 +1,9 @@
 import { View, Text, Dimensions, SafeAreaV7iew } from 'react-native';
 import { styles } from './styles';
+import { useState } from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { HomeTotalMnoSummary } from '../../Screens/Home/Home.types';
+
 
 
 
@@ -10,6 +13,13 @@ export const totalSummaryHeight = width * 0.4;
 export const totalSummaryWidth = width * 0.9;
 
     export const TotalSummary = () => {
+        const [ mnoTotalSummary, setMnoTotalSummary ] = useState<HomeTotalMnoSummary>({  //making the type T for the interfaces
+                    totalDeposits: 0,
+                    totalWithdrawals: 0,
+                    totalCommission: 0,
+                    totalFloat: 0,
+            });
+
 
 
             return (

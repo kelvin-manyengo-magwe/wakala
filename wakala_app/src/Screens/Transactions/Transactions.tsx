@@ -27,6 +27,8 @@ export const Transactions = () => {
                             }
                           };
 
+                   //Later to use the useEffect to fetch the transactions based on time e.g 24h, 7d, 30d, 90d, e.t.c
+
         return (
                     <View style={styles.container}>
                           {/* Search Input */}
