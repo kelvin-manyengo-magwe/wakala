@@ -40,3 +40,7 @@ On the instructions on how to use the icon visit url **https://www.npmjs.com/pac
 
 ###  Graphs
 The graphs used are from dependancy called react-native-gifted charts. The documentation on how to use it found in the url **https://www.npmjs.com/package/react-native-gifted-charts**. The npm web app consists of different charts on how to use it its documentation found in link **https://gifted-charts.web.app/**.
+
+### Sms Drilling  Extraction Architecture
+![image](https://github.com/user-attachments/assets/f35282f9-83fa-4130-b912-955b6453a9f7)
+
