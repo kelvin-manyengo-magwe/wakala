@@ -13,15 +13,21 @@ export const HomeCalculatorSummary = () : HomeTotalMnoSummary => {
             let totalFloat = 0;
 
                 transactions.forEach(transaction => {
-                        switch() {
-
-                            }
-                    })
-        return (
-                <>
-
-                </>
-            )
+                            if(transaction.type === 'deposit') {
+                                    totalDeposits += transaction.amount;
+                                    totalCommission += transaction.commission;
+                                    totalFloat += transaction.float;
+                                }
+                            else if(transaction.type === 'withdrawal') {
+                                    totalWithdrawals +=  transaction.amount;
+                                }
+                    });
+        return {
+                totalWithdrawals: parseFloat(totalWithdrawals.toFixed(2),
+                totalDeposits: parseFloat(totalDeposits.toFixed(2)),
+                totalFloat: parseFloat(totalFloat.toFixed(2)),
+                totalCommission: parseFloat(totalCommission.toFixed(2)),
+            }
     }
 
 
