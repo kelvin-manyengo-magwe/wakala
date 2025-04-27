@@ -1,9 +1,9 @@
-import { View, Text, Dimensions, SafeAreaV7iew } from 'react-native';
+import { View, Text, Dimensions, SafeAreaView } from 'react-native';
 import { styles } from './styles';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { HomeTotalMnoSummary } from '../../Screens/Home/Home.types';
-
+import { HomeCalculatorSummary } from '../../Services/Database/models/HomeCalculatorSummary';
 
 
 
@@ -21,6 +21,15 @@ export const totalSummaryWidth = width * 0.9;
             });
 
 
+        useEffect(() => {
+                const loadSummary = async() => {
+                        const summary = await HomeCalculatorSummary();
+                                setMnoTotalSummary(summary);
+                    };
+
+                        loadSummary()
+            },[]);
+
 
             return (
                     <View style={styles.totalSummarySpace}>
@@ -33,7 +42,7 @@ export const totalSummaryWidth = width * 0.9;
 
                                                     <View style={styles.infoColumn}>
                                                            <Text style={styles.label}>Amana</Text>
-                                                           <Text style={styles.amount}>120,000 Tzshs</Text>
+                                                           <Text style={styles.amount}>{mnoTotalSummary.totalDeposits} Tzshs</Text>
                                                     </View>
                                             </View>
 
@@ -42,7 +51,7 @@ export const totalSummaryWidth = width * 0.9;
 
                                                     <View style={styles.infoColumn}>
                                                            <Text style={styles.label}>Kamisheni</Text>
-                                                           <Text style={styles.amount}>78,349 Tzshs</Text>
+                                                           <Text style={styles.amount}>{mnoTotalSummary.totalCommission} Tzshs</Text>
                                                     </View>
                                             </View>
                                     </View>
@@ -53,7 +62,7 @@ export const totalSummaryWidth = width * 0.9;
 
                                                            <View style={styles.infoColumn}>
                                                                    <Text style={styles.label}>Matoleo ya Pesa</Text>
-                                                                   <Text style={styles.amount}>3,230 Tzshs</Text>
+                                                                   <Text style={styles.amount}>{mnoTotalSummary.totalWithdrawals} Tzshs</Text>
                                                            </View>
                                               </View>
 
@@ -62,7 +71,7 @@ export const totalSummaryWidth = width * 0.9;
 
                                                           <View style={styles.infoColumn}>
                                                                   <Text style={styles.label}>Salio</Text>
-                                                                  <Text style={styles.amount}>45,610 Tzshs</Text>
+                                                                  <Text style={styles.amount}>{mnoTotalSummary.totalFloat} TZshs</Text>
                                                           </View>
                                               </View>
                                     </View>

@@ -2,10 +2,10 @@ import { getRealm } from '../Realm/Realm';
 import { HomeTotalMnoSummary } from '../../../Screens/Home/Home.types';
 
 
-export const HomeCalculatorSummary = () : HomeTotalMnoSummary => {
+export const HomeCalculatorSummary = async () : HomeTotalMnoSummary => {
             const realm = await getRealm();
             //fetching all the transaction from realm
-            const transactions = realm.objects<deposits-transaction>('deposits-transaction');  //the T <type> with the schema
+            const transactions = realm.objects<deposits_transaction>('deposits_transaction');  //the T <type> with the schema
 
             let totalDeposits = 0;
             let totalCommission = 0;
@@ -22,8 +22,10 @@ export const HomeCalculatorSummary = () : HomeTotalMnoSummary => {
                                     totalWithdrawals +=  transaction.amount;
                                 }
                     });
+
+                console.log('TotalSummary: ', totalWithdrawals, totalCommission, totalFloat, totalDeposits);
         return {
-                totalWithdrawals: parseFloat(totalWithdrawals.toFixed(2),
+                totalWithdrawals: parseFloat(totalWithdrawals.toFixed(2)),
                 totalDeposits: parseFloat(totalDeposits.toFixed(2)),
                 totalFloat: parseFloat(totalFloat.toFixed(2)),
                 totalCommission: parseFloat(totalCommission.toFixed(2)),
