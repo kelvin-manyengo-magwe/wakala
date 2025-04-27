@@ -1,59 +1,140 @@
 import { View, Text, FlatList, TextInput } from 'react-native';
-import { useState } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { styles } from './styles';
-
+import { getRealm } from '../../Services/Database/Realm/Realm';
+import { TransactionsSchema } from '../../Services/Database/Schemas/TransactionsSchema';
 
 export const Transactions = () => {
-             const [searchQuery, setSearchQuery] = useState('');  //the search input entered by the user
-              const [filteredTransactions, setFilteredTransactions] = useState(data); // Filtered list of transactions
+  const [searchQuery, setSearchQuery] = useState('');
+  const [displayedTransactions, setDisplayedTransactions] = useState<TransactionsSchema[]>([]);
+  const realmRef = useRef<Realm | null>(null);
+  const transactionsRef = useRef<Realm.Results<TransactionsSchema> | null>(null);
 
-              // Sample transaction data
-              const data = [
-                { id: '1', name: 'Transaction A', amount: '1000 TZS' },
-                { id: '2', name: 'Transaction B', amount: '2000 TZS' },
-                { id: '3', name: 'Transaction C', amount: '3000 TZS' },
-              ];
+  // Create a stable copy of Realm data
+  const createStableCopy = useCallback((transactions: Realm.Results<TransactionsSchema>) => {
+    return Array.from(transactions).map(item => ({
+      ...JSON.parse(JSON.stringify(item)), // Deep clone
+      createdAt: item.createdAt instanceof Date ?
+        new Date(item.createdAt) :
+        new Date(item.createdAt as string)
+    }));
+  }, []);
 
-              // Function to handle search input changes
-              const handleSearch = (query) => {
-                setSearchQuery(query);
-                if (query === '') {
-                  setFilteredTransactions(data); // Reset to all data when search is empty
-                } else {
-                  const filtered = data.filter((item) =>
-                        item.name.toLowerCase().includes(query.toLowerCase())
-                              );
-                              setFilteredTransactions(filtered);
-                            }
-                          };
+  // Load Realm data and set up live updates
+  useEffect(() => {
+    let isMounted = true;
 
-                   //Later to use the useEffect to fetch the transactions based on time e.g 24h, 7d, 30d, 90d, e.t.c
+    const setupRealm = async () => {
+      try {
+        const realm = await getRealm();
+        if (!isMounted) {
+          realm.close();
+          return;
+        }
 
-        return (
-                    <View style={styles.container}>
-                          {/* Search Input */}
-                          <TextInput
-                            style={styles.searchInput}
-                            placeholder="Tafuta miamala..." // "Search transactions..." in Swahili
-                            value={searchQuery}
-                            onChangeText={handleSearch}
-                          />
+        realmRef.current = realm;
+        const transactions = realm
+          .objects<TransactionsSchema>('deposits_transaction')
+          .sorted('createdAt', true);
 
-                                  {/* Transactions List */}
-                                  <FlatList
-                                        data={filteredTransactions}
-                                        keyExtractor={(item) => item.id}
-                                        renderItem={({ item }) => (
-                                            <View style={styles.transactionItem}>
-                                                     <Text style={styles.transactionName}>{item.name}</Text>
-                                                     <Text style={styles.transactionAmount}>{item.amount}</Text>
-                                             </View>
-                                                    )}
-                                                    ListEmptyComponent={<Text style={styles.emptyText}>Hakuna miamala inayolingana</Text>} // "No matching transactions" in Swahili
-                                  />
-                    </View>
+        transactionsRef.current = transactions;
 
-            )
+        // Initial data load
+        const snapshot = createStableCopy(transactions);
+        if (isMounted) {
+          setDisplayedTransactions(filterTransactions(snapshot, searchQuery));
+        }
+
+        // Set up listener for live updates
+        transactions.addListener((collection, changes) => {
+          if (isMounted && transactionsRef.current) {
+            const newSnapshot = createStableCopy(transactionsRef.current);
+            setDisplayedTransactions(filterTransactions(newSnapshot, searchQuery));
+          }
+        });
+
+      } catch (error) {
+        console.error('Realm setup error:', error);
+      }
+    };
+
+    setupRealm();
+
+    return () => {
+      isMounted = false;
+      if (transactionsRef.current) {
+        transactionsRef.current.removeAllListeners();
+      }
+      if (realmRef.current && !realmRef.current.isClosed) {
+        realmRef.current.close();
+      }
+    };
+  }, []);
+
+  // Filter transactions based on search query
+  const filterTransactions = useCallback((transactions: TransactionsSchema[], query: string) => {
+    return query.trim() === ''
+      ? transactions
+      : transactions.filter(item =>
+          item.name?.toLowerCase().includes(query.toLowerCase())
+        );
+  }, []);
+
+  // Update search results when query changes
+  useEffect(() => {
+    if (transactionsRef.current) {
+      const snapshot = createStableCopy(transactionsRef.current);
+      setDisplayedTransactions(filterTransactions(snapshot, searchQuery));
     }
+  }, [searchQuery]);
 
+  return (
+    <View style={styles.container}>
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Tafuta miamala..."
+        value={searchQuery}
+        onChangeText={setSearchQuery}
+      />
 
+      <FlatList
+        data={displayedTransactions}
+        keyExtractor={(item) => item._id.toString()}
+        renderItem={({ item }) => (
+          <View style={styles.transactionItem}>
+            {/* Left Side - Primary Info */}
+            <View style={styles.leftSide}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={styles.transactionName}>{item.name}</Text>
+                {item.type && (
+                  <View style={styles.typeBadge}>
+                    <Text style={styles.typeText}>{item.type}</Text>
+                  </View>
+                )}
+              </View>
+              <Text style={styles.transactionDate}>
+                {item.createdAt.toLocaleDateString()}
+              </Text>
+            </View>
+
+            {/* Right Side - Amounts */}
+            <View style={styles.rightSide}>
+              <Text style={styles.transactionAmount}>{item.amount} TZS</Text>
+              <View style={styles.amountDetails}>
+                <Text style={styles.commissionText}>
+                  Kamisheni: {item.commission || 0} TZS
+                </Text>
+                <Text style={styles.floatText}>
+                  Floti: {item.float || 0} TZS
+                </Text>
+              </View>
+            </View>
+          </View>
+        )}
+        ListEmptyComponent={
+          <Text style={styles.emptyText}>Hakuna miamala inayolingana</Text>
+        }
+      />
+    </View>
+  );
+};

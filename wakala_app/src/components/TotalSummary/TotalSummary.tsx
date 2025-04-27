@@ -35,6 +35,8 @@ export const totalSummaryWidth = width * 0.9;
 
                         transactions.addListener(async (collection, changes) => {
                                     console.log('Realm Change detected 🚀');
+                                    console.log('New Size: ', collection.length);
+
                                     const updatedSummary = await HomeCalculatorSummary();
                                     setMnoTotalSummary(updatedSummary);
                             });
