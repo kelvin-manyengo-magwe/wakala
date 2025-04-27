@@ -1,6 +1,6 @@
 import { getRealm } from '../Realm/Realm';
 import { HomeTotalMnoSummary } from '../../../Screens/Home/Home.types';
-import { getRealm } from '../Realm/Realm';
+
 
 
 export const HomeCalculatorSummary = async () : HomeTotalMnoSummary => {

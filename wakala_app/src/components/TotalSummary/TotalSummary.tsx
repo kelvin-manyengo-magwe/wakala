@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { HomeTotalMnoSummary } from '../../Screens/Home/Home.types';
 import { HomeCalculatorSummary } from '../../Services/Database/models/HomeCalculatorSummary';
-
+import { getRealm } from '../../Services/Database/Realm/Realm';
+import { TransactionsSchema } from '../../Services/Database/Schemas/TransactionsSchema';
 
 
 
@@ -22,9 +23,21 @@ export const totalSummaryWidth = width * 0.9;
 
 
         useEffect(() => {
+                    let realmInstance: Realm;
+
                 const loadSummary = async() => {
+                            realmInstance = await getRealm();
+                            const transactions = realmInstance.objects<TransactionsSchema>('deposits_transaction');
+
+                            //initially load the data
                         const summary = await HomeCalculatorSummary();
                                 setMnoTotalSummary(summary);
+
+                        transactions.addListener(async (collection, changes) => {
+                                    console.log('Realm Change detected 🚀');
+                                    const updatedSummary = await HomeCalculatorSummary();
+                                    setMnoTotalSummary(updatedSummary);
+                            });
                     };
 
                         loadSummary()
