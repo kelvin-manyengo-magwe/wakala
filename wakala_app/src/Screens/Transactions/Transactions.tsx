@@ -110,11 +110,17 @@ export const Transactions = () => {
                   <View style={styles.typeBadge}>
                     <Text style={styles.typeText}>{item.type}</Text>
                   </View>
+
+
+
+
                 )}
               </View>
               <Text style={styles.transactionDate}>
                 {item.createdAt.toLocaleDateString()}
               </Text>
+
+              <Text style={styles.amountDetails}>{item.customer_name}</Text>
             </View>
 
             {/* Right Side - Amounts */}
@@ -124,6 +130,9 @@ export const Transactions = () => {
                 <Text style={styles.commissionText}>
                   Kamisheni: {item.commission || 0} TZS
                 </Text>
+
+                    <Text style={styles.typeText}>Reference no: {item.ref_no}</Text>
+
                 <Text style={styles.floatText}>
                   Floti: {item.float || 0} TZS
                 </Text>
