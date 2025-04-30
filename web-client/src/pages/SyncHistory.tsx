@@ -1,0 +1,223 @@
+// src/pages/SyncHistory.tsx
+import React, { useState } from 'react';
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  InputAdornment,
+  Chip,
+  Typography,
+  TablePagination,
+  IconButton,
+  Menu,
+  MenuItem,
+} from '@mui/material';
+import { Search, Sync, MoreVert, CloudDownload } from '@mui/icons-material';
+import { styled } from '@mui/material/styles';
+import { motion } from 'framer-motion';
+
+interface SyncEvent {
+  id: string;
+  timestamp: string;
+  agent: string;
+  records: number;
+  status: 'Completed' | 'Failed' | 'In Progress';
+}
+
+const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
+  borderRadius: '12px',
+  boxShadow: theme.shadows[2],
+  '& .MuiTableRow-root:hover': {
+    backgroundColor: theme.palette.primary.light + '20',
+  },
+}));
+
+const statusColors = {
+  Completed: 'success',
+  Failed: 'error',
+  'In Progress': 'warning',
+} as const;
+
+const SyncHistory: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [selectedSync, setSelectedSync] = useState<string | null>(null);
+
+  const syncEvents: SyncEvent[] = [
+    {
+      id: 'SYNC001',
+      timestamp: '2023-05-01 09:30:45',
+      agent: 'John Doe',
+      records: 124,
+      status: 'Completed',
+    },
+    {
+      id: 'SYNC002',
+      timestamp: '2023-05-01 10:15:22',
+      agent: 'Jane Smith',
+      records: 89,
+      status: 'Completed',
+    },
+    {
+      id: 'SYNC003',
+      timestamp: '2023-05-02 11:20:33',
+      agent: 'Mike Johnson',
+      records: 0,
+      status: 'Failed',
+    },
+    {
+      id: 'SYNC004',
+      timestamp: '2023-05-02 14:45:18',
+      agent: 'Sarah Williams',
+      records: 67,
+      status: 'In Progress',
+    },
+    // Add more sync events...
+  ];
+
+  const filteredSyncEvents = syncEvents.filter((event) =>
+    event.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    event.agent.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    event.status.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>, id: string) => {
+    setAnchorEl(event.currentTarget);
+    setSelectedSync(id);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    setSelectedSync(null);
+  };
+
+  const handleRetry = () => {
+    console.log(`Retry sync ${selectedSync}`);
+    handleMenuClose();
+  };
+
+  const handleDownload = () => {
+    console.log(`Download sync ${selectedSync}`);
+    handleMenuClose();
+  };
+
+  return (
+    <div>
+      <Typography variant="h4" gutterBottom fontWeight="bold">
+        Sync History
+      </Typography>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <Paper
+          sx={{
+            p: 2,
+            mb: 3,
+            borderRadius: '12px',
+            boxShadow: `0 0 15px rgba(230, 57, 70, 0.1)`,
+          }}
+        >
+          <TextField
+            fullWidth
+            variant="outlined"
+            placeholder="Search sync events..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Search />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Paper>
+
+        <StyledTableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Sync ID</TableCell>
+                <TableCell>Timestamp</TableCell>
+                <TableCell>Agent</TableCell>
+                <TableCell>Records</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {filteredSyncEvents
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((event) => (
+                  <TableRow key={event.id}>
+                    <TableCell>{event.id}</TableCell>
+                    <TableCell>{event.timestamp}</TableCell>
+                    <TableCell>{event.agent}</TableCell>
+                    <TableCell>{event.records}</TableCell>
+                    <TableCell>
+                      <Chip
+                        label={event.status}
+                        color={statusColors[event.status]}
+                        size="small"
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <IconButton onClick={(e) => handleMenuOpen(e, event.id)}>
+                        <MoreVert />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={filteredSyncEvents.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </StyledTableContainer>
+
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+        >
+          <MenuItem onClick={handleRetry}>
+            <Sync fontSize="small" sx={{ mr: 1 }} />
+            Retry Sync
+          </MenuItem>
+          <MenuItem onClick={handleDownload}>
+            <CloudDownload fontSize="small" sx={{ mr: 1 }} />
+            Download Logs
+          </MenuItem>
+        </Menu>
+      </motion.div>
+    </div>
+  );
+};
+
+export default SyncHistory;

@@ -66,7 +66,7 @@ export const totalSummaryWidth = width * 0.9;
                                                     <View style={styles.infoColumn}>
                                                            <Text style={styles.label}>Amana</Text>
                                                            <Text style={styles.amount}>{mnoTotalSummary.totalDeposits} Tzshs</Text>
-                                                           <Text style={styles.amount}>{mnoTotalSummary.totalCommission} Tzshs</Text>
+
                                                     </View>
                                             </View>
 
