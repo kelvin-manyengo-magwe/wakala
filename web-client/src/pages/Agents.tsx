@@ -107,7 +107,7 @@ const Agents: React.FC = () => {
   };
 
   return (
-    <div>
+    <div style={{ width: '80vw', margin: '0 auto' }}>
       <Typography variant="h4" gutterBottom fontWeight="bold">
         Agents
       </Typography>

@@ -120,7 +120,7 @@ const SyncHistory: React.FC = () => {
   };
 
   return (
-    <div>
+    <div style={{ margin: '0 auto', width: '80vw' }}>
       <Typography variant="h4" gutterBottom fontWeight="bold">
         Sync History
       </Typography>

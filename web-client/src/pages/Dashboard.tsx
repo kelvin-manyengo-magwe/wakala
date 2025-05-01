@@ -24,7 +24,10 @@ import {
   Notifications,
   AccountCircle,
   Payment,
-  TrendingUp
+  TrendingUp,
+  AccountBalance,
+  AttachMoney,
+  ShowChart
 } from '@mui/icons-material';
 import { Bar, Pie } from 'react-chartjs-2';
 import {
@@ -55,11 +58,6 @@ const StyledCard = styled(Paper)(({ theme }) => ({
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
-  transition: 'all 0.3s ease',
-  '&:hover': {
-    transform: 'translateY(-5px)',
-    boxShadow: `0 5px 20px ${theme.palette.primary.light}`,
-  },
 }));
 
 const Dashboard: React.FC = () => {
@@ -70,8 +68,8 @@ const Dashboard: React.FC = () => {
       {
         label: 'Transactions',
         data: [120, 190, 130, 170, 150, 200, 180],
-        backgroundColor: 'rgba(230, 57, 70, 0.7)',
-        borderColor: 'rgba(230, 57, 70, 1)',
+        backgroundColor: 'rgba(63, 81, 181, 0.7)',
+        borderColor: 'rgba(63, 81, 181, 1)',
         borderWidth: 1,
       },
       {
@@ -96,13 +94,21 @@ const Dashboard: React.FC = () => {
         ],
         borderColor: [
           'rgba(75, 181, 67, 1)',
-          'rgba(255, 51, 51, 1)',
+          'rgba(97, 97, 97, 1)',
           'rgba(255, 204, 0, 1)',
         ],
         borderWidth: 1,
       },
     ],
   };
+
+  // Financial Data
+  const financialData = [
+    { title: 'Total Deposits', value: 'Ksh 245,800', change: '+12%', icon: <AccountBalance />, color: '#4caf50' },
+    { title: 'Total Withdrawals', value: 'Ksh 189,500', change: '+8%', icon: <AttachMoney />, color: '#f44336' },
+    { title: 'Current Float', value: 'Ksh 56,300', change: '+5%', icon: <ShowChart />, color: '#2196f3' },
+    { title: 'Weekly Profit', value: 'Ksh 38,750', change: '+15%', icon: <TrendingUp />, color: '#ff9800' }
+  ];
 
   // Recent Activities Data
   const activities = [
@@ -113,12 +119,13 @@ const Dashboard: React.FC = () => {
   ];
 
   return (
+
     <Box sx={{
       width: '100vw',
       height: '100vh',
       overflow: 'auto',
       p: 3,
-      backgroundColor: 'background.default'
+      backgroundColor: 'background.default',
     }}>
       {/* Header Section */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
@@ -131,12 +138,39 @@ const Dashboard: React.FC = () => {
         </Box>
       </Box>
 
+      {/* Financial Summary Cards */}
+      <Grid container spacing={3} sx={{ mb: 4 }}>
+        {financialData.map((item, index) => (
+          <Grid item xs={12} sm={6} md={3} key={index}>
+            <StyledCard>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Avatar sx={{ bgcolor: `${item.color}20`, color: item.color }}>
+                  {item.icon}
+                </Avatar>
+                <Box>
+                  <Typography variant="body2" color="text.secondary">{item.title}</Typography>
+                  <Typography variant="h5" fontWeight="bold">{item.value}</Typography>
+                  <Typography variant="caption" sx={{
+                    color: item.change.startsWith('+') ? 'success.main' : 'error.main',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    {item.change.startsWith('+') ? <ArrowUpward fontSize="small" /> : <ArrowDownward fontSize="small" />}
+                    {item.change}
+                  </Typography>
+                </Box>
+              </Box>
+            </StyledCard>
+          </Grid>
+        ))}
+      </Grid>
+
       {/* Stats Cards */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item={true} xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <StyledCard>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Avatar sx={{ bgcolor: 'rgba(230, 57, 70, 0.1)', color: '#e63946' }}>
+              <Avatar sx={{ bgcolor: 'action.hover', color: 'text.primary' }}>
                 <AccountBalanceWallet />
               </Avatar>
               <Box>
@@ -153,10 +187,10 @@ const Dashboard: React.FC = () => {
           </StyledCard>
         </Grid>
 
-        <Grid item={true} xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <StyledCard>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Avatar sx={{ bgcolor: 'rgba(58, 134, 255, 0.1)', color: '#3a86ff' }}>
+              <Avatar sx={{ bgcolor: 'action.hover', color: 'text.primary' }}>
                 <People />
               </Avatar>
               <Box>
@@ -173,10 +207,10 @@ const Dashboard: React.FC = () => {
           </StyledCard>
         </Grid>
 
-        <Grid item={true} xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <StyledCard>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Avatar sx={{ bgcolor: 'rgba(75, 181, 67, 0.1)', color: '#4bb543' }}>
+              <Avatar sx={{ bgcolor: 'action.hover', color: 'text.primary' }}>
                 <Sync />
               </Avatar>
               <Box>
@@ -192,10 +226,10 @@ const Dashboard: React.FC = () => {
           </StyledCard>
         </Grid>
 
-        <Grid item={true} xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <StyledCard>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Avatar sx={{ bgcolor: 'rgba(255, 204, 0, 0.1)', color: '#ffcc00' }}>
+              <Avatar sx={{ bgcolor: 'action.hover', color: 'text.primary' }}>
                 <MonetizationOn />
               </Avatar>
               <Box>
@@ -216,9 +250,9 @@ const Dashboard: React.FC = () => {
       {/* Main Content */}
       <Grid container spacing={3}>
         {/* Charts Section */}
-        <Grid item={true} xs={12} md={8}>
+        <Grid item xs={12} md={8}>
           <Grid container spacing={3}>
-            <Grid item={true} xs={12}>
+            <Grid item xs={12}>
               <StyledCard>
                 <Typography variant="h6" gutterBottom>
                   Weekly Performance
@@ -239,7 +273,7 @@ const Dashboard: React.FC = () => {
                 </Box>
               </StyledCard>
             </Grid>
-            <Grid item={true} xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <StyledCard>
                 <Typography variant="h6" gutterBottom>
                   Transaction Status
@@ -260,7 +294,7 @@ const Dashboard: React.FC = () => {
                 </Box>
               </StyledCard>
             </Grid>
-            <Grid item={true} xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <StyledCard>
                 <Typography variant="h6" gutterBottom>
                   System Health
@@ -292,7 +326,7 @@ const Dashboard: React.FC = () => {
         </Grid>
 
         {/* Recent Activities Section */}
-        <Grid item={true} xs={12} md={4}>
+        <Grid item xs={12} md={4}>
           <StyledCard>
             <Typography variant="h6" gutterBottom>
               Recent Activities
@@ -324,6 +358,7 @@ const Dashboard: React.FC = () => {
         </Grid>
       </Grid>
     </Box>
+  
   );
 };
 
