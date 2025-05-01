@@ -299,7 +299,7 @@ const Transactions: React.FC = () => {
                 <TableCell>Date & Time</TableCell>
                 <TableCell>Agent</TableCell>
                 <TableCell>Phone</TableCell>
-                <TableCell>Amount (Ksh)</TableCell>
+                <TableCell>Amount (Tshs)</TableCell>
                 <TableCell>Type</TableCell>
                 <TableCell>Commission</TableCell>
                 <TableCell>Status</TableCell>

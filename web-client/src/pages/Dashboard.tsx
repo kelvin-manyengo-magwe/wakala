@@ -104,10 +104,10 @@ const Dashboard: React.FC = () => {
 
   // Financial Data
   const financialData = [
-    { title: 'Total Deposits', value: 'Ksh 245,800', change: '+12%', icon: <AccountBalance />, color: '#4caf50' },
-    { title: 'Total Withdrawals', value: 'Ksh 189,500', change: '+8%', icon: <AttachMoney />, color: '#f44336' },
-    { title: 'Current Float', value: 'Ksh 56,300', change: '+5%', icon: <ShowChart />, color: '#2196f3' },
-    { title: 'Weekly Profit', value: 'Ksh 38,750', change: '+15%', icon: <TrendingUp />, color: '#ff9800' }
+    { title: 'Total Deposits', value: 'Tshs 245,800', change: '+12%', icon: <AccountBalance />, color: '#4caf50' },
+    { title: 'Total Withdrawals', value: 'Tshs 189,500', change: '+8%', icon: <AttachMoney />, color: '#f44336' },
+    { title: 'Current Float', value: 'Tshs 56,300', change: '+5%', icon: <ShowChart />, color: '#2196f3' },
+    { title: 'Weekly Profit', value: 'Tshs 38,750', change: '+15%', icon: <TrendingUp />, color: '#ff9800' }
   ];
 
   // Recent Activities Data
@@ -234,7 +234,7 @@ const Dashboard: React.FC = () => {
               </Avatar>
               <Box>
                 <Typography variant="body2" color="text.secondary">Total Commissions</Typography>
-                <Typography variant="h4" fontWeight="bold">$8,245</Typography>
+                <Typography variant="h4" fontWeight="bold">Tshs8,245</Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                   <ArrowUpward color="success" fontSize="small" />
                   <Typography variant="caption" color="success.main" sx={{ ml: 0.5 }}>
@@ -344,7 +344,7 @@ const Dashboard: React.FC = () => {
                       primary={
                         <Typography variant="body2" fontWeight="medium">
                           {activity.user} {activity.action}
-                          {activity.amount && ` (Ksh ${activity.amount.toLocaleString()})`}
+                          {activity.amount && ` (Tshs ${activity.amount.toLocaleString()})`}
                         </Typography>
                       }
                       secondary={activity.time}
@@ -358,7 +358,7 @@ const Dashboard: React.FC = () => {
         </Grid>
       </Grid>
     </Box>
-  
+
   );
 };
 
