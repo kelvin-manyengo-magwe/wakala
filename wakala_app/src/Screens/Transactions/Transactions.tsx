@@ -131,6 +131,12 @@ export const Transactions = () => {
                     </TouchableOpacity>
             </View>
 
+            {/* Titles */}
+                  <View style={styles.headerRow}>
+                    <Text style={styles.headerText}>Wakati</Text>
+                    <Text style={styles.headerText}>Muamala</Text>
+                  </View>
+
     </View>
   );
 };

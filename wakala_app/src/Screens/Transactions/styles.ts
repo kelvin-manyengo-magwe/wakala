@@ -78,4 +78,16 @@ export const styles = StyleSheet.create({
       color: '#007BFF',
       fontWeight: 'bold',
     },
+    headerRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        marginTop: 12,
+        marginBottom: 10,
+      },
+    headerText: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        color: '#222',
+      },
 });
