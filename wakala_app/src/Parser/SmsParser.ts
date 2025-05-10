@@ -45,7 +45,7 @@ interface parsedData {
                                           date: new Date(dateMatch[1].replace(/\//g, '-')).toISOString(),
                                           amount: parseFloat(amountMatch[1].replace(/,/g, '')),
                                           ref_no: refMatch[1],
-                                          type: 'deposit', // fixed since it's "Umeweka"
+                                          type: 'weka', // fixed since it's "Umeweka"
                                           commission: commissionMatch[1],
                                           float: floatMatch[1],
                                           raw: body,

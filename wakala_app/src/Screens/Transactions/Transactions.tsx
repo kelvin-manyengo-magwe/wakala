@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TextInput } from 'react-native';
+import { View, Text, FlatList, TextInput, TouchableOpacity } from 'react-native';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { styles } from './styles';
 import { getRealm } from '../../Services/Database/Realm/Realm';
@@ -9,6 +9,8 @@ export const Transactions = () => {
   const [displayedTransactions, setDisplayedTransactions] = useState<TransactionsSchema[]>([]);
   const realmRef = useRef<Realm | null>(null);
   const transactionsRef = useRef<Realm.Results<TransactionsSchema> | null>(null);
+
+  const [selectedTab, setSelectedTab] = useState<'weka' | 'toa'>('weka');  //for the selected tab. accepts only 2 array vaues of weka and toa. Initially weka
 
   // Create a stable copy of Realm data
   const createStableCopy = useCallback((transactions: Realm.Results<TransactionsSchema>) => {
@@ -71,11 +73,22 @@ export const Transactions = () => {
     };
   }, []);
 
+
   // Filter transactions based on search query
   const filterTransactions = useCallback((transactions: TransactionsSchema[], query: string) => {
+        let filtered = transactions;
+
+        if(selectedTab === 'weka') {
+                    filtered = filtered.filter(item => item.type === 'weka');
+                     }
+                else {
+                        filtered = filtered.filter(item => item.type === 'weka');
+                    }
+
+
     return query.trim() === ''
-      ? transactions
-      : transactions.filter(item =>
+      ? filtered
+      : filtered.filter(item =>
           item.name?.toLowerCase().includes(query.toLowerCase())
         );
   }, []);
@@ -97,53 +110,27 @@ export const Transactions = () => {
         onChangeText={setSearchQuery}
       />
 
-      <FlatList
-        data={displayedTransactions}
-        keyExtractor={(item) => item._id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.transactionItem}>
-            {/* Left Side - Primary Info */}
-            <View style={styles.leftSide}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Text style={styles.transactionName}>{item.name}</Text>
-                {item.type && (
-                  <View style={styles.typeBadge}>
-                    <Text style={styles.typeText}>{item.type}</Text>
-                  </View>
+            {/*Weka and Toa miamala Toogle buttons*/}
 
-
-
-
-                )}
-              </View>
-              <Text style={styles.transactionDate}>
-                {item.createdAt.toLocaleDateString()}
-              </Text>
-
-              <Text style={styles.amountDetails}>{item.customer_name}</Text>
+            <View style={styles.tabBar}>
+                    <TouchableOpacity
+                      style={[styles.tabButton, selectedTab === 'weka' && styles.activeTab]}
+                      onPress={() => setSelectedTab('weka')}
+                    >
+                          <Text style={[styles.tabText, selectedTab === 'weka' && styles.activeTabText]}>
+                            Weka pesa
+                          </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={[styles.tabButton, selectedTab === 'toa' && styles.activeTab]}
+                      onPress={() => setSelectedTab('toa')}
+                    >
+                      <Text style={[styles.tabText, selectedTab === 'toa' && styles.activeTabText]}>
+                        Toa pesa
+                      </Text>
+                    </TouchableOpacity>
             </View>
 
-            {/* Right Side - Amounts */}
-            <View style={styles.rightSide}>
-              <Text style={styles.transactionAmount}>{item.amount} TZS</Text>
-              <View style={styles.amountDetails}>
-                <Text style={styles.commissionText}>
-                  Kamisheni: {item.commission || 0} TZS
-                </Text>
-
-                    <Text style={styles.typeText}>Reference no: {item.ref_no}</Text>
-
-                <Text style={styles.floatText}>
-                  Floti: {item.float || 0} TZS
-                </Text>
-              </View>
-            </View>
-          </View>
-        )}
-        ListEmptyComponent={
-          <Text style={styles.emptyText}>Hakuna miamala inayolingana</Text>
-        }
-      />
     </View>
   );
 };

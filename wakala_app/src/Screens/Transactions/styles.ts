@@ -55,4 +55,27 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: '#9CA3AF',
   },
+  tabBar: {
+      flexDirection: 'row',
+      borderTopWidth: 1,
+      borderColor: '#ddd',
+      backgroundColor: '#fff',
+    },
+    tabButton: {
+      flex: 1,
+      padding: 15,
+      alignItems: 'center',
+    },
+    tabText: {
+      fontSize: 16,
+      color: '#999',
+    },
+    activeTab: {
+      borderWidth: 1,
+      borderColor: '#007BFF',
+    },
+    activeTabText: {
+      color: '#007BFF',
+      fontWeight: 'bold',
+    },
 });
