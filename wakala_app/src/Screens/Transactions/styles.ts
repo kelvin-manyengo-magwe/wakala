@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
     },
     headerRow: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        gap: 30,
         alignItems: 'flex-start',
         paddingHorizontal: 5,
         marginTop: 12,
@@ -115,7 +115,7 @@ export const styles = StyleSheet.create({
   },
 
   columnMuamala: {
-    flex: 4,
+    flex: 5,
     paddingHorizontal: 4,
   },
   transactionTime: {
