@@ -91,15 +91,17 @@ export const Transactions = () => {
       : filtered.filter(item =>
           item.name?.toLowerCase().includes(query.toLowerCase())
         );
-  }, []);
+  }, [selectedTab]);
 
   // Update search results when query changes
   useEffect(() => {
+    if (realmRef.current?.isClosed) return;
     if (transactionsRef.current) {
       const snapshot = createStableCopy(transactionsRef.current);
       setDisplayedTransactions(filterTransactions(snapshot, searchQuery));
     }
-  }, [searchQuery]);
+  }, [searchQuery, selectedTab, filterTransactions, createStableCopy]);
+
 
   return (
     <View style={styles.container}>
@@ -133,9 +135,52 @@ export const Transactions = () => {
 
             {/* Titles */}
                   <View style={styles.headerRow}>
+                    <Text style={styles.headerText}>Mtandao</Text>
                     <Text style={styles.headerText}>Wakati</Text>
                     <Text style={styles.headerText}>Muamala</Text>
                   </View>
+
+            {/*Changing flatlist with the wakati and miamala transactions*/}
+                <FlatList
+                  data={displayedTransactions}
+                  keyExtractor={(item, index) => index.toString()}
+                  renderItem={({ item }) => (
+
+
+                    <View style={styles.transactionRow}>
+
+                                             {/*Mtandao badge column*/}
+                                  <View style={styles.columnMtandao}>
+                                           <View style={styles.badge}>
+                                                <Text style={styles.badgeText}>halotel</Text>
+                                           </View>
+                                  </View>
+
+                                        {/*column Wakati*/}
+                                  <View style={styles.columnWakati}>
+                                            <Text style={styles.transactionTime}>
+                                                    {item.createdAt?.toLocaleString('sw-TZ', {
+                                                        day: '2-digit',
+                                                        month: '2-digit',
+                                                        hour: '2-digit',
+                                                        minute: '2-digit',
+                                                    })}
+                                            </Text>
+                                  </View>
+
+                                  <View style={styles.columnMuamala}>
+                                            <Text style={styles.transactionDetail}>
+                                                  {item.raw}
+                                            </Text>
+                                  </View>
+                    </View>
+
+                  )}
+                  ListEmptyComponent={
+                    <Text style={styles.emptyText}>Hakuna miamala kupatikana.</Text>
+                  }
+                />
+
 
     </View>
   );
