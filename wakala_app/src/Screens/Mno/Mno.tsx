@@ -1,4 +1,7 @@
 import { View, Text } from 'react-native';
+import React from 'react';
+import { PieChart } from 'react-native-gifted-charts';
+
 
 
 export const Mno = () => {
@@ -9,3 +12,4 @@ export const Mno = () => {
                     </View>
             )
     }
+
