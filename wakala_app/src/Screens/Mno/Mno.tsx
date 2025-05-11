@@ -1,10 +1,10 @@
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import React from 'react';
 import { PieChart } from 'react-native-gifted-charts';
 import { styles } from './styles';
 import { PieChart3D } from '../../components/Graphs/PieChart3D/PieChart3D';
 import { MnoServicePanel } from '../../components/MnoServicePanel/MnoServicePanel';
-
+import { TransactionList } from '../../components/TransactionList/TransactionList';
 
 
 
@@ -15,7 +15,11 @@ export const Mno = () => {
 
         return (
                     <View style={styles.container}>
-                                <View style={{  flex: 1, height: '25%', width: '100%', alignItems: 'center', borderWidth: 1, marginVertical: 10, }}>
+                            <ScrollView
+                                    contentContainerStyle={styles.scrollContent}
+                                    showsVerticalScrollIndicator={false}>
+
+                                <View style={{  flex: 1, width: '100%', alignItems: 'center', borderWidth: 1, marginVertical: 10, }}>
 
                                                 <PieChart3D />
 
@@ -28,8 +32,10 @@ export const Mno = () => {
                                 <View>
                                         {/*Each transaction corresponding to the wakati and muamala*/}
 
-
+                                        <TransactionList />
                                 </View>
+
+                            </ScrollView>
                     </View>
             )
     }

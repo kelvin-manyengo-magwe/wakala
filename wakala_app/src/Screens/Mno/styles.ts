@@ -17,4 +17,5 @@ export const styles = StyleSheet.create({
       shadowRadius: 6.27,
       elevation: 10, // For Android shadow
     },
+
   });
