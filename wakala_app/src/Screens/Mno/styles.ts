@@ -32,6 +32,6 @@ export const styles = StyleSheet.create({
         margin: 5,
          },
      topSection: {
-         flex: 0.78, // Takes 40% of screen
+         flex: 0.78, // Takes 78% of screen
        },
   });
