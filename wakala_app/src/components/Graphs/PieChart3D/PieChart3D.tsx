@@ -16,11 +16,12 @@ export const PieChart3D = () => {
           ];
 
   return (
-                <View style={{ flex: 1, alignItems: 'center' }}>
+                <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'white' }}>
                           <Text style={{ marginBottom: 20, fontSize: 18, fontWeight: 'bold' }}>M</Text>
                                   <PieChart
                                     data={pieData}
                                     showText
+                                    showValuesAsPercentage
                                     radius={100}
                                     textColor="white"
                                     innerRadius={60}
