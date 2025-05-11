@@ -17,5 +17,17 @@ export const styles = StyleSheet.create({
       shadowRadius: 6.27,
       elevation: 10, // For Android shadow
     },
-
+    pieChart3DContainer: {
+        flex: 1,
+        width: '100%',
+        alignItems: 'center',
+        padding: 5,
+        margin: 5,
+        },
+    mnoServicePanelContainer: {
+        flex: 1,
+        width: '100%',
+        padding: 5,
+        margin: 5,
+         }
   });

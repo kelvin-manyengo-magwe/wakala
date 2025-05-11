@@ -19,13 +19,13 @@ export const Mno = () => {
                                     contentContainerStyle={styles.scrollContent}
                                     showsVerticalScrollIndicator={false}>
 
-                                <View style={{  flex: 1, width: '100%', alignItems: 'center', borderWidth: 1, marginVertical: 10, }}>
+                                <View style={styles.pieChart3DContainer}>
 
                                                 <PieChart3D />
 
                                 </View>
 
-                                <View style={{ flex: 1, width: '100%', borderWidth: 1, }}>
+                                <View style={styles.mnoServicePanelContainer}>
                                         <MnoServicePanel />
                                 </View>
 
