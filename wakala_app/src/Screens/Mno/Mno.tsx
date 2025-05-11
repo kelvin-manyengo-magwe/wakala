@@ -5,7 +5,7 @@ import { styles } from './styles';
 import { PieChart3D } from '../../components/Graphs/PieChart3D/PieChart3D';
 import { MnoServicePanel } from '../../components/MnoServicePanel/MnoServicePanel';
 import { TransactionList } from '../../components/TransactionList/TransactionList';
-
+import { TransactionTypeToggle } from '../../components/TransactionTypeToggle/TransactionTypeToggle';
 
 
 
@@ -27,12 +27,16 @@ export const Mno = () => {
                                         </View>
                             </View>
 
+                            <View>
+                                     <TransactionTypeToggle />
+                            </View>
 
                                 <View>
                                         {/*Each transaction corresponding to the wakati and muamala*/}
-
                                         <TransactionList />
                                 </View>
+
+
 
 
                     </View>
