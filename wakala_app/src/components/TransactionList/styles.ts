@@ -2,6 +2,19 @@ import { StyleSheet } from 'react-native';
 
 
 export const styles = StyleSheet.create({
+    headerRow: {
+            flexDirection: 'row',
+            gap: 30,
+            alignItems: 'flex-start',
+            paddingHorizontal: 5,
+            marginTop: 12,
+            marginBottom: 10,
+          },
+        headerText: {
+            fontWeight: 'bold',
+            fontSize: 16,
+            color: '#222',
+          },
     transactionRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',

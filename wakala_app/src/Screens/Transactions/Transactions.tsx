@@ -3,6 +3,8 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { styles } from './styles';
 import { getRealm } from '../../Services/Database/Realm/Realm';
 import { TransactionsSchema } from '../../Services/Database/Schemas/TransactionsSchema';
+import { TransactionTypeToggle } from '../../components/TransactionTypeToggle/TransactionTypeToggle';
+
 
 export const Transactions = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -114,30 +116,20 @@ export const Transactions = () => {
 
             {/*Weka and Toa miamala Toogle buttons*/}
 
-            <View style={styles.tabBar}>
-                    <TouchableOpacity
-                      style={[styles.tabButton, selectedTab === 'weka' && styles.activeTab]}
-                      onPress={() => setSelectedTab('weka')}
-                    >
-                          <Text style={[styles.tabText, selectedTab === 'weka' && styles.activeTabText]}>
-                            Weka pesa
-                          </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={[styles.tabButton, selectedTab === 'toa' && styles.activeTab]}
-                      onPress={() => setSelectedTab('toa')}
-                    >
-                      <Text style={[styles.tabText, selectedTab === 'toa' && styles.activeTabText]}>
-                        Toa pesa
-                      </Text>
-                    </TouchableOpacity>
-            </View>
+            <TransactionTypeToggle
+                    selectedTab={selectedTab}
+                    onTabChange={setSelectedTab}
+                    wekaLabel="Weka pesa"
+                    toaLabel="Toa pesa"
+                    activeTabColor="#3f51b5"
+                    inactiveTabColor="#f5f5f5"
+                  />
 
             {/* Titles */}
                   <View style={styles.headerRow}>
-                    <Text style={styles.headerText}>Mtandao</Text>
-                    <Text style={styles.headerText}>Wakati</Text>
-                    <Text style={styles.headerText}>Muamala</Text>
+                            <Text style={styles.headerText}>Mtandao</Text>
+                            <Text style={styles.headerText}>Wakati</Text>
+                            <Text style={styles.headerText}>Muamala</Text>
                   </View>
 
             {/*Changing flatlist with the wakati and miamala transactions*/}

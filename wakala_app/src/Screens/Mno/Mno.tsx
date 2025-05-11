@@ -15,19 +15,18 @@ export const Mno = () => {
 
         return (
                     <View style={styles.container}>
-                            <ScrollView
-                                    contentContainerStyle={styles.scrollContent}
-                                    showsVerticalScrollIndicator={false}>
 
-                                <View style={styles.pieChart3DContainer}>
+                            <View style={styles.topSection}>
+                                        <View style={styles.pieChart3DContainer}>
+                                                        <PieChart3D />
 
-                                                <PieChart3D />
+                                        </View>
 
-                                </View>
+                                        <View style={styles.mnoServicePanelContainer}>
+                                                <MnoServicePanel />
+                                        </View>
+                            </View>
 
-                                <View style={styles.mnoServicePanelContainer}>
-                                        <MnoServicePanel />
-                                </View>
 
                                 <View>
                                         {/*Each transaction corresponding to the wakati and muamala*/}
@@ -35,7 +34,7 @@ export const Mno = () => {
                                         <TransactionList />
                                 </View>
 
-                            </ScrollView>
+
                     </View>
             )
     }

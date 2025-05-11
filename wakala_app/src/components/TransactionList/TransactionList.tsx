@@ -24,6 +24,7 @@ export const TransactionList = ({
 }: TransactionListProps) => {
 
   const renderItem = ({ item }: { item: TransactionsSchema }) => (
+
     <View style={styles.transactionRow}>
       {/* Mtandao badge column */}
       <View style={styles.columnMtandao}>
@@ -56,13 +57,22 @@ export const TransactionList = ({
   );
 
   return (
-    <FlatList
-      data={transactions}
-      keyExtractor={(item, index) => index.toString()}
-      renderItem={renderItem}
-      ListEmptyComponent={
-        <Text style={styles.emptyText}>{emptyListText}</Text>
-      }
-    />
+      <View>
+            {/* Titles */}
+                              <View style={styles.headerRow}>
+                                <Text style={styles.headerText}>Mtandao</Text>
+                                <Text style={styles.headerText}>Wakati</Text>
+                                <Text style={styles.headerText}>Muamala</Text>
+                              </View>
+
+            <FlatList
+              data={transactions}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={renderItem}
+              ListEmptyComponent={
+                <Text style={styles.emptyText}>{emptyListText}</Text>
+              }
+            />
+    </View>
   );
 };

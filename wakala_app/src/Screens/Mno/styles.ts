@@ -20,14 +20,18 @@ export const styles = StyleSheet.create({
     pieChart3DContainer: {
         flex: 1,
         width: '100%',
+        justifyContent: 'center',
         alignItems: 'center',
         padding: 5,
-        margin: 5,
+        marginBottom: 10,
         },
     mnoServicePanelContainer: {
         flex: 1,
         width: '100%',
         padding: 5,
         margin: 5,
-         }
+         },
+     topSection: {
+         flex: 0.78, // Takes 40% of screen
+       },
   });
