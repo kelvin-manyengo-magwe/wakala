@@ -15,10 +15,7 @@ export const Mno = () => {
 
         return (
                     <View style={styles.container}>
-                          <View style={styles.shadow}>
                                 <PieChart3D />
-                          </View>
-                          {/* You might add a legend or other information below the chart */}
                     </View>
             )
     }
