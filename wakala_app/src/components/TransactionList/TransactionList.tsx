@@ -85,6 +85,7 @@ export const TransactionList = () => {
   }, [filterTransactions, createStableCopy]);
 
   const renderItem = ({ item }: { item: TransactionsSchema }) => (
+      <View>
     <View style={styles.transactionRow}>
       <View style={styles.columnMtandao}>
         <View style={styles.badge}>
@@ -109,6 +110,7 @@ export const TransactionList = () => {
         </Text>
       </View>
     </View>
+    </View>
   );
 
   return (
@@ -125,6 +127,7 @@ export const TransactionList = () => {
         data={displayedTransactions}
         keyExtractor={(item, index) => index.toString()}
         renderItem={renderItem}
+        contentContainerStyle={styles.listContent}
         ListEmptyComponent={
           <Text style={styles.emptyText}>Hakuna miamala kupatikana.</Text>
         }

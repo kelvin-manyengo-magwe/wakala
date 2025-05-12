@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
          flex: 0.78, // Takes 78% of screen
        },
     transactionTypeToggleContainer: {
+        flex: 1,
         marginTop: 25,
         },
   });

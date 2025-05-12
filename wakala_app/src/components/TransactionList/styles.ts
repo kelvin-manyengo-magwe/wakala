@@ -73,4 +73,18 @@ export const styles = StyleSheet.create({
          marginTop: 20,
          color: '#aaa',
        },
+   transactionItem: {
+          backgroundColor: '#FFFFFF',
+          borderRadius: 8,
+          shadowOpacity: 0.05,
+          elevation: 2,
+        },
+    listContent: {
+        paddingBottom: 20,
+        },
+        scrollContainer: {
+            flexGrow: 1,
+            paddingBottom: 20,
+          },
+
     });

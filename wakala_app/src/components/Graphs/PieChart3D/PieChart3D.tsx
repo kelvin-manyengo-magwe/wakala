@@ -17,7 +17,9 @@ export const PieChart3D = () => {
 
   return (
                 <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'white' }}>
-                          <Text style={{ marginBottom: 20, fontSize: 18, fontWeight: 'bold' }}>M</Text>
+                          <Text style={{ marginBottom: 20, fontSize: 18, fontWeight: 'bold', color: 'black' }}>
+                                Ulinganisho wa Miamala ya Wakala kwa Mitandao ya Simu
+                          </Text>
                                   <PieChart
                                     data={pieData}
                                     showText

@@ -16,6 +16,10 @@ export const Mno = () => {
 
 
         return (
+            <ScrollView
+                    contentContainerStyle={styles.scrollContainer}
+                          showsVerticalScrollIndicator={false}
+                >
                     <View style={styles.container}>
 
                             <View style={styles.topSection}>
@@ -36,7 +40,7 @@ export const Mno = () => {
                                       />
                             </View>
 
-                                <View>
+                                <View style={{ flex: 1, }}>
                                         {/*Each transaction corresponding to the wakati and muamala*/}
                                         <TransactionList />
                                 </View>
@@ -45,6 +49,7 @@ export const Mno = () => {
 
 
                     </View>
+            </ScrollView>
             )
     }
 
