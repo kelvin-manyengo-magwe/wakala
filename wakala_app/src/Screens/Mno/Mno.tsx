@@ -29,7 +29,7 @@ export const Mno = () => {
                                         </View>
                             </View>
 
-                            <View>
+                            <View style={styles.transactionTypeToggleContainer}>
                                      <TransactionTypeToggle
                                             onTabChange={setSelectedTab}
                                             selectedTab={selectedTab}
