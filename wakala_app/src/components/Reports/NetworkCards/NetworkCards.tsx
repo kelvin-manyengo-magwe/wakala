@@ -21,7 +21,7 @@ export const NetworkCards = ({ selectedNetwork, onSelect }: NetworkSelectorProps
           styles.networkButton,
           selectedNetwork === network && styles.selectedNetwork,
         ]}
-        onPress={() => onSelect(nnetwork)}
+        onPress={() => onSelect(network)}
       >
         <Text style={styles.networkText}>{network}</Text>
       </TouchableOpacity>

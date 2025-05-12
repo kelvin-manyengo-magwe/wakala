@@ -8,7 +8,7 @@ import { styles } from './styles';
 
 
 export const Reports = () => {
-  const [selectedNetwork, setSelectedNetwork] = useState('voda com');
+  const [selectedNetwork, setSelectedNetwork] = useState('halotel');
   const [businessData] = useState([
     { label: 'nyumbani', value: 'Home' },
     { label: 'miamala', value: 'Transactions' },
@@ -19,7 +19,6 @@ export const Reports = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.header}>Ripoti</Text>
 
       <SummaryCard title="Salio" value="********" />
       <SummaryCard title="kamisheni" value="23,000Tzs" />
