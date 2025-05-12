@@ -4,6 +4,7 @@ import { SummaryCard } from '../../components/Reports/SummaryCard/SummaryCard';
 import { NetworkCards } from '../../components/Reports/NetworkCards/NetworkCards';
 import { PeriodSelector } from '../../components/Reports/PeriodSelector/PeriodSelector';
 import { styles } from './styles';
+import { SalioCard } from '../../components/Reports/SalioCard/SalioCard';
 
 
 
@@ -17,10 +18,14 @@ export const Reports = () => {
     { label: 'sini', value: 'Settings' },
   ]);
 
+    //setting the state for the initial balance. But later to be changed
+    const [ salio, setSalio ] = useState('1,250,000 Tzs')
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
 
-      <SummaryCard title="Salio" value="********" />
+      <SalioCard title="Salio" balance={salio} />
+
       <SummaryCard title="kamisheni" value="23,000Tzs" />
 
       <NetworkCards
