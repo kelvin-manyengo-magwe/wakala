@@ -1,24 +1,13 @@
-import { View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { SummaryCard } from '../../components/Reports/SummaryCard/SummaryCard';
+import { NetworkCards } from '../../components/Reports/NetworkCards/NetworkCards';
+import { PeriodSelector } from '../../components/Reports/PeriodSelector/PeriodSelector';
+import { styles } from './styles';
+
 
 
 export const Reports = () => {
-
-        return (
-                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                            <Text>Ripoti</Text>
-                    </View>
-            )
-    }
-
-
-// screens/RipotiScreen.tsx
-import React, { useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { SummaryCard } from '../components/Ripoti/SummaryCard';
-import { NetworkSelector } from '../components/Ripoti/NetworkSelector';
-import { PeriodSelector } from '../components/Ripoti/PeriodSelector';
-
-const RipotiScreen = () => {
   const [selectedNetwork, setSelectedNetwork] = useState('voda com');
   const [businessData] = useState([
     { label: 'nyumbani', value: 'Home' },
@@ -35,14 +24,14 @@ const RipotiScreen = () => {
       <SummaryCard title="Salio" value="********" />
       <SummaryCard title="kamisheni" value="23,000Tzs" />
 
-      <NetworkSelector
+      <NetworkCards
         selectedNetwork={selectedNetwork}
         onSelect={setSelectedNetwork}
       />
 
       <PeriodSelector />
 
-      <NetworkSelector
+      <NetworkCards
         selectedNetwork={selectedNetwork}
         onSelect={setSelectedNetwork}
       />
@@ -64,6 +53,3 @@ const RipotiScreen = () => {
   );
 };
 
-
-
-export default RipotiScreen;
