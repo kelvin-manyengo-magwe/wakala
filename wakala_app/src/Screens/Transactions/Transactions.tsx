@@ -53,6 +53,10 @@ export const Transactions = () => {
         transactions.addListener((collection, changes) => {
           if (isMounted && transactionsRef.current) {
             const newSnapshot = createStableCopy(transactionsRef.current);
+
+                    //showing if the real time update is happening
+                        console.log('🔄 Real Time update triggered on the UI : ', newSnapshot.length);
+
             setDisplayedTransactions(filterTransactions(newSnapshot, searchQuery));
           }
         });
@@ -84,7 +88,7 @@ export const Transactions = () => {
                     filtered = filtered.filter(item => item.type === 'weka');
                      }
                 else {
-                        filtered = filtered.filter(item => item.type === 'weka');
+                        filtered = filtered.filter(item => item.type === 'toa');
                     }
 
 

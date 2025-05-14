@@ -20,7 +20,7 @@ export const SalioCard = ({ title, balance }: SalioCardProps) => {
 
               <View style={styles.balanceRow}>
                         <Text style={styles.balanceText}>
-                          {isVisible ? balance : '••••••••'}
+                          {isVisible ? balance : '*********'}
                         </Text>
 
                     <TouchableOpacity

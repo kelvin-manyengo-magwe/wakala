@@ -7,13 +7,7 @@ export const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#F9FAFB',
   },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#111827',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
+
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -33,23 +27,5 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
-  bottomMenu: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    marginTop: 20,
-    borderTopWidth: 1,
-    borderTopColor: '#E5E7EB',
-    paddingTop: 16,
-  },
-  menuItem: {
-    width: '30%',
-    alignItems: 'center',
-    marginBottom: 12,
-    padding: 8,
-  },
-  menuText: {
-    color: '#4B5563',
-    textAlign: 'center',
-  },
+
 });

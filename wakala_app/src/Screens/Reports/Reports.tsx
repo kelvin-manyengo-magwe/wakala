@@ -10,13 +10,7 @@ import { SalioCard } from '../../components/Reports/SalioCard/SalioCard';
 
 export const Reports = () => {
   const [selectedNetwork, setSelectedNetwork] = useState('halotel');
-  const [businessData] = useState([
-    { label: 'nyumbani', value: 'Home' },
-    { label: 'miamala', value: 'Transactions' },
-    { label: 'mita nata', value: 'Metrics' },
-    { label: 'ripoti', value: 'Reports' },
-    { label: 'sini', value: 'Settings' },
-  ]);
+
 
     //setting the state for the initial balance. But later to be changed
     const [ salio, setSalio ] = useState('1,250,000 Tzs')
@@ -46,13 +40,7 @@ export const Reports = () => {
         <Text style={styles.downloadButtonText}>Pakua ripoti</Text>
       </TouchableOpacity>
 
-      <View style={styles.bottomMenu}>
-        {businessData.map((item) => (
-          <TouchableOpacity key={item.label} style={styles.menuItem}>
-            <Text style={styles.menuText}>{item.label}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+
     </ScrollView>
   );
 };
