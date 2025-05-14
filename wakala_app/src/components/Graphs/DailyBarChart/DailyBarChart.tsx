@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { BarChart } from 'react-native-gifted-charts';
 import { styles } from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -16,8 +16,15 @@ export const DailyBarChart = () => {
   return (
     <View style={styles.container}>
 
-            {/* Y-axis arrow */}
-                  <Icon name="arrow-up" size={16} color="#000" style={styles.yArrow} />
+            {/* Y-axis Label */}
+                  <View style={{ alignItems: 'center', marginRight: 5 }}>
+                    <Text
+                      style={styles.xAxisLabel}>
+                      Jumla ya miamala
+                    </Text>
+                  </View>
+
+
 
                   {/* X-axis arrow */}
                   <Icon name="arrow-forward" size={16} color="#000" style={styles.xArrow} />
@@ -34,10 +41,10 @@ export const DailyBarChart = () => {
         maxValue={100}
         spacing={30}
         isAnimated
-        hideYAxisText
         yAxisTextStyle={{ color: 'gray' }}
         xAxisLabelVerticalShift={6}
         stepValue={25}
+
       />
     </View>
   );

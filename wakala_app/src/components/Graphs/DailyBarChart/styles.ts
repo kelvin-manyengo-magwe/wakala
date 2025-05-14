@@ -7,16 +7,16 @@ export const styles = StyleSheet.create({
     paddingTop: 10,
     alignItems: 'center',
   },
-   yArrow: {
-      position: 'absolute',
-      top: 0,
-      left: 18.5,
-      zIndex: 1,
-    },
+
     xArrow: {
       position: 'absolute',
       bottom: 31,
-      right: 20,
+      right: 1,
       zIndex: 1,
     },
+    xAxisLabel : {
+        left: -138,
+        fontWeight: 'bold',
+        fontSize: 12,
+        },
 });
