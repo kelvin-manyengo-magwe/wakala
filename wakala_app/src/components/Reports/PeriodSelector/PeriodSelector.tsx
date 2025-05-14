@@ -1,15 +1,21 @@
-// components/Ripoti/PeriodSelector.tsx
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 
 
 
-
-export const PeriodSelector = () => (
+export const PeriodSelector = ({ selectedPeriod, onSelectPeriod }: any) => (
   <View style={styles.container}>
-    <Text style={styles.label}>Siku</Text>
-    <Text style={styles.label}>Mwezi</Text>
+            <TouchableOpacity onPress={() => onSelectPeriod('siku')}>
+                      <Text style={[styles.label, selectedPeriod === 'siku' && styles.selected]}>
+                            Siku
+                      </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => onSelectPeriod('mwezi')}>
+                      <Text style={[styles.label, selectedPeriod === 'mwezi' && styles.selected]}>
+                            Mwezi
+                      </Text>
+            </TouchableOpacity>
   </View>
 );
-

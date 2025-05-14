@@ -12,6 +12,7 @@ import { DailyBarChart } from '../../components/Graphs/DailyBarChart/DailyBarCha
 
 export const Reports = () => {
   const [selectedNetwork, setSelectedNetwork] = useState('halotel');
+  const [selectedPeriod, setSelectedPeriod] = useState<'siku' | 'mwezi'>('siku');
 
 
     //setting the state for the initial balance. But later to be changed
@@ -29,9 +30,12 @@ export const Reports = () => {
         onSelect={setSelectedNetwork}
       />
 
-      <PeriodSelector />
+      <PeriodSelector
+            selectedPeriod={selectedPeriod}
+            onSelectPeriod={setSelectedPeriod}
+       />
 
-      <DailyBarChart />
+      {selectedPeriod === 'siku' ? <DailyBarChart /> : <MonthlyBarChart />}
 
       <NetworkCards
         selectedNetwork={selectedNetwork}

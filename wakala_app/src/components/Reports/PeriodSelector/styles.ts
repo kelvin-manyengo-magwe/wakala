@@ -15,6 +15,16 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: '#111827',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+     color: '#333',
   },
+
+  selected: {
+    fontWeight: 'bold',
+    borderBottomWidth: 2,
+    borderBottomColor: '#000',
+  },
+
 });
 
