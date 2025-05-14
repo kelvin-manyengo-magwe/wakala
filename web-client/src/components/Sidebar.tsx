@@ -70,13 +70,13 @@ const StyledListItem = styled(ListItem)(({ theme }) => ({
 }));
 
 const navItems = [
-  { path: '/', icon: <DashboardIcon />, text: 'Dashboard' },
-  { path: '/transactions', icon: <ReceiptIcon />, text: 'Transactions' },
-  { path: '/analytics', icon: <AnalyticsIcon />, text: 'Analytics' },
-  { path: '/agents', icon: <PeopleIcon />, text: 'Agents' },
-  { path: '/sync-history', icon: <SyncIcon />, text: 'Sync History' },
-  { path: '/settings', icon: <SettingsIcon />, text: 'Settings' },
-  { path: '/help', icon: <HelpIcon />, text: 'Help' },
+  { path: '/', icon: <DashboardIcon />, text: 'Dashibodi' },
+  { path: '/transactions', icon: <ReceiptIcon />, text: 'Miamala' },
+  { path: '/analytics', icon: <AnalyticsIcon />, text: 'Taarifa za takwimu' },
+  { path: '/agents', icon: <PeopleIcon />, text: 'Mawakala' },
+  { path: '/sync-history', icon: <SyncIcon />, text: 'Historia ya Usawazishaji' },
+  { path: '/settings', icon: <SettingsIcon />, text: 'Mipanglio' },
+  { path: '/help', icon: <HelpIcon />, text: 'Msaada' },
 ];
 
 interface SidebarProps {

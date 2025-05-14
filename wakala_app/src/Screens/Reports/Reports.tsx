@@ -6,6 +6,7 @@ import { PeriodSelector } from '../../components/Reports/PeriodSelector/PeriodSe
 import { styles } from './styles';
 import { SalioCard } from '../../components/Reports/SalioCard/SalioCard';
 import { DailyBarChart } from '../../components/Graphs/DailyBarChart/DailyBarChart';
+import { MonthlyBarChart } from '../../components/Graphs/MonthlyBarChart/MonthlyBarChart';
 
 
 
@@ -39,7 +40,7 @@ export const Reports = () => {
 
       <NetworkCards
         selectedNetwork={selectedNetwork}
-        onSelect={setSelectedNetwork}
+        onSelectPeriod={setSelectedNetwork}
       />
 
       <Text style={styles.sectionTitle}>Maendeleo ya blashara</Text>

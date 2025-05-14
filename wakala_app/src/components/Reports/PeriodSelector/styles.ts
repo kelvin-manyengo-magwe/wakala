@@ -25,6 +25,25 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: '#000',
   },
+  button: {
+      paddingHorizontal: 30,
+      paddingVertical: 8,
+      backgroundColor: '#fff',
+      marginHorizontal: 1,
+      borderRadius: 6,
+    },
+    activeButton: {
+      backgroundColor: '#f28b82', // pale red
+    },
+    buttonText: {
+      fontSize: 16,
+      color: '#000',
+      fontWeight: 'bold',
+    },
+    activeButtonText: {
+      color: '#fff',
+    },
 
 });
+
 
