@@ -5,6 +5,8 @@ import { NetworkCards } from '../../components/Reports/NetworkCards/NetworkCards
 import { PeriodSelector } from '../../components/Reports/PeriodSelector/PeriodSelector';
 import { styles } from './styles';
 import { SalioCard } from '../../components/Reports/SalioCard/SalioCard';
+import { DailyBarChart } from '../../components/Graphs/DailyBarChart/DailyBarChart';
+
 
 
 
@@ -29,6 +31,8 @@ export const Reports = () => {
 
       <PeriodSelector />
 
+      <DailyBarChart />
+
       <NetworkCards
         selectedNetwork={selectedNetwork}
         onSelect={setSelectedNetwork}
@@ -37,7 +41,7 @@ export const Reports = () => {
       <Text style={styles.sectionTitle}>Maendeleo ya blashara</Text>
 
       <TouchableOpacity style={styles.downloadButton}>
-        <Text style={styles.downloadButtonText}>Pakua ripoti</Text>
+            <Text style={styles.downloadButtonText}>Pakua ripoti</Text>
       </TouchableOpacity>
 
 
