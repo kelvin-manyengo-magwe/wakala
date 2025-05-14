@@ -4,7 +4,7 @@ import { getRealm } from '../Realm/Realm';
 import { ReadRealm } from '../Realm/ReadRealm';
 
 
-
+ //the writting logic to realm database happens here
 export const saveToRealm = async (data: any) => {
   const realm = await getRealm();
 
@@ -33,6 +33,6 @@ export const saveToRealm = async (data: any) => {
   } catch (error) {
     console.error('❌ Failed to save SMS to Realm:', error);
   } finally {
-    realm.close();  // Always closing realm after use
+        //realm.close();     Not closing the realm because is used by the UI
   }
 };

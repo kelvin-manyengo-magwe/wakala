@@ -9,6 +9,7 @@ import { TransactionTypeToggle } from '../../components/TransactionTypeToggle/Tr
 export const Transactions = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [displayedTransactions, setDisplayedTransactions] = useState<TransactionsSchema[]>([]);
+  const [loading, setLoading] = useState('...inapakia');
   const realmRef = useRef<Realm | null>(null);
   const transactionsRef = useRef<Realm.Results<TransactionsSchema> | null>(null);
 
@@ -119,6 +120,28 @@ export const Transactions = () => {
       />
 
             {/*Weka and Toa miamala Toogle buttons*/}
+            <TouchableOpacity onPress={async () => {
+              const realm = await getRealm();
+              realm.write(() => {
+                realm.create('deposits_transaction',  {
+                                                         "_id": "dldlkd",
+                                                         "customer_name": "POLLYCAP JOSEPH RANGE",
+                                                         "customer_no": "255628262413",
+                                                         "date": "2024-10-14T03:57:24.000Z",
+                                                         "amount": 500,
+                                                         "ref_no": "2676708942",
+                                                         "type": "weka",
+                                                         "commission": 23,
+                                                         "float": 99,
+                                                         "raw": "Utambulisho wa Muamala: 2676708942. Umeweka TSH 500.00 kwa POLLYCAP JOSEPH RANGE, 255628262413 wakati 2024/10/14 06:57:24, kamisheni: TSH 23.00. Salio jipya la floti ni TSH 99,600.00. Asante!",
+                                                         "createdAt": "2025-05-14T08:15:56.865Z"
+                                                       }
+);
+              });
+            }}>
+              <Text style={{ padding: 10, backgroundColor: 'green', color: 'white' }}>Add Test Weka</Text>
+            </TouchableOpacity>
+
 
             <TransactionTypeToggle
                     selectedTab={selectedTab}
