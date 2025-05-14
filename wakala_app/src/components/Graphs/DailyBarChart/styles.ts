@@ -15,8 +15,8 @@ export const styles = StyleSheet.create({
     },
     xArrow: {
       position: 'absolute',
-      bottom: 30,
-      right: 0,
+      bottom: 31,
+      right: 20,
       zIndex: 1,
     },
 });
