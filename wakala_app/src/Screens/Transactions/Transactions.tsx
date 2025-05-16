@@ -112,12 +112,15 @@ export const Transactions = () => {
 
   return (
     <View style={styles.container}>
-      <TextInput
+
+
+            {/*To be activated later for the searching of miamala easily*/}
+      {/*<TextInput
         style={styles.searchInput}
         placeholder="Tafuta miamala..."
         value={searchQuery}
         onChangeText={setSearchQuery}
-      />
+      />*/}
 
             {/*Weka and Toa miamala Toogle buttons*/}
 
@@ -126,8 +129,6 @@ export const Transactions = () => {
                     onTabChange={setSelectedTab}
                     wekaLabel="Weka pesa"
                     toaLabel="Toa pesa"
-                    activeTabColor="#3f51b5"
-                    inactiveTabColor="#f5f5f5"
                   />
 
             {/* Titles */}
@@ -165,6 +166,7 @@ export const Transactions = () => {
                                             </Text>
                                   </View>
 
+                                {/*Muamala column*/}
                                   <View style={styles.columnMuamala}>
                                             <Text style={styles.transactionDetail}>
                                                   {item.raw}

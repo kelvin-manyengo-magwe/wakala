@@ -6,10 +6,6 @@ type TransactionTypeToggleProps = {
   onTabChange: (tab: 'weka' | 'toa') => void;
   wekaLabel?: string;
   toaLabel?: string;
-  activeTabColor?: string;
-  inactiveTabColor?: string;
-  activeTextColor?: string;
-  inactiveTextColor?: string;
 };
 
 export const TransactionTypeToggle = ({
@@ -17,28 +13,18 @@ export const TransactionTypeToggle = ({
   onTabChange,
   wekaLabel = 'Weka pesa',
   toaLabel = 'Toa pesa',
-  activeTabColor = '#3f51b5',
-  inactiveTabColor = '#f5f5f5',
-  activeTextColor = '#fff',
-  inactiveTextColor = '#666',
 }: TransactionTypeToggleProps) => {
   return (
     <View style={styles.tabBar}>
       <TouchableOpacity
         style={[
           styles.tabButton,
-          selectedTab === 'weka'
-            ? { backgroundColor: activeTabColor }
-            : { backgroundColor: inactiveTabColor }
+          selectedTab === 'weka' ? styles.activeTab : styles.inactiveTab,
+          { borderTopLeftRadius: 8, borderBottomLeftRadius: 8 },
         ]}
         onPress={() => onTabChange('weka')}
       >
-        <Text style={[
-          styles.tabText,
-          selectedTab === 'weka'
-            ? { color: activeTextColor }
-            : { color: inactiveTextColor }
-        ]}>
+        <Text style={styles.tabText}>
           {wekaLabel}
         </Text>
       </TouchableOpacity>
@@ -46,18 +32,12 @@ export const TransactionTypeToggle = ({
       <TouchableOpacity
         style={[
           styles.tabButton,
-          selectedTab === 'toa'
-            ? { backgroundColor: activeTabColor }
-            : { backgroundColor: inactiveTabColor }
+          selectedTab === 'toa' ? styles.activeTab : styles.inactiveTab,
+          { borderTopRightRadius: 8, borderBottomRightRadius: 8 },
         ]}
         onPress={() => onTabChange('toa')}
       >
-        <Text style={[
-          styles.tabText,
-          selectedTab === 'toa'
-            ? { color: activeTextColor }
-            : { color: inactiveTextColor }
-        ]}>
+        <Text style={styles.tabText}>
           {toaLabel}
         </Text>
       </TouchableOpacity>
@@ -68,17 +48,26 @@ export const TransactionTypeToggle = ({
 const styles = StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
-    marginBottom: 16,
-    borderRadius: 8,
+    backgroundColor: '#f6ecec',
     overflow: 'hidden',
-    backgroundColor: '#f5f5f5',
   },
   tabButton: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: 10,
     alignItems: 'center',
+    borderWidth: 0,
+  },
+  activeTab: {
+
+    borderColor: '#000',
+    borderWidth: 1,
+  },
+  inactiveTab: {
+
+    borderColor: '#000',
   },
   tabText: {
+    color: '#000',
     fontWeight: '500',
   },
 });
