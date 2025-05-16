@@ -8,6 +8,8 @@ export const ReadRealm = async () => {
             try {
                     const transactions = realm.objects('deposits_transaction');
 
+
+
                     console.log('All Transactions data from Realm Database:\n ', transactions);
                 }
             catch(error) {

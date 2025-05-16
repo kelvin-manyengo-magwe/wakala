@@ -19,6 +19,11 @@ export const Mno = () => {
       // Your transaction data
       const [transactions, setTransactions] = useState([]);
 
+//filter transactions based on selected Selected Tab
+                const filteredTransactions = transactions.filter(
+                    transaction => transaction.type === selectedTab
+                  );
+
 
 
         return (
@@ -46,10 +51,16 @@ export const Mno = () => {
                                       />
                             </View>
 
-                                <View style={{ flex: 1, }}>
-                                        {/*Each transaction corresponding to the wakati and muamala*/}
-                                        <TransactionList />
-                                </View>
+                                <View style={{ flex: 1 }}>
+                                          {selectedTab === 'toa' && filteredTransactions.length === 0 ? (
+                                                    <View style={styles.emptyState}>
+                                                      <Text style={styles.emptyStateText}>Hakuna miamala ya toa</Text>
+                                                    </View>
+                                          ) :
+                                      (
+                                             <TransactionList transactions={filteredTransactions} />
+                                          )}
+                                        </View>
 
 
 

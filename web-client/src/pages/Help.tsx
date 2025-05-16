@@ -24,20 +24,20 @@ const StyledCard = styled(Paper)(({ theme }) => ({
 
 const FAQ = [
   {
-    question: 'How do I add a new agent?',
-    answer: 'Go to the Agents page and click on the "Add Agent" button. Fill in the required details and submit the form.',
+    question: 'Ninawezaje kuongeza wakala mpya?',
+    answer: 'Nenda kwenye ukurasa wa "Wakala" na bofya kitufe cha "Ongeza Wakala". Jaza maelezo yanayohitajika kisha wasilisha fomu hiyo.',
   },
   {
-    question: 'Why is a transaction marked as failed?',
-    answer: 'Transactions can fail due to various reasons like network issues, insufficient funds, or system errors. Check the transaction details for more information.',
+    question: 'Kwa nini muamala umeashwa kuwa umeshindwa?',
+    answer: 'Miamala inaweza kushindwa kwa sababu mbalimbali kama matatizo ya mtandao, fedha hazitoshi, au makosa ya mfumo. Angalia maelezo ya muamala kwa habari zaidi.',
   },
   {
-    question: 'How often does the system sync with agents?',
-    answer: 'By default, the system syncs every 5 minutes. You can change this in the Settings page.',
+    question: 'Mfumo husawazishwa mara ngapi na wakala?',
+    answer: 'Kwa chaguo-msingi, mfumo husawazishwa kila baada ya dakika 5. Unaweza kubadilisha hii kwenye ukurasa wa Mipangilio.',
   },
   {
-    question: 'How do I reset my password?',
-    answer: 'Go to the Settings page and use the "Change Password" section to reset your password.',
+    question: 'Ninawezaje kubadilisha nenosiri langu?',
+    answer: 'Nenda kwenye ukurasa wa Mipangilio na utumie sehemu ya "Badilisha Nenosiri" kuweka nenosiri jipya.',
   },
 ];
 
@@ -51,14 +51,14 @@ const Help: React.FC = () => {
     };
 
   const handleSendMessage = () => {
-    console.log('Message sent:', message);
+    console.log('Ujumbe uliotumwa:', message);
     setMessage('');
   };
 
   return (
     <div>
       <Typography variant="h4" gutterBottom fontWeight="bold">
-        Help & Support
+        Usaidizi & Msaada
       </Typography>
 
       <motion.div
@@ -67,7 +67,7 @@ const Help: React.FC = () => {
       >
         <StyledCard>
           <Typography variant="h6" gutterBottom>
-            Frequently Asked Questions
+            Maswali Yanayoulizwa Mara kwa Mara
           </Typography>
           {FAQ.map((item, index) => (
             <Accordion
@@ -87,13 +87,13 @@ const Help: React.FC = () => {
 
         <StyledCard>
           <Typography variant="h6" gutterBottom>
-            Contact Support
+            Wasiliana na Timu ya Usaidizi
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <TextField
               fullWidth
               variant="outlined"
-              placeholder="Type your message here..."
+              placeholder="Andika ujumbe wako hapa..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               multiline

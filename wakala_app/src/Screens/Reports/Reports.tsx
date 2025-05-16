@@ -17,14 +17,14 @@ export const Reports = () => {
 
 
     //setting the state for the initial balance. But later to be changed
-    const [ salio, setSalio ] = useState('1,250,000 Tzs')
+    const [ salio, setSalio ] = useState('4,693,500 Tzs')
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
 
       <SalioCard title="Salio" balance={salio} />
 
-      <SummaryCard title="kamisheni" value="23,000Tzs" />
+      <SummaryCard title="kamisheni" value="1,082 Tzs" />
 
       <NetworkCards
         selectedNetwork={selectedNetwork}
@@ -36,7 +36,9 @@ export const Reports = () => {
             onSelectPeriod={setSelectedPeriod}
        />
 
-      {selectedPeriod === 'siku' ? <DailyBarChart /> : <MonthlyBarChart />}
+            <View style={styles.chartContainer}>
+                    {selectedPeriod === 'siku' ? <DailyBarChart /> : <MonthlyBarChart />}
+            </View>
 
       <NetworkCards
         selectedNetwork={selectedNetwork}

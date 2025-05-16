@@ -1,69 +1,91 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { BarChart } from 'react-native-gifted-charts';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './styles';
 
-
-
 export const MonthlyBarChart = () => {
-  const barData = [
+  // Convert your static barData into dynamic monthlyData format
+  const monthlyData = [
     {
-      label: 'january',
-      mpesa: 80,
-      airtel: 60,
-      halotel: 30,
+      month: 'April',
+      providers: [
+        { name: 'Yas', value: 0 },
+        { name: 'M-Pesa', value: 0 },
+        { name: 'Halotel', value: 35 },
+        { name: 'Airtel', value: 0 }
+      ]
     },
     {
-      label: 'februari',
-      mpesa: 85,
-      airtel: 60,
-      halotel: 30,
-    },
+      month: 'May',
+      providers: [
+        { name: 'Yas', value: 0 },
+        { name: 'M-Pesa', value: 0 },
+        { name: 'Halotel', value: 25 },
+        { name: 'Airtel', value: 0 }
+      ]
+    }
   ];
 
-  const stackedData = barData.map(month => ({
-    stacks: [
-      { value: month.mpesa, color: '#e60000', label: 'mpesa' },
-      { value: month.airtel, color: '#f27070', label: 'airtel' },
-      { value: month.halotel, color: '#f0cccc', label: 'halotel' },
-    ],
-    label: month.label,
-  }));
+
+  // Color mapping for providers
+  const providerColors = {
+    'Yas': '#e6bcbc',
+    'M-Pesa': '#e60000',
+    'Halotel': '#f7c7c7',
+    'Airtel': '#f15b5b'
+  };
+
+  // Generate bar data in the required format
+  const generateBarData = () => {
+    return monthlyData.flatMap((monthData, monthIndex) => {
+      return monthData.providers.map((provider, providerIndex) => ({
+        value: provider.value,
+        label: providerIndex === 0 ? monthData.month : '',
+        frontColor: providerColors[provider.name],
+        spacing: providerIndex === monthData.providers.length - 1 ? 20 : 2,
+        labelTextStyle: { color: 'gray' },
+        labelWidth: 30
+      }));
+    });
+  };
+
+  const barData = generateBarData();
+
+  // Generate legend items
+  const renderLegend = () => {
+    return (
+      <View style={styles.legendWrapper}>
+        {monthlyData[0].providers.map(provider => (
+          <View key={provider.name} style={styles.legendItem}>
+            <View style={[styles.colorBox, { backgroundColor: providerColors[provider.name] }]} />
+            <Text style={styles.legendText}>{provider.name}</Text>
+          </View>
+        ))}
+      </View>
+    );
+  };
 
   return (
-    <View style={{ padding: 16 }}>
-      {/* Custom X and Y Axis Arrows */}
-      <View style={styles.axisArrows}>
-        <Icon name="arrow-right" size={24} color="black" style={styles.arrowX} />
-        <Icon name="arrow-upward" size={24} color="black" style={styles.arrowY} />
-      </View>
-
-      {/* Y-Axis Label */}
-      <Text style={styles.yAxisLabel}>No ya miamala</Text>
+    <View>
+      <Text style={styles.chartTitle}>Ripoti ya Tiketi kwa Miezi</Text>
+      {renderLegend()}
 
       <BarChart
-        stackData={stackedData}
-        barWidth={35}
-        barBorderRadius={8}
+        data={barData}
+        barWidth={20}
         spacing={40}
-        yAxisThickness={1}
-        xAxisThickness={1}
-        maxValue={100}
-        noOfSections={4}
-        stepValue={25}
+        barBorderRadius={4}
         isAnimated
-        xAxisLabelTextStyle={{
-          fontWeight: 'bold',
-          fontSize: 12,
-        }}
-        yAxisTextStyle={{
-          color: 'gray',
-          fontSize: 10,
-        }}
-        hideRules
+        yAxisColor="#ccc"
+        xAxisColor="#000"
+        noOfSections={4}
+        maxValue={60}
+        xAxisLabelTextStyle={{ color: '#000', fontSize: 12 }}
+        initialSpacing={20}
+        showVerticalLines
+        verticalLinesColor="rgba(0,0,0,0.1)"
+        verticalLinesSpacing={monthlyData[0].providers.length * (10 + 8)}
       />
     </View>
   );
 };
-

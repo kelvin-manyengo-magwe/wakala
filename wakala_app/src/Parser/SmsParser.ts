@@ -38,6 +38,8 @@ interface parsedData {
                                      return null;
                             }
 
+
+
                         const parsed: parsedData = {
                                           _id: uuidv4(), //best for globally unique id
                                           customer_name: nameMatch[1].trim(),

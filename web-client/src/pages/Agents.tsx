@@ -1,4 +1,3 @@
-// src/pages/Agents.tsx
 import React, { useState } from 'react';
 import {
   Paper,
@@ -44,6 +43,12 @@ const statusColors = {
   Suspended: 'error',
 } as const;
 
+const statusLabels: Record<Agent["status"], string> = {
+  Active: 'Anatumika',
+  Inactive: 'Haitumiki',
+  Suspended: 'Imesimamishwa',
+};
+
 const Agents: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(0);
@@ -52,20 +57,20 @@ const Agents: React.FC = () => {
   const agents: Agent[] = [
     {
       id: 'AG001',
-      name: 'John Doe',
+      name: 'Kelvin Magwe',
       phone: '+255 712 345 678',
       status: 'Active',
       totalTransactions: 124,
-      lastSync: '5 min ago',
-      avatar: 'JD',
+      lastSync: 'Dakika 4 zilizopita',
+      avatar: 'KM',
     },
-    {
+    /*{
       id: 'AG002',
       name: 'Jane Smith',
       phone: '+255 713 456 789',
       status: 'Active',
       totalTransactions: 89,
-      lastSync: '10 min ago',
+      lastSync: 'Dakika 10 zilizopita',
       avatar: 'JS',
     },
     {
@@ -74,7 +79,7 @@ const Agents: React.FC = () => {
       phone: '+255 714 567 890',
       status: 'Inactive',
       totalTransactions: 45,
-      lastSync: '2 hours ago',
+      lastSync: 'Masaa 2 yaliyopita',
       avatar: 'MJ',
     },
     {
@@ -83,9 +88,9 @@ const Agents: React.FC = () => {
       phone: '+255 715 678 901',
       status: 'Suspended',
       totalTransactions: 67,
-      lastSync: '1 day ago',
+      lastSync: 'Siku 1 iliyopita',
       avatar: 'SW',
-    },
+    },*/
     // Add more agents...
   ];
 
@@ -109,7 +114,7 @@ const Agents: React.FC = () => {
   return (
     <div style={{ width: '80vw', margin: '0 auto' }}>
       <Typography variant="h4" gutterBottom fontWeight="bold">
-        Agents
+        Mawakala
       </Typography>
 
       <motion.div
@@ -127,7 +132,7 @@ const Agents: React.FC = () => {
           <TextField
             fullWidth
             variant="outlined"
-            placeholder="Search agents..."
+            placeholder="Tafuta wakala..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{
@@ -144,12 +149,12 @@ const Agents: React.FC = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Agent</TableCell>
-                <TableCell>Phone</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Transactions</TableCell>
-                <TableCell>Last Sync</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell>Wakala</TableCell>
+                <TableCell>Simu</TableCell>
+                <TableCell>Hali</TableCell>
+                <TableCell>Miamala</TableCell>
+                <TableCell>Usawazishaji wa Mwisho</TableCell>
+                <TableCell>Vitendo</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -173,7 +178,7 @@ const Agents: React.FC = () => {
                     <TableCell>{agent.phone}</TableCell>
                     <TableCell>
                       <Chip
-                        label={agent.status}
+                        label={statusLabels[agent.status]}
                         color={statusColors[agent.status]}
                         size="small"
                       />
@@ -192,6 +197,7 @@ const Agents: React.FC = () => {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
+            labelRowsPerPage="Safu kwa kila ukurasa:"
             count={filteredAgents.length}
             rowsPerPage={rowsPerPage}
             page={page}

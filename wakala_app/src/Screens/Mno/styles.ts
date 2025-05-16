@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
         flex: 1,
       backgroundColor: 'white',
     },
+
     shadow: {
       shadowColor: '#000',
       shadowOffset: {
@@ -38,4 +39,14 @@ export const styles = StyleSheet.create({
         flex: 1,
         marginTop: 25,
         },
+    emptyState: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 20,
+    },
+    emptyStateText: {
+      fontSize: 16,
+      color: '#666',
+    },
   });

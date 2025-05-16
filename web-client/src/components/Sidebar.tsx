@@ -70,7 +70,7 @@ const StyledListItem = styled(ListItem)(({ theme }) => ({
 }));
 
 const navItems = [
-  { path: '/', icon: <DashboardIcon />, text: 'Dashibodi' },
+  { path: '/dashboard', icon: <DashboardIcon />, text: 'Dashibodi' },
   { path: '/transactions', icon: <ReceiptIcon />, text: 'Miamala' },
   { path: '/analytics', icon: <AnalyticsIcon />, text: 'Taarifa za takwimu' },
   { path: '/agents', icon: <PeopleIcon />, text: 'Mawakala' },

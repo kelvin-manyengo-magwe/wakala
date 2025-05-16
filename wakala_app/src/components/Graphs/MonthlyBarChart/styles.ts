@@ -4,30 +4,35 @@ import { StyleSheet } from 'react-native';
 
 
 export const styles = StyleSheet.create({
-  axisArrows: {
-    position: 'absolute',
-    top: 5,
-    left: 0,
-    zIndex: 1,
+  chartContainer: {
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    elevation: 2,
+    height: 350,
   },
-  arrowX: {
-    position: 'absolute',
-    bottom: -8,
-    left: 130,
-    transform: [{ rotate: '0deg' }],
-  },
-  arrowY: {
-    position: 'absolute',
-    top: 60,
-    left: -12,
-    transform: [{ rotate: '0deg' }],
-  },
-  yAxisLabel: {
-    position: 'absolute',
-    top: -10,
-    left: -4,
-    fontSize: 10,
-    transform: [{ rotate: '-90deg' }],
+  chartTitle: {
+    fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  legendWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 12,
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  colorBox: {
+    width: 12,
+    height: 12,
+    marginRight: 6,
+    borderRadius: 2,
+  },
+  legendText: {
+    fontSize: 12,
   },
 });

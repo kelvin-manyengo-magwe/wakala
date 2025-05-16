@@ -29,17 +29,12 @@ import {
   AttachMoney,
   ShowChart
 } from '@mui/icons-material';
-import { Bar, Pie } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend } from 'chart.js';
+
+// Import the new chart components
+import DailyMnoTransactions from '../components/Graphs/DailyMnoTransactions/DailyMnoTransactions';
+import TransactionVolumeChart from '../components/Graphs/TransactionVolumeChart/TransactionVolumeChart';
+import TopServicesChart from '../components/Graphs/TopServicesChart/TopServicesChart';
 
 ChartJS.register(
   CategoryScale,
@@ -61,65 +56,24 @@ const StyledCard = styled(Paper)(({ theme }) => ({
 }));
 
 const Dashboard: React.FC = () => {
-  // Chart Data
-  const barData = {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    datasets: [
-      {
-        label: 'Transactions',
-        data: [120, 190, 130, 170, 150, 200, 180],
-        backgroundColor: 'rgba(63, 81, 181, 0.7)',
-        borderColor: 'rgba(63, 81, 181, 1)',
-        borderWidth: 1,
-      },
-      {
-        label: 'Commissions',
-        data: [80, 120, 100, 110, 90, 140, 130],
-        backgroundColor: 'rgba(58, 134, 255, 0.7)',
-        borderColor: 'rgba(58, 134, 255, 1)',
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const pieData = {
-    labels: ['Success', 'Failed', 'Pending'],
-    datasets: [
-      {
-        data: [75, 15, 10],
-        backgroundColor: [
-          'rgba(75, 181, 67, 0.7)',
-          'rgba(255, 51, 51, 0.7)',
-          'rgba(255, 204, 0, 0.7)',
-        ],
-        borderColor: [
-          'rgba(75, 181, 67, 1)',
-          'rgba(97, 97, 97, 1)',
-          'rgba(255, 204, 0, 1)',
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
-
   // Financial Data
   const financialData = [
-    { title: 'Total Deposits', value: 'Tshs 245,800', change: '+12%', icon: <AccountBalance />, color: '#4caf50' },
-    { title: 'Total Withdrawals', value: 'Tshs 189,500', change: '+8%', icon: <AttachMoney />, color: '#f44336' },
-    { title: 'Current Float', value: 'Tshs 56,300', change: '+5%', icon: <ShowChart />, color: '#2196f3' },
-    { title: 'Weekly Profit', value: 'Tshs 38,750', change: '+15%', icon: <TrendingUp />, color: '#ff9800' }
+    { title: 'Jumla ya Amana', value: 'Tsh 4,693,500', change: '+12%', icon: <AccountBalance />, color: '#4caf50' },
+    { title: 'Jumla ya Makato', value: 'Tsh 189,500', change: '+8%', icon: <AttachMoney />, color: '#f44336' },
+    { title: 'Salio la Sasa', value: 'Tsh 8,538', change: '+5%', icon: <ShowChart />, color: '#2196f3' },
+    { title: 'Faida ya Wiki', value: 'Tsh 38,750', change: '+15%', icon: <TrendingUp />, color: '#ff9800' }
   ];
 
   // Recent Activities Data
   const activities = [
-    { id: 1, user: 'John Doe', action: 'completed transaction', amount: 1500, time: '2 mins ago', icon: <Payment /> },
-    { id: 2, user: 'Sarah Smith', action: 'registered new agent', amount: null, time: '15 mins ago', icon: <AccountCircle /> },
-    { id: 3, user: 'Mike Johnson', action: 'processed withdrawal', amount: 2500, time: '32 mins ago', icon: <TrendingUp /> },
-    { id: 4, user: 'System', action: 'completed nightly sync', amount: null, time: '1 hour ago', icon: <Sync /> }
+    { id: 1, user: 'James Nasuwa', action: 'amemaliza muamala', amount: 500, time: 'Dakika 2 zilizopita', icon: <Payment /> },
+    { id: 2, user: 'Mfumo', action: 'umemaliza usawazishaji wa usiku', amount: null, time: 'Saa 1 iliyopita', icon: <Sync /> }
+    /*{ id: 3, user: 'Sarah Smith', action: 'amemsajili wakala mpya', amount: null, time: 'Dakika 15 zilizopita', icon: <AccountCircle /> },
+    { id: 4, user: 'Mike Johnson', action: 'amefanya makato', amount: 2500, time: 'Dakika 32 zilizopita', icon: <TrendingUp /> },
+    */
   ];
 
   return (
-
     <Box sx={{
       width: '100vw',
       height: '100vh',
@@ -130,7 +84,7 @@ const Dashboard: React.FC = () => {
       {/* Header Section */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
         <Typography variant="h4" fontWeight="bold">
-          Dashboard Overview
+          Ukurasa wa Uchambuzi
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Notifications color="action" />
@@ -174,12 +128,12 @@ const Dashboard: React.FC = () => {
                 <AccountBalanceWallet />
               </Avatar>
               <Box>
-                <Typography variant="body2" color="text.secondary">Total Transactions</Typography>
-                <Typography variant="h4" fontWeight="bold">1,245</Typography>
+                <Typography variant="body2" color="text.secondary">Jumla ya Miamala</Typography>
+                <Typography variant="h4" fontWeight="bold">80</Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                   <ArrowUpward color="success" fontSize="small" />
                   <Typography variant="caption" color="success.main" sx={{ ml: 0.5 }}>
-                    12% from last week
+                    12% kutoka wiki iliyopita
                   </Typography>
                 </Box>
               </Box>
@@ -194,12 +148,12 @@ const Dashboard: React.FC = () => {
                 <People />
               </Avatar>
               <Box>
-                <Typography variant="body2" color="text.secondary">Agents Online</Typography>
-                <Typography variant="h4" fontWeight="bold">42</Typography>
+                <Typography variant="body2" color="text.secondary">Wakala Waliopo</Typography>
+                <Typography variant="h4" fontWeight="bold">1</Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                   <ArrowDownward color="error" fontSize="small" />
                   <Typography variant="caption" color="error.main" sx={{ ml: 0.5 }}>
-                    3% from yesterday
+                    3% kutoka jana
                   </Typography>
                 </Box>
               </Box>
@@ -214,8 +168,8 @@ const Dashboard: React.FC = () => {
                 <Sync />
               </Avatar>
               <Box>
-                <Typography variant="body2" color="text.secondary">Last Sync</Typography>
-                <Typography variant="h4" fontWeight="bold">5 min ago</Typography>
+                <Typography variant="body2" color="text.secondary">Usawazishaji wa Mwisho</Typography>
+                <Typography variant="h4" fontWeight="bold">Dakika 5 zilizopita</Typography>
                 <LinearProgress
                   variant="determinate"
                   value={75}
@@ -233,12 +187,12 @@ const Dashboard: React.FC = () => {
                 <MonetizationOn />
               </Avatar>
               <Box>
-                <Typography variant="body2" color="text.secondary">Total Commissions</Typography>
-                <Typography variant="h4" fontWeight="bold">Tshs8,245</Typography>
+                <Typography variant="body2" color="text.secondary">Jumla ya Ushuru</Typography>
+                <Typography variant="h4" fontWeight="bold">Tsh8,245</Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                   <ArrowUpward color="success" fontSize="small" />
                   <Typography variant="caption" color="success.main" sx={{ ml: 0.5 }}>
-                    24% from last month
+                    24% kutoka mwezi uliopita
                   </Typography>
                 </Box>
               </Box>
@@ -247,118 +201,60 @@ const Dashboard: React.FC = () => {
         </Grid>
       </Grid>
 
-      {/* Main Content */}
+      {/* Main Content with New Charts */}
       <Grid container spacing={3}>
         {/* Charts Section */}
         <Grid item xs={12} md={8}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <StyledCard>
-                <Typography variant="h6" gutterBottom>
-                  Weekly Performance
-                </Typography>
-                <Box sx={{ height: 300 }}>
-                  <Bar
-                    data={barData}
-                    options={{
-                      responsive: true,
-                      maintainAspectRatio: false,
-                      plugins: {
-                        legend: {
-                          position: 'top',
-                        },
-                      },
-                    }}
-                  />
-                </Box>
-              </StyledCard>
+              <DailyMnoTransactions />
             </Grid>
-            <Grid item xs={12} md={6}>
-              <StyledCard>
-                <Typography variant="h6" gutterBottom>
-                  Transaction Status
-                </Typography>
-                <Box sx={{ height: 250 }}>
-                  <Pie
-                    data={pieData}
-                    options={{
-                      responsive: true,
-                      maintainAspectRatio: false,
-                      plugins: {
-                        legend: {
-                          position: 'bottom',
-                        },
-                      },
-                    }}
-                  />
-                </Box>
-              </StyledCard>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <StyledCard>
-                <Typography variant="h6" gutterBottom>
-                  System Health
-                </Typography>
-                <Box sx={{ mt: 2 }}>
-                  <Typography variant="body2" gutterBottom>Server Load</Typography>
-                  <LinearProgress
-                    variant="determinate"
-                    value={65}
-                    sx={{ height: 10, borderRadius: 5, mb: 3 }}
-                  />
-                  <Typography variant="body2" gutterBottom>Database Usage</Typography>
-                  <LinearProgress
-                    variant="determinate"
-                    value={45}
-                    sx={{ height: 10, borderRadius: 5, mb: 3 }}
-                  />
-                  <Typography variant="body2" gutterBottom>Network Latency</Typography>
-                  <LinearProgress
-                    variant="determinate"
-                    value={25}
-                    color="success"
-                    sx={{ height: 10, borderRadius: 5 }}
-                  />
-                </Box>
-              </StyledCard>
+            <Grid item xs={12}>
+              <TransactionVolumeChart />
             </Grid>
           </Grid>
         </Grid>
 
-        {/* Recent Activities Section */}
+        {/* Right Sidebar */}
         <Grid item xs={12} md={4}>
-          <StyledCard>
-            <Typography variant="h6" gutterBottom>
-              Recent Activities
-            </Typography>
-            <List>
-              {activities.map((activity, index) => (
-                <React.Fragment key={activity.id}>
-                  <ListItem alignItems="flex-start" sx={{ py: 1.5 }}>
-                    <ListItemAvatar>
-                      <Avatar sx={{ bgcolor: 'action.hover' }}>
-                        {activity.icon}
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2" fontWeight="medium">
-                          {activity.user} {activity.action}
-                          {activity.amount && ` (Tshs ${activity.amount.toLocaleString()})`}
-                        </Typography>
-                      }
-                      secondary={activity.time}
-                    />
-                  </ListItem>
-                  {index < activities.length - 1 && <Divider variant="inset" component="li" />}
-                </React.Fragment>
-              ))}
-            </List>
-          </StyledCard>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <TopServicesChart />
+            </Grid>
+            <Grid item xs={12}>
+              <StyledCard>
+                <Typography variant="h6" gutterBottom>
+                  Shughuli za Hivi Punde
+                </Typography>
+                <List>
+                  {activities.map((activity, index) => (
+                    <React.Fragment key={activity.id}>
+                      <ListItem alignItems="flex-start" sx={{ py: 1.5 }}>
+                        <ListItemAvatar>
+                          <Avatar sx={{ bgcolor: 'action.hover' }}>
+                            {activity.icon}
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText
+                          primary={
+                            <Typography variant="body2" fontWeight="medium">
+                              {activity.user} {activity.action}
+                              {activity.amount && ` (Tsh ${activity.amount.toLocaleString()})`}
+                            </Typography>
+                          }
+                          secondary={activity.time}
+                        />
+                      </ListItem>
+                      {index < activities.length - 1 && <Divider variant="inset" component="li" />}
+                    </React.Fragment>
+                  ))}
+                </List>
+              </StyledCard>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Box>
-
   );
 };
 

@@ -1,4 +1,3 @@
-// src/pages/SyncHistory.tsx
 import React, { useState } from 'react';
 import {
   Paper,
@@ -26,7 +25,7 @@ interface SyncEvent {
   timestamp: string;
   agent: string;
   records: number;
-  status: 'Completed' | 'Failed' | 'In Progress';
+  status: 'Imekamilika' | 'Imeshindwa' | 'Inaendelea';
 }
 
 const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
@@ -38,9 +37,9 @@ const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
 }));
 
 const statusColors = {
-  Completed: 'success',
-  Failed: 'error',
-  'In Progress': 'warning',
+  'Imekamilika': 'success',
+  'Imeshindwa': 'error',
+  'Inaendelea': 'warning',
 } as const;
 
 const SyncHistory: React.FC = () => {
@@ -54,31 +53,31 @@ const SyncHistory: React.FC = () => {
     {
       id: 'SYNC001',
       timestamp: '2023-05-01 09:30:45',
-      agent: 'John Doe',
+      agent: 'Kelvin Magwe',
       records: 124,
-      status: 'Completed',
+      status: 'Imekamilika',
     },
     {
       id: 'SYNC002',
       timestamp: '2023-05-01 10:15:22',
-      agent: 'Jane Smith',
+      agent: 'Kelvin Magwe',
       records: 89,
-      status: 'Completed',
+      status: 'Imekamilika',
     },
     {
       id: 'SYNC003',
       timestamp: '2023-05-02 11:20:33',
-      agent: 'Mike Johnson',
+      agent: 'Kelvin Magwe',
       records: 0,
-      status: 'Failed',
+      status: 'Imeshindwa',
     },
-    {
+    /*{
       id: 'SYNC004',
       timestamp: '2023-05-02 14:45:18',
-      agent: 'Sarah Williams',
+      agent: 'Kelvin Magwe',
       records: 67,
-      status: 'In Progress',
-    },
+      status: 'Inaendelea',
+    },*/
     // Add more sync events...
   ];
 
@@ -110,19 +109,19 @@ const SyncHistory: React.FC = () => {
   };
 
   const handleRetry = () => {
-    console.log(`Retry sync ${selectedSync}`);
+    console.log(`Rudia usawazishaji ${selectedSync}`);
     handleMenuClose();
   };
 
   const handleDownload = () => {
-    console.log(`Download sync ${selectedSync}`);
+    console.log(`Pakua hati za usawazishaji ${selectedSync}`);
     handleMenuClose();
   };
 
   return (
     <div style={{ margin: '0 auto', width: '80vw' }}>
       <Typography variant="h4" gutterBottom fontWeight="bold">
-        Sync History
+        Historia ya Usawazishaji
       </Typography>
 
       <motion.div
@@ -140,7 +139,7 @@ const SyncHistory: React.FC = () => {
           <TextField
             fullWidth
             variant="outlined"
-            placeholder="Search sync events..."
+            placeholder="Tafuta matukio ya usawazishaji..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{
@@ -157,12 +156,12 @@ const SyncHistory: React.FC = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Sync ID</TableCell>
-                <TableCell>Timestamp</TableCell>
-                <TableCell>Agent</TableCell>
-                <TableCell>Records</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell>Kitambulisho</TableCell>
+                <TableCell>Muda</TableCell>
+                <TableCell>Wakala</TableCell>
+                <TableCell>Rekodi</TableCell>
+                <TableCell>Hali</TableCell>
+                <TableCell>Vitendo</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -208,11 +207,11 @@ const SyncHistory: React.FC = () => {
         >
           <MenuItem onClick={handleRetry}>
             <Sync fontSize="small" sx={{ mr: 1 }} />
-            Retry Sync
+            Rudia Usawazishaji
           </MenuItem>
           <MenuItem onClick={handleDownload}>
             <CloudDownload fontSize="small" sx={{ mr: 1 }} />
-            Download Logs
+            Pakua Hati
           </MenuItem>
         </Menu>
       </motion.div>

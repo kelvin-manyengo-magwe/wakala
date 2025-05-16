@@ -7,32 +7,32 @@ import { styles } from './styles';
 export const DepositsWithdrawalBarChart = () => {
                     const barData = [
                             {
-                              value: 40,
+                              value: 0,
                               label: 'Yas',
                               spacing: 2,
                               labelWidth: 30,
                               labelTextStyle: {color: 'black'},
                               frontColor: '#177AD5',
                             },
-                            {value: 20, frontColor: '#ED6665'},
+                            {value: 0, frontColor: '#ED6665'},
                             {
-                              value: 50,
+                              value: 0,
                               label: 'M-Pesa',
                               spacing: 2,
                               labelWidth: 30,
                               labelTextStyle: {color: 'black'},
                               frontColor: '#177AD5',
                             },
-                            {value: 40, frontColor: '#ED6665'},
+                            {value: 0, frontColor: '#ED6665'},
                             {
-                              value: 75,
+                              value: 0,
                               label: 'Airtel money',
                               spacing: 2,
                               labelWidth: 30,
                               labelTextStyle: {color: 'black'},
                               frontColor: '#177AD5',
                             },
-                            {value: 25, frontColor: '#ED6665'},
+                            {value: 0, frontColor: '#ED6665'},
                             {
                               value: 30,
                               label: 'Halopesa',
@@ -41,23 +41,23 @@ export const DepositsWithdrawalBarChart = () => {
                               labelTextStyle: {color: 'black'},
                               frontColor: '#177AD5',
                             },
-                            {value: 20, frontColor: '#ED6665'},
+                            {value: 0, frontColor: '#ED6665'},
                             {
-                              value: 60,
+                              value: 0,
                               label: 'TTCL',
                               spacing: 2,
                               labelWidth: 30,
                               labelTextStyle: {color: 'black'},
                               frontColor: '#177AD5',
                             },
-                            {value: 40, frontColor: '#ED6665'},
+                            {value: 0, frontColor: '#ED6665'},
                           ];
 
                       const renderTitle = () => {
                                 return(
                                   <View style={styles.legendContainer}>
                                           <Text style={styles.legendText}>
-                                                    Chati ya Amana dhidi ya Uondoaji
+                                                    Chati ya Amana dhidi ya Uondoaji kwa Mwezi
                                           </Text>
                                           <View style={styles.uondoajiAmanaContainer}>
                                                     <View style={{flexDirection: 'row', alignItems: 'center'}}>

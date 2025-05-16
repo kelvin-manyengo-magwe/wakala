@@ -37,21 +37,21 @@ const StyledCard = styled(Paper)(({ theme }) => ({
 
 const Analytics: React.FC = () => {
   const agentPerformanceData = {
-    labels: ['John Doe', 'Jane Smith', 'Mike Johnson', 'Sarah Williams', 'David Brown'],
+    labels: ['Kelvin Magwe'],
     datasets: [
       {
-        label: 'Transactions',
-        data: [120, 90, 75, 110, 85],
+        label: 'Miamala',
+        data: [80],
         backgroundColor: 'rgba(230, 57, 70, 0.7)',
       },
     ],
   };
 
   const dailyProfitData = {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    labels: ['Jumatatu', 'Jumanne', 'Jumatano', 'Alhamisi', 'Ijumaa', 'Jumamosi', 'Jumapili'],
     datasets: [
       {
-        label: 'Daily Profit',
+        label: 'Faida ya Kila Siku',
         data: [450, 600, 300, 750, 500, 650, 400],
         borderColor: 'rgba(58, 134, 255, 1)',
         backgroundColor: 'rgba(58, 134, 255, 0.1)',
@@ -62,10 +62,10 @@ const Analytics: React.FC = () => {
   };
 
   const transactionTypeData = {
-    labels: ['Deposit', 'Withdrawal', 'Transfer', 'Payment'],
+    labels: ['Amana', 'Kutoa', 'Uhamisho', 'Malipo'],
     datasets: [
       {
-        data: [45, 30, 15, 10],
+        data: [45, 0, 0, 0],
         backgroundColor: [
           'rgba(230, 57, 70, 0.7)',
           'rgba(58, 134, 255, 0.7)',
@@ -83,7 +83,7 @@ const Analytics: React.FC = () => {
       padding: '20px 0'
     }}>
       <Typography variant="h4" gutterBottom fontWeight="bold">
-        Analytics
+        Takwimu
       </Typography>
 
       <Grid container spacing={3}>
@@ -95,7 +95,7 @@ const Analytics: React.FC = () => {
           >
             <StyledCard>
               <Typography variant="h6" gutterBottom>
-                Agent Performance
+                Utendaji wa Mawakala
               </Typography>
               <Box sx={{ height: '400px' }}>
                 <Bar
@@ -125,7 +125,7 @@ const Analytics: React.FC = () => {
           >
             <StyledCard>
               <Typography variant="h6" gutterBottom>
-                Transaction Types
+                Aina za Miamala
               </Typography>
               <Box sx={{ height: '400px' }}>
                 <Pie
@@ -155,7 +155,7 @@ const Analytics: React.FC = () => {
           >
             <StyledCard>
               <Typography variant="h6" gutterBottom>
-                Weekly Profit Trend
+                Mwelekeo wa Faida kwa Wiki
               </Typography>
               <Box sx={{ height: '400px' }}>
                 <Line

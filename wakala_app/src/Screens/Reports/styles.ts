@@ -27,5 +27,11 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
+    chartContainer: {
 
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        elevation: 2,
+        height: 300,
+      },
 });

@@ -9,10 +9,10 @@ import { PieChart } from 'react-native-gifted-charts';
 export const PieChart3D = () => {
 
         const pieData = [
-            { value: 40, color: '#E3BEB4', text: 'Yas', logo: require('../../../../assets/images/icons/mixx-by-yas-logo.png') },
-            { value: 30, color: '#DE6057', text: 'Airtel', logo: require('../../../../assets/images/icons/airtel-money-logo.png') },
-            { value: 20, color: '#C22022', text: 'M-Pesa', logo: require('../../../../assets/images/icons/mpesa-logo.jpg') },
-            { value: 10, color: '#EBCFC6', text: 'Halotel', logo: require('../../../../assets/images/icons/halo-pesa-logo.png') },
+            { value: 0, color: '#E3BEB4', text: 'Yas', logo: require('../../../../assets/images/icons/mixx-by-yas-logo.png') },
+            { value: 0, color: '#DE6057', text: 'Airtel', logo: require('../../../../assets/images/icons/airtel-money-logo.png') },
+            { value: 0, color: '#C22022', text: 'M-Pesa', logo: require('../../../../assets/images/icons/mpesa-logo.jpg') },
+            { value: 100, color: '#EBCFC6', text: 'Halotel', logo: require('../../../../assets/images/icons/halo-pesa-logo.png') },
           ];
 
   return (

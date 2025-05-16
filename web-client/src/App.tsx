@@ -11,6 +11,11 @@ import Agents from './pages/Agents';
 import SyncHistory from './pages/SyncHistory';
 import Settings from './pages/Settings';
 import Help from './pages/Help';
+import HomePage from './pages/HomePage/HomePage';
+import FeaturesPage from './pages/FeaturesPage/FeaturesPage';
+import ContactPage from './pages/ContactPage/ContactPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
 
 const App: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -61,41 +66,64 @@ const App: React.FC = () => {
     setDarkMode(darkMode);
   };
 
+  // Routes that should have the sidebar
+  const appRoutes = [
+    '/dashboard',
+    '/transactions',
+    '/analytics',
+    '/agents',
+    '/sync-history',
+    '/settings',
+    '/help'
+  ];
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline enableColorScheme />
       <Router>
-        <div style={{
-          display: 'flex',
-          minHeight: '100vh',
-          backgroundColor: theme.palette.background.default
-        }}>
-          <Sidebar open={sidebarOpen} onToggle={toggleSidebar} />
-          <main
-            style={{
-              flex: 1,
-              padding: '24px',
-              marginLeft: sidebarOpen ? '250px' : '100px',
-              transition: 'margin-left 0.3s ease, background-color 0.3s ease',
-              backgroundColor: theme.palette.background.default,
+        <Routes>
+          {/* Marketing pages without sidebar */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/features" element={<FeaturesPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+
+          {/* App pages with sidebar */}
+          <Route path="*" element={
+            <div style={{
+              display: 'flex',
               minHeight: '100vh',
-              overflow: 'auto',
-            }}
-          >
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/transactions" element={<Transactions />} />
-              <Route path="/analytics" element={<Analytics />} />
-              <Route path="/agents" element={<Agents />} />
-              <Route path="/sync-history" element={<SyncHistory />} />
-              <Route
-                path="/settings"
-                element={<Settings onThemeChange={handleThemeChange} />}
-              />
-              <Route path="/help" element={<Help />} />
-            </Routes>
-          </main>
-        </div>
+              backgroundColor: theme.palette.background.default
+            }}>
+              <Sidebar open={sidebarOpen} onToggle={toggleSidebar} />
+              <main
+                style={{
+                  flex: 1,
+                  padding: '24px',
+                  marginLeft: sidebarOpen ? '250px' : '100px',
+                  transition: 'margin-left 0.3s ease, background-color 0.3s ease',
+                  backgroundColor: theme.palette.background.default,
+                  minHeight: '100vh',
+                  overflow: 'auto',
+                }}
+              >
+                <Routes>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/transactions" element={<Transactions />} />
+                  <Route path="/analytics" element={<Analytics />} />
+                  <Route path="/agents" element={<Agents />} />
+                  <Route path="/sync-history" element={<SyncHistory />} />
+                  <Route
+                    path="/settings"
+                    element={<Settings onThemeChange={handleThemeChange} />}
+                  />
+                  <Route path="/help" element={<Help />} />
+                </Routes>
+              </main>
+            </div>
+          } />
+        </Routes>
       </Router>
     </ThemeProvider>
   );

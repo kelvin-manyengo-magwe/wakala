@@ -4,6 +4,7 @@ import { AppStackParamList } from '../../navigation/routes';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 
+
 type MessageScreenProp = StackNavigationProp<AppStackParamList, 'MessageScreen'>;
 
 interface MessageScreenProps {

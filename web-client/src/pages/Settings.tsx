@@ -1,4 +1,3 @@
-// src/pages/Settings.tsx
 import React, { useState } from 'react';
 import {
   Paper,
@@ -24,13 +23,11 @@ const StyledCard = styled(Paper)(({ theme }) => ({
   marginBottom: '20px',
 }));
 
-
 interface SettingsProps {
   onThemeChange: (darkMode: boolean) => void;
 }
 
 const Settings: React.FC<SettingsProps> = ({ onThemeChange }) => {
-
   const [autoSync, setAutoSync] = useState(true);
   const [dataRetention, setDataRetention] = useState(30);
   const [darkMode, setDarkMode] = useState(false);
@@ -40,12 +37,12 @@ const Settings: React.FC<SettingsProps> = ({ onThemeChange }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSaveSettings = () => {
-    console.log('Settings saved');
+    console.log('Mipangilio imehifadhiwa');
     // Add actual save logic here
   };
 
   const handleChangePassword = () => {
-    console.log('Password changed');
+    console.log('Nenosiri limebadilishwa');
     // Add actual password change logic here
   };
 
@@ -57,7 +54,7 @@ const Settings: React.FC<SettingsProps> = ({ onThemeChange }) => {
   return (
     <div>
       <Typography variant="h4" gutterBottom fontWeight="bold">
-        Settings
+        Mipangilio
       </Typography>
 
       <motion.div
@@ -66,13 +63,13 @@ const Settings: React.FC<SettingsProps> = ({ onThemeChange }) => {
       >
         <StyledCard>
           <Typography variant="h6" gutterBottom>
-            General Settings
+            Mipangilio ya Jumla
           </Typography>
           <List>
             <ListItem>
               <ListItemText
-                primary="Auto Sync"
-                secondary="Automatically sync data with agents"
+                primary="Usawazishaji Otomatiki"
+                secondary="Sawazisha data na wakala kiotomatiki"
               />
               <Switch
                 checked={autoSync}
@@ -83,8 +80,8 @@ const Settings: React.FC<SettingsProps> = ({ onThemeChange }) => {
             <Divider />
             <ListItem>
               <ListItemText
-                primary="Data Retention"
-                secondary="Number of days to keep transaction records"
+                primary="Uhifadhi wa Data"
+                secondary="Idadi ya siku za kuhifadhi rekodi za manunuzi"
               />
               <TextField
                 type="number"
@@ -98,20 +95,20 @@ const Settings: React.FC<SettingsProps> = ({ onThemeChange }) => {
             <Divider />
             <ListItem>
               <ListItemText
-                primary="Dark Mode"
-                secondary="Switch between light and dark theme"
+                primary="Hali ya Giza"
+                secondary="Badilisha kati ya mandhari ya mwangaza na giza"
               />
               <Switch
                 checked={darkMode}
-                onChange={(e) => setDarkMode(e.target.checked)}
+                onChange={handleDarkModeChange}
                 color="primary"
               />
             </ListItem>
             <Divider />
             <ListItem>
               <ListItemText
-                primary="Notifications"
-                secondary="Enable or disable system notifications"
+                primary="Arifa"
+                secondary="Wezesha au zima arifa za mfumo"
               />
               <Switch
                 checked={notifications}
@@ -126,20 +123,20 @@ const Settings: React.FC<SettingsProps> = ({ onThemeChange }) => {
               color="primary"
               onClick={handleSaveSettings}
             >
-              Save Settings
+              Hifadhi Mipangilio
             </Button>
           </Box>
         </StyledCard>
 
         <StyledCard>
           <Typography variant="h6" gutterBottom>
-            Change Password
+            Badilisha Nenosiri
           </Typography>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
-                label="Current Password"
+                label="Nenosiri la Sasa"
                 type="password"
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
@@ -148,7 +145,7 @@ const Settings: React.FC<SettingsProps> = ({ onThemeChange }) => {
             <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
-                label="New Password"
+                label="Nenosiri Jipya"
                 type="password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
@@ -157,7 +154,7 @@ const Settings: React.FC<SettingsProps> = ({ onThemeChange }) => {
             <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
-                label="Confirm New Password"
+                label="Thibitisha Nenosiri Jipya"
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -170,7 +167,7 @@ const Settings: React.FC<SettingsProps> = ({ onThemeChange }) => {
               color="primary"
               onClick={handleChangePassword}
             >
-              Change Password
+              Badilisha Nenosiri
             </Button>
           </Box>
         </StyledCard>

@@ -26,7 +26,7 @@ interface Transaction {
   phone: string;
   amount: number;
   type: string;
-  status: 'Success' | 'Failed' | 'Pending';
+  status: 'Imefanikiwa' | 'Imeshindwa' | 'Inasubiri';
   commission: number;
 }
 
@@ -43,16 +43,16 @@ const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
 }));
 
 const statusColors = {
-  Success: 'success',
-  Failed: 'error',
-  Pending: 'warning',
+  'Imefanikiwa': 'success',
+  'Imeshindwa': 'error',
+  'Inasubiri': 'warning',
 } as const;
 
 const transactionTypes = {
-  Deposit: '#4caf50',
-  Withdrawal: '#f44336',
-  Transfer: '#2196f3',
-  Payment: '#ff9800'
+  'Amana': '#4caf50',
+  'Makato': '#f44336',
+  'Uhamisho': '#2196f3',
+  'Malipo': '#ff9800'
 } as const;
 
 const Transactions: React.FC = () => {
@@ -62,128 +62,53 @@ const Transactions: React.FC = () => {
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
 
-  // Complete transaction data
+  // Data ya manunuzi
   const transactions: Transaction[] = [
     {
       id: 'TX1001',
-      date: '2023-06-15 09:30:45',
-      agent: 'John Mwangi',
+      date: '2023-05-15 13:30:45',
+      agent: 'Kelvin Magwe',
+      customer: 'James Nasuwa',
       phone: '+254712345678',
-      amount: 12500,
-      type: 'Deposit',
-      status: 'Success',
+      amount: 500,
+      type: 'Amana',
+      status: 'Imefanikiwa',
       commission: 125
     },
     {
       id: 'TX1002',
-      date: '2023-06-15 10:15:22',
-      agent: 'Sarah Kamau',
+      date: '2025-04-15 10:15:22',
+      agent: 'Kelvin Magwe',
+      customer: 'Polycarp Joseph',
       phone: '+254723456789',
       amount: 8500,
-      type: 'Withdrawal',
-      status: 'Success',
+      type: 'Amana',
+      status: 'Imefanikiwa',
       commission: 85
     },
     {
       id: 'TX1003',
-      date: '2023-06-15 11:05:33',
-      agent: 'David Ochieng',
+      date: '2025-05-08 11:05:33',
+      agent: 'Kelvin Magwe',
+      customer: 'Neema Shillingi',
       phone: '+254734567890',
       amount: 15000,
-      type: 'Transfer',
-      status: 'Pending',
+      type: 'Amana',
+      status: 'Inasubiri',
       commission: 150
     },
     {
       id: 'TX1004',
-      date: '2023-06-15 14:30:18',
-      agent: 'Grace Wambui',
+      date: '2025-05-15 14:30:18',
+      agent: 'Kelvin Magwe',
+      customer: 'James Ludovick',
       phone: '+254745678901',
-      amount: 5000,
-      type: 'Payment',
-      status: 'Failed',
-      commission: 50
+      amount: 500,
+      type: 'Amana',
+      status: 'Imeshindwa',
+      commission: 46
     },
-    {
-      id: 'TX1005',
-      date: '2023-06-16 08:45:52',
-      agent: 'Michael Njoroge',
-      phone: '+254756789012',
-      amount: 18000,
-      type: 'Deposit',
-      status: 'Success',
-      commission: 180
-    },
-    {
-      id: 'TX1006',
-      date: '2023-06-16 12:20:37',
-      agent: 'Esther Muthoni',
-      phone: '+254767890123',
-      amount: 7500,
-      type: 'Withdrawal',
-      status: 'Success',
-      commission: 75
-    },
-    {
-      id: 'TX1007',
-      date: '2023-06-17 10:10:15',
-      agent: 'Peter Kariuki',
-      phone: '+254778901234',
-      amount: 22000,
-      type: 'Transfer',
-      status: 'Success',
-      commission: 220
-    },
-    {
-      id: 'TX1008',
-      date: '2023-06-17 15:45:29',
-      agent: 'Lilian Atieno',
-      phone: '+254789012345',
-      amount: 3000,
-      type: 'Payment',
-      status: 'Pending',
-      commission: 30
-    },
-    {
-      id: 'TX1009',
-      date: '2023-06-18 09:15:42',
-      agent: 'James Mutua',
-      phone: '+254790123456',
-      amount: 12000,
-      type: 'Deposit',
-      status: 'Success',
-      commission: 120
-    },
-    {
-      id: 'TX1010',
-      date: '2023-06-18 13:30:55',
-      agent: 'Nancy Wanjiru',
-      phone: '+254701234567',
-      amount: 9500,
-      type: 'Withdrawal',
-      status: 'Failed',
-      commission: 95
-    },
-    {
-      id: 'TX1011',
-      date: '2023-06-19 11:20:18',
-      agent: 'Robert Omollo',
-      phone: '+254712345678',
-      amount: 16000,
-      type: 'Transfer',
-      status: 'Success',
-      commission: 160
-    },
-    {
-      id: 'TX1012',
-      date: '2023-06-19 16:10:33',
-      agent: 'Cynthia Achieng',
-      phone: '+254723456789',
-      amount: 7000,
-      type: 'Payment',
-      status: 'Success',
-      commission: 70
-    }
+    // ... more transactions
   ];
 
   const filteredTransactions = transactions.filter((tx) => {
@@ -221,21 +146,21 @@ const Transactions: React.FC = () => {
       backgroundColor: 'background.default',
     }}>
       <Typography variant="h4" gutterBottom fontWeight="bold" sx={{ mb: 3 }}>
-        Transaction History
+        Historia ya Manunuzi
       </Typography>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        {/* Search and Filter Section */}
+        {/* Sehemu ya Utafutaji na Kuchagua */}
         <Paper elevation={3} sx={{ p: 3, mb: 3, borderRadius: 2 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
                 variant="outlined"
-                placeholder="Search transactions..."
+                placeholder="Tafuta manunuzi..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 InputProps={{
@@ -252,7 +177,7 @@ const Transactions: React.FC = () => {
                 fullWidth
                 variant="outlined"
                 type="date"
-                label="From Date"
+                label="Kuanzia Tarehe"
                 value={fromDate}
                 onChange={(e) => setFromDate(e.target.value)}
                 InputProps={{
@@ -272,7 +197,7 @@ const Transactions: React.FC = () => {
                 fullWidth
                 variant="outlined"
                 type="date"
-                label="To Date"
+                label="Hadi Tarehe"
                 value={toDate}
                 onChange={(e) => setToDate(e.target.value)}
                 InputProps={{
@@ -290,19 +215,20 @@ const Transactions: React.FC = () => {
           </Grid>
         </Paper>
 
-        {/* Transactions Table */}
+        {/* Jedwali la Manunuzi */}
         <StyledTableContainer component={Paper}>
-          <Table stickyHeader aria-label="transactions table">
+          <Table stickyHeader aria-label="jedwali la manunuzi">
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Date & Time</TableCell>
-                <TableCell>Agent</TableCell>
-                <TableCell>Phone</TableCell>
-                <TableCell>Amount (Tshs)</TableCell>
-                <TableCell>Type</TableCell>
-                <TableCell>Commission</TableCell>
-                <TableCell>Status</TableCell>
+                <TableCell>Kitambulisho</TableCell>
+                <TableCell>Tarehe & Muda</TableCell>
+                <TableCell>Wakala</TableCell>
+                <TableCell>Mteja</TableCell>
+                <TableCell>Simu</TableCell>
+                <TableCell>Kiasi (Tsh)</TableCell>
+                <TableCell>Aina</TableCell>
+                <TableCell>Ushuru</TableCell>
+                <TableCell>Hali</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -313,6 +239,7 @@ const Transactions: React.FC = () => {
                     <TableCell>{tx.id}</TableCell>
                     <TableCell>{tx.date}</TableCell>
                     <TableCell>{tx.agent}</TableCell>
+                    <TableCell>{tx.customer}</TableCell>
                     <TableCell>{tx.phone}</TableCell>
                     <TableCell>{tx.amount.toLocaleString()}</TableCell>
                     <TableCell>
