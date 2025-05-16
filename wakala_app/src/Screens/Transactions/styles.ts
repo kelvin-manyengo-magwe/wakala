@@ -150,4 +150,10 @@ export const styles = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 12,
     },
+    deleteCancelContainer : {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 20,
+        }
 });

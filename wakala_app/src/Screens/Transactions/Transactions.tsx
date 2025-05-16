@@ -4,6 +4,8 @@ import { styles } from './styles';
 import { getRealm } from '../../Services/Database/Realm/Realm';
 import { TransactionsSchema } from '../../Services/Database/Schemas/TransactionsSchema';
 import { TransactionTypeToggle } from '../../components/TransactionTypeToggle/TransactionTypeToggle';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 
 
 export const Transactions = () => {
@@ -12,6 +14,11 @@ export const Transactions = () => {
   const [loading, setLoading] = useState('...inapakia');
   const realmRef = useRef<Realm | null>(null);
   const transactionsRef = useRef<Realm.Results<TransactionsSchema> | null>(null);
+
+  //for the deleting functionality
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [selectionMode, setSelectionMode] = useState(false);
+
 
   const [selectedTab, setSelectedTab] = useState<'weka' | 'toa'>('weka');  //for the selected tab. accepts only 2 array vaues of weka and toa. Initially weka
 
@@ -110,8 +117,72 @@ export const Transactions = () => {
   }, [searchQuery, selectedTab, filterTransactions, createStableCopy]);
 
 
+  const handleDeleteSelected = async () => {
+    try {
+      const realm = realmRef.current;
+      if (!realm || realm.isClosed) return;
+
+      realm.write(() => {
+        selectedIds.forEach(id => {
+          const toDelete = realm
+            .objects<TransactionsSchema>('deposits_transaction')
+            .filtered('_id == $0', id);
+
+          if (toDelete.length > 0) {
+            realm.delete(toDelete);
+
+            console.log('✅ Data successfully deleted in realm database.');
+          }
+        });
+      });
+
+      setSelectedIds([]);
+      setSelectionMode(false);
+    } catch (error) {
+      console.error('Error deleting:', error);
+    }
+  };
+
+
+
   return (
     <View style={styles.container}>
+        {selectionMode && (
+            <View style={{ padding: 0, margin: 0, width: '100%', alignSelf: 'stretch', marginBottom: 10 }}>
+                    <View style={{
+                                backgroundColor: '#f6ecec',
+                                padding: 10,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'space-between'
+                              }}>
+                                <Text style={{ color: 'black', fontWeight: 'bold' }}>
+                                  {selectedIds.length} Umechagua
+                                </Text>
+
+                                        <View style={styles.deleteCancelContainer}>
+                                                    {/*Delete button*/}
+                                                           <TouchableOpacity
+                                                                  onPress={() => {
+                                                                                 handleDeleteSelected();}}>
+                                                                                    <Icon name="delete" size={24} color="black" />
+                                                           </TouchableOpacity>
+
+
+                                                    {/*Cancle button*/}
+                                                            <TouchableOpacity onPress={() => {
+                                                              setSelectedIds([]);
+                                                              setSelectionMode(false);
+                                                            }}>
+                                                                     <Icon name="close" size={24} color="black" />
+                                                            </TouchableOpacity>
+
+                                        </View>
+
+                    </View>
+            </View>
+        )}
+
 
 
             {/*To be activated later for the searching of miamala easily*/}
@@ -142,39 +213,65 @@ export const Transactions = () => {
                 <FlatList
                   data={displayedTransactions}
                   keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item }) => (
+                  renderItem={({ item }) => {
+                    const isSelected = selectedIds.includes(item._id);
+
+                    return (
+                      <TouchableOpacity
+                        onLongPress={() => {
+                          setSelectionMode(true);
+                          setSelectedIds([item._id]);
+                        }}
+                        onPress={() => {
+                          if (selectionMode) {
+                            if (isSelected) {
+                              setSelectedIds(prev => {
+                                const newIds = prev.filter(id => id !== item._id);
+                                if (newIds.length === 0) {
+                                  setSelectionMode(false);
+                                }
+                                return newIds;
+                              });
+                            } else {
+                              setSelectedIds(prev => [...prev, item._id]);
+                            }
+                          }
+                        }}
+                        style={[
+                          styles.transactionRow,
+                          {
+                            backgroundColor: isSelected ? '#e0e0e0' : '#f6ecec',
+                          },
+                        ]}
+                      >
+                        {/* Mtandao badge */}
+                        <View style={styles.columnMtandao}>
+                          <View style={styles.badge}>
+                            <Text style={styles.badgeText}>halotel</Text>
+                          </View>
+                        </View>
+
+                        {/* Wakati */}
+                        <View style={styles.columnWakati}>
+                          <Text style={styles.transactionTime}>
+                            {item.createdAt?.toLocaleString('sw-TZ', {
+                              day: '2-digit',
+                              month: '2-digit',
+                              hour: '2-digit',
+                              minute: '2-digit',
+                            })}
+                          </Text>
+                        </View>
+
+                        {/* Muamala */}
+                        <View style={styles.columnMuamala}>
+                          <Text style={styles.transactionDetail}>{item.raw}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    );
+                  }}
 
 
-                    <View style={styles.transactionRow}>
-
-                                             {/*Mtandao badge column*/}
-                                  <View style={styles.columnMtandao}>
-                                           <View style={styles.badge}>
-                                                <Text style={styles.badgeText}>halotel</Text>
-                                           </View>
-                                  </View>
-
-                                        {/*column Wakati*/}
-                                  <View style={styles.columnWakati}>
-                                            <Text style={styles.transactionTime}>
-                                                    {item.createdAt?.toLocaleString('sw-TZ', {
-                                                        day: '2-digit',
-                                                        month: '2-digit',
-                                                        hour: '2-digit',
-                                                        minute: '2-digit',
-                                                    })}
-                                            </Text>
-                                  </View>
-
-                                {/*Muamala column*/}
-                                  <View style={styles.columnMuamala}>
-                                            <Text style={styles.transactionDetail}>
-                                                  {item.raw}
-                                            </Text>
-                                  </View>
-                    </View>
-
-                  )}
                   ListEmptyComponent={
                     <Text style={styles.emptyText}>Hakuna miamala kupatikana.</Text>
                   }
