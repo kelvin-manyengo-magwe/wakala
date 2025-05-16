@@ -8,6 +8,12 @@ import { ReadRealm } from '../Realm/ReadRealm';
 export const saveToRealm = async (data: any) => {
   const realm = await getRealm();
 
+
+            // Normalize type for summary logic {to be changed later cause on some UI's there is 'weka' and 'toa'}
+              let normalizedType = data.type;
+              if (normalizedType === 'weka') normalizedType = 'deposit';
+              if (normalizedType === 'toa') normalizedType = 'withdrawal';
+
   try {
     realm.write(() => {
       realm.create('deposits_transaction', {
@@ -17,7 +23,7 @@ export const saveToRealm = async (data: any) => {
         date: new Date(data.date),
         amount: parseFloat(data.amount),
         ref_no: data.ref_no,
-        type: data.type,
+        type: normalizedType,
         commission: parseFloat(data.commission),
         float: parseFloat(data.float),
         raw: data.raw,
@@ -28,6 +34,17 @@ export const saveToRealm = async (data: any) => {
 
     const transactions = realm.objects('deposits_transaction');
         console.log('All transactions Data: ', JSON.stringify(transactions, null, 2));
+
+            let totalDeposits = 0;
+            let totalCommission = 0;
+            let totalFloat = 0;
+            transactions.forEach((transaction: any) => {
+              totalDeposits += transaction.amount;
+              totalCommission += transaction.commission;
+              totalFloat += transaction.float;
+            });
+            console.log('Summary: Deposits:', totalDeposits, 'Commission:', totalCommission, 'Float:', totalFloat);
+
 
     console.log('✅ Successfully saved SMS to Realm');
   } catch (error) {

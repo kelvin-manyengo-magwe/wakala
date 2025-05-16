@@ -26,7 +26,7 @@ export const HomeCalculatorSummary = async () : HomeTotalMnoSummary => {
 
                 console.log('TotalSummary: ', totalWithdrawals, totalCommission, totalFloat, totalDeposits);
         return {
-                totalWithdrawals: parseFloat(totalWithdrawals.toFixed(2)),
+                totalWithdrawals: parseFloat(totalWithdrawals),
                 totalDeposits: parseFloat(totalDeposits.toFixed(2)),
                 totalFloat: parseFloat(totalFloat.toFixed(2)),
                 totalCommission: parseFloat(totalCommission.toFixed(2)),
