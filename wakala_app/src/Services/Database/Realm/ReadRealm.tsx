@@ -16,6 +16,6 @@ export const ReadRealm = async () => {
                     console.log('❌ Failed to fetch transactions from Realm DB: ', error);
                 }
             finally {
-                    realm.close();      //closing realm after use
+                    //realm.close();      //closing realm after use
                 }
     };

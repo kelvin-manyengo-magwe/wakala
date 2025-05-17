@@ -1,76 +1,89 @@
-import { View, Text, FlatList, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { styles } from './styles';
 import { getRealm } from '../../Services/Database/Realm/Realm';
 import { TransactionsSchema } from '../../Services/Database/Schemas/TransactionsSchema';
 import { TransactionTypeToggle } from '../../components/TransactionTypeToggle/TransactionTypeToggle';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export const Transactions = () => {
-  const [searchQuery, setSearchQuery] = useState('');
   const [displayedTransactions, setDisplayedTransactions] = useState<TransactionsSchema[]>([]);
-  const [loading, setLoading] = useState('...inapakia');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const realmRef = useRef<Realm | null>(null);
-  const transactionsRef = useRef<Realm.Results<TransactionsSchema> | null>(null);
-
-  //for the deleting functionality
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [selectionMode, setSelectionMode] = useState(false);
-
-
-  const [selectedTab, setSelectedTab] = useState<'weka' | 'toa'>('weka');  //for the selected tab. accepts only 2 array vaues of weka and toa. Initially weka
+  const [selectedTab, setSelectedTab] = useState<'weka' | 'toa'>('weka');
+  const [lastUpdate, setLastUpdate] = useState<string>('');
 
   // Create a stable copy of Realm data
   const createStableCopy = useCallback((transactions: Realm.Results<TransactionsSchema>) => {
-    return Array.from(transactions).map(item => ({
-      ...JSON.parse(JSON.stringify(item)), // Deep clone
-      createdAt: item.createdAt instanceof Date ?
-        new Date(item.createdAt) :
-        new Date(item.createdAt as string)
-    }));
+    try {
+      return transactions.map(item => ({
+        _id: item._id,
+        customer_name: item.customer_name,
+        customer_no: item.customer_no,
+        date: new Date(item.date),
+        amount: item.amount,
+        ref_no: item.ref_no,
+        type: item.type === 'deposit' ? 'weka' : item.type === 'withdrawal' ? 'toa' : item.type,
+        commission: item.commission,
+        float: item.float,
+        raw: item.raw,
+        createdAt: item.createdAt instanceof Date ? item.createdAt : new Date(item.createdAt),
+      }));
+    } catch (e) {
+      console.error('Error creating stable copy:', e);
+      return [];
+    }
   }, []);
+
+  // Filter transactions based on selected tab
+  const filterTransactions = useCallback((transactions: TransactionsSchema[]) => {
+    return transactions.filter(item =>
+      selectedTab === 'weka'
+        ? item.type === 'weka' || item.type === 'deposit'
+        : item.type === 'toa' || item.type === 'withdrawal'
+    );
+  }, [selectedTab]);
 
   // Load Realm data and set up live updates
   useEffect(() => {
     let isMounted = true;
+    let transactions: Realm.Results<TransactionsSchema>;
 
     const setupRealm = async () => {
       try {
         const realm = await getRealm();
-        if (!isMounted) {
-          realm.close();
-          return;
-        }
+        if (!isMounted) return;
 
         realmRef.current = realm;
-        const transactions = realm
+        transactions = realm
           .objects<TransactionsSchema>('deposits_transaction')
           .sorted('createdAt', true);
 
-        transactionsRef.current = transactions;
-
         // Initial data load
         const snapshot = createStableCopy(transactions);
-        if (isMounted) {
-          setDisplayedTransactions(filterTransactions(snapshot, searchQuery));
-        }
+        const filtered = filterTransactions(snapshot);
+        setDisplayedTransactions(filtered);
+        setLoading(false);
+        setLastUpdate(new Date().toLocaleTimeString());
 
         // Set up listener for live updates
-        transactions.addListener((collection, changes) => {
-          if (isMounted && transactionsRef.current) {
-            const newSnapshot = createStableCopy(transactionsRef.current);
-
-                    //showing if the real time update is happening
-                        console.log('🔄 Real Time update triggered on the UI : ', newSnapshot.length);
-
-            setDisplayedTransactions(filterTransactions(newSnapshot, searchQuery));
+        transactions.addListener((collection) => {
+          if (isMounted && realmRef.current && !realmRef.current.isClosed) {
+            const newSnapshot = createStableCopy(collection);
+            const filtered = filterTransactions(newSnapshot);
+            setDisplayedTransactions(filtered);
+            setLastUpdate(new Date().toLocaleTimeString());
           }
         });
 
       } catch (error) {
         console.error('Realm setup error:', error);
+        setError('Failed to load transactions');
+        setLoading(false);
       }
     };
 
@@ -78,44 +91,11 @@ export const Transactions = () => {
 
     return () => {
       isMounted = false;
-      if (transactionsRef.current) {
-        transactionsRef.current.removeAllListeners();
-      }
-      if (realmRef.current && !realmRef.current.isClosed) {
-        realmRef.current.close();
+      if (transactions) {
+        transactions.removeAllListeners();
       }
     };
-  }, []);
-
-
-  // Filter transactions based on search query
-  const filterTransactions = useCallback((transactions: TransactionsSchema[], query: string) => {
-        let filtered = transactions;
-
-        if(selectedTab === 'weka') {
-                    filtered = filtered.filter(item => item.type === 'weka');
-                     }
-                else {
-                        filtered = filtered.filter(item => item.type === 'toa');
-                    }
-
-
-    return query.trim() === ''
-      ? filtered
-      : filtered.filter(item =>
-          item.name?.toLowerCase().includes(query.toLowerCase())
-        );
-  }, [selectedTab]);
-
-  // Update search results when query changes
-  useEffect(() => {
-    if (realmRef.current?.isClosed) return;
-    if (transactionsRef.current) {
-      const snapshot = createStableCopy(transactionsRef.current);
-      setDisplayedTransactions(filterTransactions(snapshot, searchQuery));
-    }
-  }, [searchQuery, selectedTab, filterTransactions, createStableCopy]);
-
+  }, [createStableCopy, filterTransactions]);
 
   const handleDeleteSelected = async () => {
     try {
@@ -124,14 +104,9 @@ export const Transactions = () => {
 
       realm.write(() => {
         selectedIds.forEach(id => {
-          const toDelete = realm
-            .objects<TransactionsSchema>('deposits_transaction')
-            .filtered('_id == $0', id);
-
-          if (toDelete.length > 0) {
+          const toDelete = realm.objectForPrimaryKey('deposits_transaction', id);
+          if (toDelete) {
             realm.delete(toDelete);
-
-            console.log('✅ Data successfully deleted in realm database.');
           }
         });
       });
@@ -140,144 +115,133 @@ export const Transactions = () => {
       setSelectionMode(false);
     } catch (error) {
       console.error('Error deleting:', error);
+      setError('Failed to delete transactions');
     }
   };
 
+  const renderTransactionItem = ({ item }: { item: TransactionsSchema }) => {
+    const isSelected = selectedIds.includes(item._id);
+    const transactionDate = item.createdAt instanceof Date ?
+      item.createdAt : new Date(item.createdAt);
 
+    return (
+      <TouchableOpacity
+        onLongPress={() => {
+          setSelectionMode(true);
+          setSelectedIds([item._id]);
+        }}
+        onPress={() => {
+          if (selectionMode) {
+            setSelectedIds(prev =>
+              isSelected ?
+                prev.filter(id => id !== item._id) :
+                [...prev, item._id]
+            );
+          }
+        }}
+        style={[
+          styles.transactionRow,
+          { backgroundColor: isSelected ? '#e0e0e0' : '#f6ecec' },
+        ]}
+      >
+        <View style={styles.columnMtandao}>
+          <View style={styles.badge}>
+            <Text style={styles.badgeText}>halotel</Text>
+          </View>
+        </View>
+
+        <View style={styles.columnWakati}>
+          <Text style={styles.transactionTime}>
+            {transactionDate.toLocaleString('sw-TZ', {
+              day: '2-digit',
+              month: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+            })}
+          </Text>
+        </View>
+
+        <View style={styles.columnMuamala}>
+          <Text style={styles.transactionDetail}>
+            {item.raw}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View style={styles.container}>
-        {selectionMode && (
-            <View style={{ padding: 0, margin: 0, width: '100%', alignSelf: 'stretch', marginBottom: 10 }}>
-                    <View style={{
-                                backgroundColor: '#f6ecec',
-                                padding: 10,
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                justifyContent: 'space-between'
-                              }}>
-                                <Text style={{ color: 'black', fontWeight: 'bold' }}>
-                                  {selectedIds.length} Umechagua
-                                </Text>
-
-                                        <View style={styles.deleteCancelContainer}>
-                                                    {/*Delete button*/}
-                                                           <TouchableOpacity
-                                                                  onPress={() => {
-                                                                                 handleDeleteSelected();}}>
-                                                                                    <Icon name="delete" size={24} color="black" />
-                                                           </TouchableOpacity>
-
-
-                                                    {/*Cancle button*/}
-                                                            <TouchableOpacity onPress={() => {
-                                                              setSelectedIds([]);
-                                                              setSelectionMode(false);
-                                                            }}>
-                                                                     <Icon name="close" size={24} color="black" />
-                                                            </TouchableOpacity>
-
-                                        </View>
-
-                    </View>
-            </View>
+      {/* Status Bar */}
+      <View style={styles.statusBar}>
+        {error && (
+          <View style={styles.errorContainer}>
+            <Ionicons name="warning" size={20} color="red" />
+            <Text style={styles.errorText}>{error}</Text>
+          </View>
         )}
+        <View style={styles.updateContainer}>
+          <Ionicons name="time" size={16} color="gray" />
+          <Text style={styles.updateText}>Last update: {lastUpdate || 'Never'}</Text>
+        </View>
+      </View>
 
+      {selectionMode && (
+        <View style={styles.selectionHeader}>
+          <View style={styles.selectionHeaderContent}>
+            <Text style={styles.selectionCountText}>
+              {selectedIds.length} Umechagua
+            </Text>
 
+            <View style={styles.deleteCancelContainer}>
+              <TouchableOpacity onPress={handleDeleteSelected}>
+                <Icon name="delete" size={24} color="black" />
+              </TouchableOpacity>
 
-            {/*To be activated later for the searching of miamala easily*/}
-      {/*<TextInput
-        style={styles.searchInput}
-        placeholder="Tafuta miamala..."
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-      />*/}
+              <TouchableOpacity onPress={() => {
+                setSelectedIds([]);
+                setSelectionMode(false);
+              }}>
+                <Icon name="close" size={24} color="black" />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      )}
 
-            {/*Weka and Toa miamala Toogle buttons*/}
+      <TransactionTypeToggle
+        selectedTab={selectedTab}
+        onTabChange={setSelectedTab}
+        wekaLabel="Weka pesa"
+        toaLabel="Toa pesa"
+      />
 
-            <TransactionTypeToggle
-                    selectedTab={selectedTab}
-                    onTabChange={setSelectedTab}
-                    wekaLabel="Weka pesa"
-                    toaLabel="Toa pesa"
-                  />
+      <View style={styles.headerRow}>
+        <Text style={styles.headerText}>Mtandao</Text>
+        <Text style={styles.headerText}>Wakati</Text>
+        <Text style={styles.headerText}>Muamala</Text>
+      </View>
 
-            {/* Titles */}
-                  <View style={styles.headerRow}>
-                            <Text style={styles.headerText}>Mtandao</Text>
-                            <Text style={styles.headerText}>Wakati</Text>
-                            <Text style={styles.headerText}>Muamala</Text>
-                  </View>
-
-            {/*Changing flatlist with the wakati and miamala transactions*/}
-                <FlatList
-                  data={displayedTransactions}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item }) => {
-                    const isSelected = selectedIds.includes(item._id);
-
-                    return (
-                      <TouchableOpacity
-                        onLongPress={() => {
-                          setSelectionMode(true);
-                          setSelectedIds([item._id]);
-                        }}
-                        onPress={() => {
-                          if (selectionMode) {
-                            if (isSelected) {
-                              setSelectedIds(prev => {
-                                const newIds = prev.filter(id => id !== item._id);
-                                if (newIds.length === 0) {
-                                  setSelectionMode(false);
-                                }
-                                return newIds;
-                              });
-                            } else {
-                              setSelectedIds(prev => [...prev, item._id]);
-                            }
-                          }
-                        }}
-                        style={[
-                          styles.transactionRow,
-                          {
-                            backgroundColor: isSelected ? '#e0e0e0' : '#f6ecec',
-                          },
-                        ]}
-                      >
-                        {/* Mtandao badge */}
-                        <View style={styles.columnMtandao}>
-                          <View style={styles.badge}>
-                            <Text style={styles.badgeText}>halotel</Text>
-                          </View>
-                        </View>
-
-                        {/* Wakati */}
-                        <View style={styles.columnWakati}>
-                          <Text style={styles.transactionTime}>
-                            {item.createdAt?.toLocaleString('sw-TZ', {
-                              day: '2-digit',
-                              month: '2-digit',
-                              hour: '2-digit',
-                              minute: '2-digit',
-                            })}
-                          </Text>
-                        </View>
-
-                        {/* Muamala */}
-                        <View style={styles.columnMuamala}>
-                          <Text style={styles.transactionDetail}>{item.raw}</Text>
-                        </View>
-                      </TouchableOpacity>
-                    );
-                  }}
-
-
-                  ListEmptyComponent={
-                    <Text style={styles.emptyText}>Hakuna miamala kupatikana.</Text>
-                  }
-                />
-
-
+      {loading ? (
+        <View style={styles.loadingContainer}>
+          <Ionicons name="refresh" size={24} color="#007AFF" style={styles.spinner} />
+          <Text style={styles.loadingText}>Inapakia...</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={displayedTransactions}
+          keyExtractor={(item) => item._id}
+          renderItem={renderTransactionItem}
+          ListEmptyComponent={
+            <View style={styles.emptyContainer}>
+              <Ionicons name="receipt" size={48} color="#CCCCCC" />
+              <Text style={styles.emptyText}>
+                {`Hakuna miamala ya ${selectedTab === 'weka' ? 'kuweka' : 'kutoa'} pesa`}
+              </Text>
+            </View>
+          }
+        />
+      )}
     </View>
   );
 };

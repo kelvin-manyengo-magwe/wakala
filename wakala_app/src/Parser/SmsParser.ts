@@ -15,8 +15,8 @@ interface parsedData {
         amount: number,
         ref_no: string,
         type: string,
-        commission: string,
-        float: string,
+        commission: number,
+        float: number,
         raw: string,
         createdAt?: string,
     }
@@ -27,16 +27,30 @@ interface parsedData {
             try {
                         const refMatch = body.match(/Utambulisho wa Muamala:\s*(\d+)/);
                         const amountMatch = body.match(/Umeweka\s*TSH\s*([\d,]+\.\d{2})/);
-                        const nameMatch = body.match(/kwa\s+([A-Z\s]+),/);
+                        const nameMatch = body.match(/kwa\s+([A-Za-z\s]+),/); // case insensitive for both lower and uppercase
                         const phoneMatch = body.match(/,\s*(\d{9,15})/);
                         const dateMatch = body.match(/wakati\s+([\d\/: ]+)/);
                         const commissionMatch = body.match(/kamisheni:\s*TSH\s*([\d,]+\.\d{2})/);
-                        const floatMatch = body.match(/Salio jipya la floti ni TSH\s*([\d,]+\.\d{2})/);
+
+                        const floatMatch = body.match(/Salio jipya la floti ni TSH\s*([\d,]*\d+\.\d{2})/);
+                            console.log('Float Match:', floatMatch[1]);
+
+
 
                         if(!refMatch || ! amountMatch || !nameMatch || !phoneMatch || !dateMatch || !commissionMatch || !floatMatch) {
                                     console.warn('Incomplete details to match');
                                      return null;
                             }
+
+                        // Parse float value safely
+                                const floatString = floatMatch[1].replace(/,/g, '');
+                                const floatValue = parseFloat(floatString);
+                                console.log('Parsed float value:', floatValue, 'Type:', typeof floatValue);
+
+                           if (isNaN(floatValue)) {
+                                      console.warn('Failed to parse float value:', floatMatch[1]);
+                                      return null;
+                                  }
 
 
 
@@ -48,11 +62,18 @@ interface parsedData {
                                           amount: parseFloat(amountMatch[1].replace(/,/g, '')),
                                           ref_no: refMatch[1],
                                           type: 'weka', // fixed since it's "Umeweka"
-                                          commission: commissionMatch[1],
-                                          float: floatMatch[1],
+                                          commission: parseFloat(commissionMatch[1].replace(/,/g, '')),
+                                          float: floatValue,
+
                                           raw: body,
                                           createdAt: new Date().toISOString()
                             };
+
+                        console.log('Final parsed object:', {
+                          ...parsed,
+                          floatType: typeof parsed.float,
+                          floatValue: parsed.float
+                        });
 
                         return parsed;
 

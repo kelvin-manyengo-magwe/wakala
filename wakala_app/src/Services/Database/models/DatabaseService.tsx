@@ -16,19 +16,28 @@ export const saveToRealm = async (data: any) => {
 
   try {
     realm.write(() => {
-      realm.create('deposits_transaction', {
-        _id: uuidv4(),  // Unique id for each saved sms
-        customer_name: data.customer_name,
-        customer_no: data.customer_no,
-        date: new Date(data.date),
-        amount: parseFloat(data.amount),
-        ref_no: data.ref_no,
-        type: normalizedType,
-        commission: parseFloat(data.commission),
-        float: parseFloat(data.float),
-        raw: data.raw,
-        createdAt: new Date(),
-      });
+
+            const parsedData = {
+                                    _id: uuidv4(),  // Unique id for each saved sms
+                                       customer_name: data.customer_name,
+                                       customer_no: data.customer_no,
+                                       date: new Date(data.date),
+                                       amount: parseFloat(data.amount),
+                                       ref_no: data.ref_no,
+                                       type: normalizedType,
+                                       commission: parseFloat(data.commission),
+                                       float: typeof data.float === 'number' ? data.float : parseFloat(data.float),
+                                       raw: data.raw,
+                                       createdAt: new Date(),
+                                   };
+
+                if (isNaN(parsedData.float)) {
+                        console.warn('Invalid float value:', data.float);
+
+                        return null;
+                      }
+
+                      realm.create('deposits_transaction', parsedData);
     });
 
 
@@ -47,6 +56,9 @@ export const saveToRealm = async (data: any) => {
 
 
     console.log('✅ Successfully saved SMS to Realm');
+
+
+        console.log('Transaction count:', transactions.length);
   } catch (error) {
     console.error('❌ Failed to save SMS to Realm:', error);
   } finally {
