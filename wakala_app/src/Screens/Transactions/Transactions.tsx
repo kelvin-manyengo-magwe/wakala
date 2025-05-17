@@ -174,38 +174,40 @@ export const Transactions = () => {
     <View style={styles.container}>
       {/* Status Bar */}
       <View style={styles.statusBar}>
-        {error && (
-          <View style={styles.errorContainer}>
-            <Ionicons name="warning" size={20} color="red" />
-            <Text style={styles.errorText}>{error}</Text>
-          </View>
-        )}
+                    {error && (
+                      <View style={styles.errorContainer}>
+                        <Ionicons name="warning" size={20} color="red" />
+                        <Text style={styles.errorText}>{error}</Text>
+                      </View>
+                    )}
+
         <View style={styles.updateContainer}>
           <Ionicons name="time" size={16} color="gray" />
-          <Text style={styles.updateText}>Last update: {lastUpdate || 'Never'}</Text>
+          <Text style={styles.updateText}>Mara ya mwisho kusasishwa: {lastUpdate || 'Never'}</Text>
         </View>
       </View>
 
+                {/* Delete container */}
       {selectionMode && (
         <View style={styles.selectionHeader}>
-          <View style={styles.selectionHeaderContent}>
-            <Text style={styles.selectionCountText}>
-              {selectedIds.length} Umechagua
-            </Text>
+                      <View style={styles.selectionHeaderContent}>
+                        <Text style={styles.selectionCountText}>
+                           Umechagua {selectedIds.length}
+                        </Text>
 
-            <View style={styles.deleteCancelContainer}>
-              <TouchableOpacity onPress={handleDeleteSelected}>
-                <Icon name="delete" size={24} color="black" />
-              </TouchableOpacity>
+                                    <View style={styles.deleteCancelContainer}>
+                                              <TouchableOpacity onPress={handleDeleteSelected}>
+                                                        <Icon name="delete" size={24} color="black" />
+                                              </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => {
-                setSelectedIds([]);
-                setSelectionMode(false);
-              }}>
-                <Icon name="close" size={24} color="black" />
-              </TouchableOpacity>
-            </View>
-          </View>
+                                              <TouchableOpacity onPress={() => {
+                                                setSelectedIds([]);
+                                                setSelectionMode(false);
+                                              }}>
+                                                        <Icon name="close" size={24} color="black" />
+                                              </TouchableOpacity>
+                                    </View>
+                      </View>
         </View>
       )}
 

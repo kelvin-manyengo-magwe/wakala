@@ -155,5 +155,40 @@ export const styles = StyleSheet.create({
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: 20,
-        }
+        },
+    loadingContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 20,
+    },
+    spinner: {
+      marginBottom: 10,
+    },
+    emptyContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 20,
+    },
+    statusBar: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: 10,
+      backgroundColor: '#f5f5f5',
+    },
+    updateContainer: {
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 10,
+            width: '100%',
+        },
+    selectionHeaderContent: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+
+        },
 });
