@@ -35,4 +35,9 @@ export const styles = StyleSheet.create({
   legendText: {
     fontSize: 12,
   },
+  yAxisLabel : {
+          left: -138,
+          fontWeight: 'bold',
+          fontSize: 12,
+          },
 });

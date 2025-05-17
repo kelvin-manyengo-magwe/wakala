@@ -78,7 +78,7 @@ export const MonthlyBarChart = ({ transactionCount }: MonthlyBarChartProps) => {
              {/* Y-axis Label */}
                               <View style={{ alignItems: 'center', marginRight: 5 }}>
                                 <Text
-                                  style={styles.xAxisLabel}>
+                                  style={styles.yAxisLabel}>
                                   Jumla ya miamala
                                 </Text>
                               </View>
@@ -92,7 +92,7 @@ export const MonthlyBarChart = ({ transactionCount }: MonthlyBarChartProps) => {
         yAxisColor="#ccc"
         xAxisColor="#000"
         noOfSections={5}
-        maxValue={60}
+        maxValue={100}
         stepValue={10}
         xAxisLabelTextStyle={{ color: '#000', fontSize: 12 }}
         initialSpacing={20}

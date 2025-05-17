@@ -22,7 +22,7 @@ export const DailyBarChart = ({ transactionCount }: DailyBarChartProps) => {
             {/* Y-axis Label */}
                   <View style={{ alignItems: 'center', marginRight: 5 }}>
                     <Text
-                      style={styles.xAxisLabel}>
+                      style={styles.yAxisLabel}>
                       Jumla ya miamala
                     </Text>
                   </View>
@@ -41,12 +41,12 @@ export const DailyBarChart = ({ transactionCount }: DailyBarChartProps) => {
         xAxisLabelTextStyle={{ fontSize: 12, fontWeight: 'bold', textAlign: 'center' }}
         xAxisThickness={1}
         noOfSections={5}
-        maxValue={100}
+        maxValue={60}
         spacing={30}
         isAnimated
         yAxisTextStyle={{ color: 'gray' }}
         xAxisLabelVerticalShift={6}
-        stepValue={10}
+        stepValue={6}
         showValuesOnTopOfBars={true}
         valueTextStyle={{ fontSize: 12, color: 'black', fontWeight: 'bold' }}
       />

@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
       right: 1,
       zIndex: 1,
     },
-    xAxisLabel : {
+    yAxisLabel : {
         left: -138,
         fontWeight: 'bold',
         fontSize: 12,
