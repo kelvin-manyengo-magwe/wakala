@@ -14,18 +14,18 @@ type NetworkSelectorProps = {
 
 export const NetworkCards = ({ selectedNetwork, onSelect }: NetworkSelectorProps) => (
   <View style={styles.container}>
-    {NETWORKS.map((network) => (
-      <TouchableOpacity
-        key={network}
-        style={[
-          styles.networkButton,
-          selectedNetwork === network && styles.selectedNetwork,
-        ]}
-        onPress={() => onSelect(network)}
-      >
-        <Text style={styles.networkText}>{network}</Text>
-      </TouchableOpacity>
-    ))}
+            {NETWORKS.map((network) => (
+                      <TouchableOpacity
+                        key={network}
+                        style={[
+                          styles.networkButton,
+                          selectedNetwork === network && styles.selectedNetwork,
+                        ]}
+                        onPress={() => onSelect(network)}
+                      >
+                                <Text style={styles.networkText}>{network}</Text>
+                      </TouchableOpacity>
+            ))}
   </View>
 );
 

@@ -3,7 +3,12 @@ import { View, Text, StyleSheet } from 'react-native';
 import { BarChart } from 'react-native-gifted-charts';
 import { styles } from './styles';
 
-export const MonthlyBarChart = () => {
+
+interface MonthlyBarChartProps {
+        transactionCount: number,
+    }
+
+export const MonthlyBarChart = ({ transactionCount }: MonthlyBarChartProps) => {
   // Convert your static barData into dynamic monthlyData format
   const monthlyData = [
     {
@@ -11,7 +16,7 @@ export const MonthlyBarChart = () => {
       providers: [
         { name: 'Yas', value: 0 },
         { name: 'M-Pesa', value: 0 },
-        { name: 'Halotel', value: 35 },
+        { name: 'Halotel', value: 30 },
         { name: 'Airtel', value: 0 }
       ]
     },
@@ -20,7 +25,7 @@ export const MonthlyBarChart = () => {
       providers: [
         { name: 'Yas', value: 0 },
         { name: 'M-Pesa', value: 0 },
-        { name: 'Halotel', value: 25 },
+        { name: 'Halotel', value: transactionCount },
         { name: 'Airtel', value: 0 }
       ]
     }
@@ -67,8 +72,16 @@ export const MonthlyBarChart = () => {
 
   return (
     <View>
-      <Text style={styles.chartTitle}>Ripoti ya Tiketi kwa Miezi</Text>
+      <Text style={styles.chartTitle}>Chati ya Jumla ya miamala kwa mwezi</Text>
       {renderLegend()}
+
+             {/* Y-axis Label */}
+                              <View style={{ alignItems: 'center', marginRight: 5 }}>
+                                <Text
+                                  style={styles.xAxisLabel}>
+                                  Jumla ya miamala
+                                </Text>
+                              </View>
 
       <BarChart
         data={barData}
@@ -78,8 +91,9 @@ export const MonthlyBarChart = () => {
         isAnimated
         yAxisColor="#ccc"
         xAxisColor="#000"
-        noOfSections={4}
+        noOfSections={5}
         maxValue={60}
+        stepValue={10}
         xAxisLabelTextStyle={{ color: '#000', fontSize: 12 }}
         initialSpacing={20}
         showVerticalLines
