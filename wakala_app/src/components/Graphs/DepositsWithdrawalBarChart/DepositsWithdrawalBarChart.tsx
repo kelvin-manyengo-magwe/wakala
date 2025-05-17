@@ -1,10 +1,19 @@
 import { BarChart } from 'react-native-gifted-charts';
 import { Text, View } from 'react-native';
 import { styles } from './styles';
+import { HomeCalculatorSummary } from '../../Services/Database/models/HomeCalculatorSummary';
 
 
+//props for totalDeposits and totalWithDrawals
+interface ChartProps {
+    totalDeposits: number;
+    totalWithdrawals: number;
+}
 
-export const DepositsWithdrawalBarChart = () => {
+export const DepositsWithdrawalBarChart = ({ totalDeposits, totalWithdrawals }: ChartProps) => {
+
+            //making the useState function
+
                     const barData = [
                             {
                               value: 0,
@@ -34,14 +43,14 @@ export const DepositsWithdrawalBarChart = () => {
                             },
                             {value: 0, frontColor: '#ED6665'},
                             {
-                              value: 30,
+                              value: totalDeposits / 1000,
                               label: 'Halopesa',
                               spacing: 2,
                               labelWidth: 30,
                               labelTextStyle: {color: 'black'},
                               frontColor: '#177AD5',
                             },
-                            {value: 0, frontColor: '#ED6665'},
+                            {value: totalWithdrawals / 1000, frontColor: '#ED6665'},
                             {
                               value: 0,
                               label: 'TTCL',
@@ -91,7 +100,13 @@ export const DepositsWithdrawalBarChart = () => {
                                             <BarChart data={barData}
                                                       barWidth={16} spacing={24} roundedTop roundedBottom
                                                       hideRules xAxisThickness={0} yAxisThickness={0}
-                                                      yAxisTextStyle={{color: 'black'}} noOfSections={3} maxValue={75} />
+                                                      yAxisTextStyle={{color: 'black'}} noOfSections={5}
+                                                      maxValue={Math.max(totalDeposits / 1000, 10)}
+                                                      xAxisThickness={1}
+                                                      yAxisThickness={1}
+                                                      maxValue={Math.ceil((totalDeposits / 1000) / 50) * 50} // Rounds up to nearest 50K
+                                                      yAxisLabelTexts={Array.from({length: 6}, (_, i) => `${i * 50}K`)}
+                                                      />
                                     </View>
                     </View>
                 )

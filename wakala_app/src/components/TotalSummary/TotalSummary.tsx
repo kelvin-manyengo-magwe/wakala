@@ -6,7 +6,7 @@ import { HomeTotalMnoSummary } from '../../Screens/Home/Home.types';
 import { HomeCalculatorSummary } from '../../Services/Database/models/HomeCalculatorSummary';
 import { getRealm } from '../../Services/Database/Realm/Realm';
 import { TransactionsSchema } from '../../Services/Database/Schemas/TransactionsSchema';
-
+import { DepositsWithdrawalBarChart } from '../Graphs/DepositsWithdrawalBarChart/DepositsWithdrawalBarChart';
 
 
 export const { width } = Dimensions.get("window");
@@ -101,6 +101,8 @@ export const totalSummaryWidth = width * 0.9;
                                               </View>
                                     </View>
                             </View>
+
+
                     </View>
             )
     };
