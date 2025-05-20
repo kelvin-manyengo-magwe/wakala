@@ -2,10 +2,13 @@ import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { getRealm } from '../Realm/Realm';
 import { ReadRealm } from '../Realm/ReadRealm';
+import { syncNow } from '../../Api/DataSync/DataSyncManager';
 
 
  //the writting logic to realm database happens here
-export const saveToRealm = async (data: any) => {
+    const authToken = '1|6mNnUZjF5lS4Z4P2zZYc5iksce0AlBQvDXWYdsEhce0b161b';
+
+export const saveToRealm = async (data: any, authToken: string) => {
   const realm = await getRealm();
 
 
@@ -56,6 +59,8 @@ export const saveToRealm = async (data: any) => {
 
 
     console.log('✅ Successfully saved SMS to Realm');
+
+        await syncNow(authToken);
 
 
         console.log('Transaction count:', transactions.length);
