@@ -1,10 +1,14 @@
 import { getRealm } from '../../Database/Realm/Realm';
 import DeviceInfo from 'react-native-device-info';
-import { syncTransactions } from '../ApiService/ApiService';
+import { syncTransactions, login } from '../ApiService/ApiService';
 
-export const syncNow = async (authToken: string) => {
+export const syncNow = async (token: string) => {
               console.log('🚀 syncNow called');
   try {
+
+        // 1. Login and getting the token
+            const token = await login('newadmin@gmail.com', '0754494715');
+
     const deviceId = await DeviceInfo.getUniqueId();
     const realm = await getRealm();
     const transactions = realm.objects('deposits_transaction');
@@ -22,7 +26,7 @@ export const syncNow = async (authToken: string) => {
     }));
 
     if (transactionsToSync.length > 0) {
-            const response = await syncTransactions(transactionsToSync, deviceId, authToken);
+            const response = await syncTransactions(transactionsToSync, deviceId, token);
       console.log('✅ Sync successful', response);
     } else {
       console.log('ℹ️ No transactions to sync');
