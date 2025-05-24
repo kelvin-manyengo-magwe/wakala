@@ -20,7 +20,7 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
 # Customer transaction sms
 ![customer transaction message](https://github.com/user-attachments/assets/4ce8de89-c9b3-48ce-984e-b8472e952a06)
 
-#Example of Kutoa Pesa (withdrawal) transactions performed by Halotel Agent.
+# Example of Kutoa Pesa (withdrawal) transactions performed by Halotel Agent.
 
 ![WhatsApp Image 2025-05-24 at 09 29 29_e50aeb92](https://github.com/user-attachments/assets/f76f173f-ea9c-4e59-a8a5-5d2a6e3b16bd)
 
