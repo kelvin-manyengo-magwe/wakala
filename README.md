@@ -24,7 +24,7 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
 
 ![WhatsApp Image 2025-05-24 at 09 29 29_e50aeb92](https://github.com/user-attachments/assets/f76f173f-ea9c-4e59-a8a5-5d2a6e3b16bd)
 
-<p align="center">Utambulisho wa muamamala: 3281191266. IVAN WULYSTAN MTEGA, namba ya simu  255626762075 ametoa TSH 1,000.00 wakati 2025/05/24 09:13:51. Kamisheni: TSH 220.00. Salio lako la floti ni TSH 1,142.70. Ahsante!</p>
+<p>Utambulisho wa muamamala: 3281191266. IVAN WULYSTAN MTEGA, namba ya simu  255626762075 ametoa TSH 1,000.00 wakati 2025/05/24 09:13:51. Kamisheni: TSH 220.00. Salio lako la floti ni TSH 1,142.70. Ahsante!</p>
 
 # Customer transaction sms
 ![WhatsApp Image 2025-05-24 at 09 31 48_ae8e6cdb](https://github.com/user-attachments/assets/8054a2cf-f22e-4d74-a615-5e3fb4993d12)
