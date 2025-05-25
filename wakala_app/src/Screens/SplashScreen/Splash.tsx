@@ -27,9 +27,16 @@ export const Splash = ({navigation}: SplashScreenProps) => {
                 <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
 
                            <View style={styles.splashContainer}>
-                                    <Text style={styles.splashWakala}>
-                                            Wakala
-                                    </Text>
+                                    {/*         the big bolded wakala word to be viewed incase
+                                            <Text style={styles.splashWakala}>
+                                                     Wakala
+                                            </Text>
+                                        */}
+
+                                        <View>
+                                                <Image style={styles.wakalaWord} source={ require('../../../assets/images/icons/wakala-word.png') } />
+                                        </View>
+
                                     <Text style={styles.splashMessage}>
                                            Fuatilia miamala yako kwa urahisi
                                     </Text>
@@ -45,7 +52,8 @@ const styles= StyleSheet.create({
         display: 'flex',
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#ffffff',
     },
     linearGradient: {
         flex: 1,
@@ -59,5 +67,8 @@ const styles= StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color: 'black'
-    }
+    },
+    wakalaWord: {
+            marginBottom: 10,
+        }
 });
