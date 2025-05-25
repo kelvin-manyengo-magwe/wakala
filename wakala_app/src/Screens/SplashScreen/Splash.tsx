@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, StatusBar } from 'react-native';
+import { Text, View, StyleSheet, StatusBar, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { AppStackParamList } from '../../navigation/routes';
 import { StackNavigationProp } from '@react-navigation/stack';
+
+
 
 
 
