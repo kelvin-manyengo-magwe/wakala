@@ -34,6 +34,11 @@ export const Splash = ({navigation}: SplashScreenProps) => {
                                         */}
 
                                         <View>
+                                                <Image style={styles.wakalaLogo} source={ require('../../../assets/images/icons/wakala-logo.jpg') } />
+                                        </View>
+
+                                            {/* Wakala word */}
+                                        <View>
                                                 <Image style={styles.wakalaWord} source={ require('../../../assets/images/icons/wakala-word.png') } />
                                         </View>
 
@@ -70,5 +75,10 @@ const styles= StyleSheet.create({
     },
     wakalaWord: {
             marginBottom: 10,
+        },
+    wakalaLogo: {
+            width: 100,
+            height: 100,
+            marginBottom: 20,
         }
 });

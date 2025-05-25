@@ -82,9 +82,10 @@ class MainActivity : ReactActivity() {
                 for ((index, sms) in smsList.withIndex()) {
                     Log.d("MainActivity", "SMS #$index: $sms")
                 }
-            } else {
+            } /*else {
                 Toast.makeText(this, "No SMS messages found.", Toast.LENGTH_SHORT).show()
-            }
+                Log.d("No Sms messages found.");
+            }*/
 
         } catch (e: SecurityException) {
             Log.e("MainActivity", "Permission issue while reading SMS: ${e.message}", e)
