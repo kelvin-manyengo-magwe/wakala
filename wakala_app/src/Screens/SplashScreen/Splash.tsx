@@ -18,7 +18,7 @@ export const Splash = ({navigation}: SplashScreenProps) => {
 
                 useEffect(() => {
                     setTimeout(() => {
-                        navigation.navigate('MessageScreen');
+                        navigation.navigate('OnBoarding');
                     }, 3000);
                 },[]);
 
