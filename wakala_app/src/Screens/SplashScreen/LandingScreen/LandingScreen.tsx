@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import { AppStackParamList } from '../../../navigation/routes';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+
+
+
+
+type LandingScreenProp = StackNavigationProp<AppStackParamList, 'LandingScreen'>;
+
+interface LandingScreenProps {
+    navigation: LandingScreenProp
+};
+
 
 const { width } = Dimensions.get('window');
 
 
-export const LandingScreen = () => {
+export const LandingScreen = ({navigation}: LandingScreenProps) => {
+
+        useEffect(() => {
+                            setTimeout(() => {
+                                navigation.navigate('EndScreen');
+                            }, 3000);
+                        },[]);
+
   return (
     <View style={styles.container}>
                       <View style={styles.imageWrapper}>
@@ -22,19 +42,19 @@ export const LandingScreen = () => {
                               />
                       </View>
 
-      {/* Text box */}
-      <View style={styles.textContainer}>
-        <Text style={styles.text}>
-          Changanua na{'\n'}
-          fuatilia mzunguko{'\n'}
-          wa pesa kwa{'\n'}
-          urahisi kwa{'\n'}
-          kutumia wakala{'\n'}
-          app
-        </Text>
+                      {/* Text box */}
+                      <View style={styles.textContainer}>
+                                <Text style={styles.text}>
+                                  Changanua na{'\n'}
+                                  fuatilia mzunguko{'\n'}
+                                  wa pesa kwa{'\n'}
+                                  urahisi kwa{'\n'}
+                                  kutumia wakala{'\n'}
+                                  app
+                                </Text>
 
 
-      </View>
+                      </View>
     </View>
   );
 };
