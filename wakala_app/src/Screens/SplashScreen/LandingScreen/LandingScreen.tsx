@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingTop: 60,
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   imageContainer: {
     width: width * 0.85,
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     borderWidth: 1,
     padding: 15,
-    marginTop: 30,
+    marginBottom: 150,
     width: width * 0.9,
     alignItems: 'center',
     borderRadius: 5,
