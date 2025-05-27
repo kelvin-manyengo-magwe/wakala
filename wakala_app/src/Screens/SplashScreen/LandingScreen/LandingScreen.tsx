@@ -1,18 +1,109 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
+
 
 export const LandingScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
-          <View style={styles.header}>
+    <View style={styles.container}>
+                      <View style={styles.imageWrapper}>
+                              {/* Red Background Square */}
+                              <View style={styles.redSquare} />
 
-                <Text style={styles.title}>Changanua</Text>
-          </View>
+                              {/* White Background Square */}
+                              <View style={styles.whiteSquare} />
 
-          <View style={styles.content}>
-                {/* This would contain the actual dashboard content */}
-                <Text style={styles.welcomeText}>Karibu kwenye mfumo wetu</Text>
-          </View>
-    </SafeAreaView>
+                              {/* Image (top layer) */}
+                              <Image
+                                source={require('../../../../assets/images/icons/wakala-mno-circle.jpg')} // 🔁 Replace with your local image
+                                style={styles.image}
+                                resizeMode="cover"
+                              />
+                      </View>
+
+      {/* Text box */}
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>
+          Changanua na{'\n'}
+          fuatilia mzunguko{'\n'}
+          wa pesa kwa{'\n'}
+          urahisi kwa{'\n'}
+          kutumia wakala{'\n'}
+          app
+        </Text>
+
+
+      </View>
+    </View>
   );
 };
+
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    paddingTop: 60,
+    alignItems: 'center',
+  },
+  imageContainer: {
+    width: width * 0.85,
+    height: 220,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  redBorder: {
+    backgroundColor: '#E53935',
+    padding: 5,
+    transform: [{ rotate: '-2deg' }],
+  },
+
+  textContainer: {
+    backgroundColor: '#fff',
+    borderColor: '#000',
+    borderWidth: 1,
+    padding: 15,
+    marginTop: 30,
+    width: width * 0.9,
+    alignItems: 'center',
+    borderRadius: 5,
+    elevation: 2,
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#000',
+    textAlign: 'center',
+    lineHeight: 30,
+  },
+  imageWrapper: {
+      width: width * 0.85,
+      height: 200,
+      marginBottom: 30,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    redSquare: {
+      position: 'absolute',
+      width: '95%',
+      height: '100%',
+      backgroundColor: '#E53935',
+      transform: [{scale: 1.2 }],
+      zIndex: 1,
+    },
+    whiteSquare: {
+      position: 'absolute',
+      width: '100%',
+      height: '100%',
+      backgroundColor: '#fff',
+      transform: [ {scale: 1.1 }, { rotate: '-3deg' }],
+      zIndex: 2,
+    },
+    image: {
+      width: '100%',
+      height: '100%',
+      zIndex: 3,
+    },
+});
