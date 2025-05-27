@@ -22,7 +22,7 @@ export const EndScreen = ({ navigation }: { navigation: any }) => {
                                 {/* CTA Button */}
                                 <View style={styles.ctaContainer}>
                                         <TouchableOpacity
-                                                 style={styles.ctaButton} onPress={() => navigation.navigate('Home')}>
+                                                 style={styles.ctaButton} onPress={() => navigation.navigate('Login')}>
                                                  <Text style={styles.ctaText}>Anza sasa</Text>
                                        </TouchableOpacity>
                                 </View>

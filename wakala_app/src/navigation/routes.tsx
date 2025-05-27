@@ -7,7 +7,7 @@ import { BottomNavigationTab } from './BottomNavigationTab/BottomNavigationTab';
 import { EndScreen } from '../Screens/SplashScreen/EndScreen/EndScreen';
 import { LandingScreen } from '../Screens/SplashScreen/LandingScreen/LandingScreen';
 import { OnBoarding } from '../Screens/SplashScreen/OnBoarding/OnBoarding';
-
+import { Login } from '../Screens/Login/Login';
 
 
 
@@ -19,6 +19,7 @@ export type AppStackParamList = {
     EndScreen: undefined,
     LandingScreen: undefined,
     OnBoarding: undefined,
+    Login: undefined,
 };
 
 export const routes = [
@@ -45,5 +46,9 @@ export const routes = [
     {
         name: 'OnBoarding',
         component: OnBoarding
+    },
+    {
+        name: 'Login',
+        component: Login
     },
 ];
