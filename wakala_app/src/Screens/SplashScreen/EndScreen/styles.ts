@@ -7,27 +7,22 @@ export const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingTop: 20,
   },
-  time: {
-    fontSize: 16,
-    color: '#000',
-    textAlign: 'center',
-    marginBottom: 30,
-  },
-  appName: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#000',
-    textAlign: 'center',
-    marginBottom: 50,
-  },
+    image: {
+        width: 370,
+        height: 250,
+        marginTop: 30,
+        },
   featureContainer: {
     marginBottom: 40,
   },
   featureText: {
-    fontSize: 18,
+    fontSize: 25,
+    fontWeight: 'bold',
     color: '#000',
     textAlign: 'center',
     marginVertical: 15,
@@ -39,15 +34,20 @@ export const styles = StyleSheet.create({
     marginVertical: 5,
   },
   ctaButton: {
-    backgroundColor: '#0066cc',
+    backgroundColor: 'red',
     paddingVertical: 15,
     borderRadius: 8,
+    width: 200,
     alignItems: 'center',
     marginHorizontal: 20,
   },
+  ctaContainer: {
+      marginBottom: 30,
+      },
   ctaText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
   },
+
 });

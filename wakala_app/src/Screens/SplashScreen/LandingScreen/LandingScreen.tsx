@@ -36,7 +36,7 @@ export const LandingScreen = ({navigation}: LandingScreenProps) => {
 
                               {/* Image (top layer) */}
                               <Image
-                                source={require('../../../../assets/images/icons/wakala-mno-circle.jpg')} // 🔁 Replace with your local image
+                                source={require('../../../../assets/images/icons/wakala-mno-circle.jpg')}
                                 style={styles.image}
                                 resizeMode="cover"
                               />
