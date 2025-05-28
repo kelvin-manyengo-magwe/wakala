@@ -29,6 +29,13 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
 # Customer transaction sms
 ![WhatsApp Image 2025-05-24 at 09 31 48_ae8e6cdb](https://github.com/user-attachments/assets/8054a2cf-f22e-4d74-a615-5e3fb4993d12)
 
+# Example of Kuweka Pesa (deposit) transactions performed by Halotel Agent. <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/airtel-money-logo.png" width="100" height="100" />
+<h2>Kuweka pesa Transaction (Deposit)</h2>
+![WhatsApp Image 2025-05-28 at 18 10 41_30cabbd8](https://github.com/user-attachments/assets/120958e0-3d55-4ed3-89fd-4f32349256e1)
+
+<h2>Kutoa pesa transaction (Withdrawal).</h2>
+![WhatsApp Image 2025-05-28 at 18 10 42_ccda56bf](https://github.com/user-attachments/assets/f56cf898-8b13-441d-8e41-e70c9422a1c5)
+
 
 # Deployments.
 Wakala web app (web client) frontend is deployed at vercel visit url **https://wakala.vercel.app/**. For the backend is deployed at laravel cloud, visit url **https://wakala-web-backend-main-6pijkc.laravel.cloud/**.
