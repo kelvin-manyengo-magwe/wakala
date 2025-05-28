@@ -33,7 +33,7 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
 # Example of Kuweka Pesa (deposit) transactions performed by Halotel Agent.
  <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/airtel-money-logo.png" width="100" height="100" />
 <h2>Kuweka pesa Transaction (Deposit)</h2>
-<img src="![Airtel kuweka pesa](https://github.com/user-attachments/assets/ac0ae6f7-07ac-4178-8c46-aefbdbdf41a1)" width="300" height="300" />
+![Airtel kuweka pesa](https://github.com/user-attachments/assets/f9d5c6a6-bece-4b46-9f14-9202cd020012)
 
 
 <h2>Kutoa pesa transaction (Withdrawal).</h2>
