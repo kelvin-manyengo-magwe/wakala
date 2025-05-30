@@ -16,7 +16,7 @@ export const SmsOnReceiveEvent = () => {
                                             console.log(SmsReceiverEventEmitter);
 
                                         SmsReceiverEventEmitter.addListener("sms_onReceive", (sms) => {
-                                                                        console.log('New sms Received: ',sms);
+                                                                        console.log('📩 New sms Received: ',sms);
 
                                                 //saving the transaction to the realm
                                                     const parsedData = SmsParser(sms);
