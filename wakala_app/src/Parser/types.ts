@@ -17,5 +17,6 @@ export interface parsedData {
   commission: number;
   float: number;
   raw: string;
+  mno: 'halotel' | 'airtel' | 'vodacom' | 'tigo' | 'unknown';
   createdAt?: string;
 }

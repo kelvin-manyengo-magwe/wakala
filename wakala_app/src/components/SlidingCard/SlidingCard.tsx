@@ -60,7 +60,18 @@ import { styles } from './styles';
                                                               <View style={styles.card}>
                                                                       <Text style={styles.cardItems}>{item.content}</Text>
                                                               </View>
-                                                  )}/>
+                                                  )}
+                                                        getItemLayout={(data, index) => ({
+                                                          length: width,       // width of one card (page)
+                                                          offset: width * index,
+                                                          index,
+                                                        })}
+                                                        onScrollToIndexFailed={({ index }) => {
+                                                            setTimeout(() => {
+                                                              flatListRef.current?.scrollToIndex({ index, animated: true });
+                                                            }, 300);
+                                                          }}
+                                                            />
 
 
 

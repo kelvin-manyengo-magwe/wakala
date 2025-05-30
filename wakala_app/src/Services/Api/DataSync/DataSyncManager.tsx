@@ -22,7 +22,8 @@ export const syncNow = async (token: string) => {
       type: tx.type,
       commission: tx.commission,
       float: tx.float,
-      raw: tx.raw
+      raw: tx.raw,
+       mno: tx.mno || 'unknown',
     }));
 
     if (transactionsToSync.length > 0) {

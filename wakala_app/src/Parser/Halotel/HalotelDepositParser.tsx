@@ -21,7 +21,7 @@ import { smsEvent, parsedData } from '../types';
 
 
                         if(!refMatch || ! amountMatch || !nameMatch || !phoneMatch || !dateMatch || !commissionMatch || !floatMatch) {
-                                    console.warn('Incomplete details to match');
+                                    console.log('Incomplete details to match');
                                      return null;
                             }
 
@@ -31,7 +31,7 @@ import { smsEvent, parsedData } from '../types';
                                 console.log('Parsed float value:', floatValue, 'Type:', typeof floatValue);
 
                            if (isNaN(floatValue)) {
-                                      console.warn('Failed to parse float value:', floatMatch[1]);
+                                      console.log('Failed to parse float value:', floatMatch[1]);
                                       return null;
                                   }
 
@@ -47,7 +47,7 @@ import { smsEvent, parsedData } from '../types';
                                           type: 'weka', // fixed since it's "Umeweka"
                                           commission: parseFloat(commissionMatch[1].replace(/,/g, '')),
                                           float: floatValue,
-
+                                          mno: 'halotel',
                                           raw: body,
                                           createdAt: new Date().toISOString()
                             };
@@ -62,7 +62,7 @@ import { smsEvent, parsedData } from '../types';
 
                 }
             catch(err) {
-                        console.error('Failed to parse', err);
+                        console.log('Failed to parse', err);
                         return null;
                     }
         }

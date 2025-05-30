@@ -31,6 +31,7 @@ export const saveToRealm = async (data: any, authToken: string) => {
                                        commission: parseFloat(data.commission),
                                        float: typeof data.float === 'number' ? data.float : parseFloat(data.float),
                                        raw: data.raw,
+                                       mno: data.mno || 'unknown',
                                        createdAt: new Date(),
                                    };
 

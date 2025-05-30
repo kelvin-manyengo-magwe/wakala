@@ -17,10 +17,12 @@ export const HomeCalculatorSummary = async () : HomeTotalMnoSummary => {
                             if(transaction.type === 'deposit') {
                                     totalDeposits += transaction.amount;
                                     totalCommission += transaction.commission;
-                                    totalFloat += transaction.float;
+                                    totalFloat = transaction.float;
                                 }
                             else if(transaction.type === 'withdrawal') {
                                     totalWithdrawals +=  transaction.amount;
+                                    totalCommission += transaction.commission;
+                                    totalFloat = transaction.float;
                                 }
                     });
 

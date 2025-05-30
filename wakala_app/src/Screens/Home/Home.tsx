@@ -84,7 +84,7 @@ export const Home = () => {
                                          </View>
 
                                          <View style={styles.mnoServicePanel}>
-                                                <MnoServicePanel />
+                                               {/* <MnoServicePanel /> */}
                                          </View>
 
                                          <View style={styles.depositsWithdrawal}>

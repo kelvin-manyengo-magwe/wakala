@@ -30,6 +30,7 @@ export const HalotelWithdrawalParser = (sms: smsEvent): parsedData | null => {
       commission: parseFloat(commissionMatch[1].replace(/,/g, '')),
       float: parseFloat(floatMatch[1].replace(/,/g, '')),
       raw: body,
+      mno: 'halotel',
       createdAt: new Date().toISOString()
     };
 
@@ -43,7 +44,7 @@ export const HalotelWithdrawalParser = (sms: smsEvent): parsedData | null => {
     return parsed;
 
   } catch (err) {
-    console.error('❌ Halotel Withdraw parse failed:', err);
+    console.log('❌ Halotel Withdrawal parse failed:', err);
     return null;
   }
 };

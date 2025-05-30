@@ -12,7 +12,7 @@ export const AirtelDepositParser = (sms: smsEvent): parsedData | null => {
     const refMatch = body.match(/TID:([A-Z0-9.\-]+)/);
 
     if (!amountMatch || !namePhoneMatch || !balanceMatch || !commissionMatch || !refMatch) {
-      console.warn('❌ [AirtelDepositParser] Incomplete match on Airtel deposit SMS.');
+      console.log('❌ [AirtelDepositParser] Incomplete match on Airtel deposit SMS.');
       return null;
     }
 
@@ -27,6 +27,7 @@ export const AirtelDepositParser = (sms: smsEvent): parsedData | null => {
       commission: parseFloat(commissionMatch[1].replace(/,/g, '')),
       float: parseFloat(balanceMatch[1].replace(/,/g, '')),
       raw: body,
+      mno: 'airtel',
       createdAt: new Date().toISOString()
     };
 
@@ -35,7 +36,7 @@ export const AirtelDepositParser = (sms: smsEvent): parsedData | null => {
     return parsed;
   } catch (error) {
 
-    console.error('❌ [AirtelDepositParser] Error while parsing:', error);
+    console.log('❌ [AirtelDepositParser] Error while parsing:', error);
 
     return null;
   }

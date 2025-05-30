@@ -31,6 +31,7 @@ export const Transactions = () => {
         commission: item.commission,
         float: item.float,
         raw: item.raw,
+        mno: item.mno,
         createdAt: item.createdAt instanceof Date ? item.createdAt : new Date(item.createdAt),
       }));
     } catch (e) {
@@ -146,7 +147,7 @@ export const Transactions = () => {
       >
         <View style={styles.columnMtandao}>
           <View style={styles.badge}>
-            <Text style={styles.badgeText}>halotel</Text>
+            <Text style={styles.badgeText}> {item.mno.charAt(0).toUpperCase() + item.mno.slice(1)}</Text>
           </View>
         </View>
 

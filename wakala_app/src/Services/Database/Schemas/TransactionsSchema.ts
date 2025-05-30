@@ -14,6 +14,7 @@ export const TransactionsSchema = {
     commission: 'double',
     float: 'double',
     raw: 'string',
+    mno: 'string',
     createdAt: 'date',
   },
 };

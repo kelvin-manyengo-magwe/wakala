@@ -64,7 +64,7 @@ export const totalSummaryWidth = width * 0.9;
                                                     <FontAwesome name="bank" size={24} />
 
                                                     <View style={styles.infoColumn}>
-                                                           <Text style={styles.label}>Amana</Text>
+                                                           <Text style={styles.label}>Kuweka pesa</Text>
                                                            <Text style={styles.amount}>{mnoTotalSummary.totalDeposits} Tzshs</Text>
 
                                                     </View>
@@ -86,7 +86,7 @@ export const totalSummaryWidth = width * 0.9;
                                                     <FontAwesome name="money" size={24} />
 
                                                            <View style={styles.infoColumn}>
-                                                                   <Text style={styles.label}>Matoleo ya Pesa</Text>
+                                                                   <Text style={styles.label}>Kutoa pesa</Text>
                                                                    <Text style={styles.amount}>{mnoTotalSummary.totalWithdrawals} Tzshs</Text>
                                                            </View>
                                               </View>
@@ -95,7 +95,7 @@ export const totalSummaryWidth = width * 0.9;
                                                     <FontAwesome name="balance-scale" size={24} />
 
                                                           <View style={styles.infoColumn}>
-                                                                  <Text style={styles.label}>Salio</Text>
+                                                                  <Text style={styles.label}>Floti</Text>
                                                                   <Text style={styles.amount}>{mnoTotalSummary.totalFloat} TZshs</Text>
                                                           </View>
                                               </View>
