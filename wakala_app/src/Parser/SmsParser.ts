@@ -1,6 +1,8 @@
 import { smsEvent, parsedData } from './types';
 import { HalotelWithdrawalParser } from './Halotel/HalotelWithdrawalParser';
 import { HalotelDepositParser } from './Halotel/HalotelDepositParser';
+import { AirtelDepositParser } from './Airtel/AirtelDepositParser';
+
 
 
 
@@ -12,8 +14,7 @@ export const SmsParser = (sms: smsEvent): parsedData | null => {
   // Priority list of available parsers
   const parsers = [
     HalotelWithdrawalParser, HalotelDepositParser,
-    // AirtelWithdrawParser,
-    // AirtelDepositParser,
+    AirtelDepositParser,
   ];
 
   for (const parser of parsers) {
