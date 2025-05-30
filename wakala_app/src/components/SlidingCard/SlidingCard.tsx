@@ -1,5 +1,5 @@
 import { FlatList,View, Text, StyleSheet, Dimensions, Animated, TouchableOpacity, } from 'react-native';
-import { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { styles } from './styles';
 
@@ -15,7 +15,7 @@ import { styles } from './styles';
         }[];
     }
 
-    export const SlidingCard = ({ cardData }: slidingCardProps) => {        //making component ready to accept the props
+    export const SlidingCard = React.memo(({ cardData }: slidingCardProps) => {        //making component ready to accept the props
 
             const [activeIndex, setActiveIndex] = useState(0);
             const flatListRef = useRef<FlatList>(null);     //creates mutable cards that persits upon changability. Initial value null when component initially renders
@@ -80,4 +80,4 @@ import { styles } from './styles';
                             </SafeAreaProvider>
                         </>
                 )
-}
+});

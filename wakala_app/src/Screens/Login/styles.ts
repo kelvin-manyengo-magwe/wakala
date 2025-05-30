@@ -52,6 +52,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 12,
         borderRadius: 4,
         alignItems: 'center',
+        marginTop: 15,
     },
     loginButtonText: {
         color: 'white',
