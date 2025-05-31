@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { getRealm } from '../../Services/Database/Realm/Realm';
 import { TransactionsSchema } from '../../Services/Database/Schemas/TransactionsSchema';
 import { styles } from './styles';
-
+import { EmptyList } from '../EmptyList/EmptyList';
 
 type Props = {
   selectedTab: 'weka' | 'toa';
@@ -156,7 +156,7 @@ export const TransactionList = ({ selectedTab, selectedMno }: Props) => {
         renderItem={renderItem}
         contentContainerStyle={[styles.listContent , { paddingBottom: 150 }]}
         ListEmptyComponent={
-          <Text style={styles.emptyText}>Hakuna miamala kupatikana.</Text>
+          <EmptyList selectedTab={selectedTab} />
         }
 
         ListFooterComponent={<View style={{ height: 50 }} />}
