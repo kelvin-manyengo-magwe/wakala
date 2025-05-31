@@ -1,16 +1,20 @@
 import { BarChart } from 'react-native-gifted-charts';
 import { Text, View } from 'react-native';
+import React from 'react';
 import { styles } from './styles';
 import { HomeCalculatorSummary } from '../../Services/Database/models/HomeCalculatorSummary';
 
 
 //props for totalDeposits and totalWithDrawals
 interface ChartProps {
-    totalDeposits: number;
-    totalWithdrawals: number;
+  airtelDeposits: number;
+  airtelWithdrawals: number;
+  halotelDeposits: number;
+  halotelWithdrawals: number;
 }
 
-export const DepositsWithdrawalBarChart = ({ totalDeposits, totalWithdrawals }: ChartProps) => {
+export const DepositsWithdrawalBarChart: React.FC<ChartProps> = ({ airtelDeposits, airtelWithdrawals,
+                                                                     halotelDeposits, halotelWithdrawals, }: ChartProps) => {
 
             //making the useState function
 
@@ -34,45 +38,59 @@ export const DepositsWithdrawalBarChart = ({ totalDeposits, totalWithdrawals }: 
                             },
                             {value: 0, frontColor: '#ED6665'},
                             {
-                              value: 0,
-                              label: 'Airtel money',
-                              spacing: 2,
-                              labelWidth: 30,
-                              labelTextStyle: {color: 'black'},
-                              frontColor: '#177AD5',
-                            },
-                            {value: 0, frontColor: '#ED6665'},
-                            {
-                              value: totalDeposits / 1000,
-                              label: 'Halopesa',
-                              spacing: 2,
-                              labelWidth: 30,
-                              labelTextStyle: {color: 'black'},
-                              frontColor: '#177AD5',
-                            },
-                            {value: totalWithdrawals / 1000, frontColor: '#ED6665'},
-                            {
-                              value: 0,
-                              label: 'TTCL',
-                              spacing: 2,
-                              labelWidth: 30,
-                              labelTextStyle: {color: 'black'},
-                              frontColor: '#177AD5',
-                            },
-                            {value: 0, frontColor: '#ED6665'},
+                                  value: airtelDeposits / 1000,
+                                  label: 'Airtel',
+                                  spacing: 2,
+                                  labelWidth: 35,
+                                  labelTextStyle: { color: 'black' },
+                                  frontColor: '#177AD5',
+                                },
+                                {
+                                  value: airtelWithdrawals / 1000,
+                                  frontColor: '#ED6665',
+                                },
+                                {
+                                  value: halotelDeposits / 1000,
+                                  label: 'Halotel',
+                                  spacing: 2,
+                                  labelWidth: 40,
+                                  labelTextStyle: { color: 'black' },
+                                  frontColor: '#177AD5',
+                                },
+                                {
+                                  value: halotelWithdrawals / 1000,
+                                  frontColor: '#ED6665',
+                                },
+
                           ];
+
+
+               {/*
+                        const maxYValue = Math.max(
+                                          airtelDeposits,
+                                          airtelWithdrawals,
+                                          halotelDeposits,
+                                          halotelWithdrawals,
+                                          50000
+                                        );
+                   */}
+
+            //const roundedMax = Math.ceil(maxYValue / 50000) * 50;
+
+            //const roundedMax = '200K'; // Since values are divided by 100 (200K ÷ 100)
+
 
                       const renderTitle = () => {
                                 return(
                                   <View style={styles.legendContainer}>
                                           <Text style={styles.legendText}>
-                                                    Chati ya Amana dhidi ya Uondoaji kwa Mwezi
+                                                    Chati ya Kuweka pesa dhidi ya Kutoa pesa kwa Mwezi
                                           </Text>
                                           <View style={styles.uondoajiAmanaContainer}>
                                                     <View style={{flexDirection: 'row', alignItems: 'center'}}>
                                                               <View style={{backgroundColor: '#177AD5', height: 12, width: 12, borderRadius: 6, marginRight: 8, }} />
                                                                     <Text style={{ width: 60, height: 16, }}>
-                                                                        Amana
+                                                                        Kuweka pesa
                                                                     </Text>
                                                     </View>
 
@@ -80,7 +98,7 @@ export const DepositsWithdrawalBarChart = ({ totalDeposits, totalWithdrawals }: 
 
                                                     <View style={styles.uondoajiContainer} />
                                                               <Text style={styles.uondoajiText}>
-                                                                    Uondoaji
+                                                                    Kutoa pesa
                                                               </Text>
                                                     </View>
 
@@ -98,14 +116,15 @@ export const DepositsWithdrawalBarChart = ({ totalDeposits, totalWithdrawals }: 
 
                                     <View>
                                             <BarChart data={barData}
-                                                      barWidth={16} spacing={24} roundedTop roundedBottom
+                                                      barWidth={20} spacing={24} roundedTop roundedBottom
                                                       hideRules xAxisThickness={0} yAxisThickness={0}
-                                                      yAxisTextStyle={{color: 'black'}} noOfSections={5}
-                                                      maxValue={Math.max(totalDeposits / 1000, 10)}
+                                                      yAxisTextStyle={{color: 'black'}}
+                                                      noOfSections={4}
                                                       xAxisThickness={1}
                                                       yAxisThickness={1}
-                                                      maxValue={Math.ceil((totalDeposits / 1000) / 50) * 50} // Rounds up to nearest 50K
-                                                      yAxisLabelTexts={Array.from({length: 6}, (_, i) => `${i * 50}K`)}
+                                                      //maxValue={roundedMax} // Rounds up to nearest 50K
+                                                      yAxisLabelTexts={['0', '50K', '100K', '150K', '200K']}
+
                                                       />
                                     </View>
                     </View>
