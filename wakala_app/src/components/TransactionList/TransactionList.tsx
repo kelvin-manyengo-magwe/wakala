@@ -154,10 +154,12 @@ export const TransactionList = ({ selectedTab, selectedMno }: Props) => {
         data={displayedTransactions}
         keyExtractor={(item, index) => index.toString()}
         renderItem={renderItem}
-        contentContainerStyle={styles.listContent}
+        contentContainerStyle={[styles.listContent , { paddingBottom: 150 }]}
         ListEmptyComponent={
           <Text style={styles.emptyText}>Hakuna miamala kupatikana.</Text>
         }
+
+        ListFooterComponent={<View style={{ height: 50 }} />}
       />
     </View>
   );

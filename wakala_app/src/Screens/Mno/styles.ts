@@ -33,12 +33,12 @@ export const styles = StyleSheet.create({
 
         marginBottom: 20,
          },
-     topSection: {
-
+     transactionListContainer: {
+            marginTop: 15,
        },
     transactionTypeToggleContainer: {
-
-        marginTop: 5,
+        marginTop: 3,
+        padding: 5,
         },
 
 
