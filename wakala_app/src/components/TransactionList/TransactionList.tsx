@@ -43,9 +43,11 @@ export const TransactionList = ({ selectedTab, selectedMno }: Props) => {
 
 
       let filtered = transactions.filter(item => {
-        const match = item.type === selectedTab && item.mno === selectedMno;
-        console.log(`Check item: type=${item.type}, mno=${item.mno} => match=${match}`);
-        return match;
+        const typeMatch = item.type === tabToType[selectedTab];
+          const mnoMatch = item.mno === selectedMno;
+          const match = typeMatch && mnoMatch;
+          console.log(`Check item: type=${item.type}, mno=${item.mno} => match=${match}`);
+          return match;
       });
 
       return searchQuery.trim() === ''
