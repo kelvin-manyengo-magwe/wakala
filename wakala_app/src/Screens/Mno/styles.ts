@@ -30,14 +30,15 @@ export const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         padding: 5,
-        margin: 5,
+
+        marginBottom: 20,
          },
      topSection: {
-         flex: 0.78, // Takes 78% of screen
+         flex: 1,
        },
     transactionTypeToggleContainer: {
         flex: 1,
-        marginTop: 25,
+        marginTop: 5,
         },
     emptyState: {
       flex: 1,

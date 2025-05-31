@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
             gap: 30,
             alignItems: 'flex-start',
             paddingHorizontal: 5,
-            marginTop: 12,
+
             marginBottom: 10,
           },
         headerText: {

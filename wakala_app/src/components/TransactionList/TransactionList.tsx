@@ -28,12 +28,26 @@ export const TransactionList = ({ selectedTab, selectedMno }: Props) => {
     }));
   }, []);
 
+  const tabToType = {
+    weka: 'deposit',
+    toa: 'withdrawal'
+  };
+
   // Filter transactions based on search query and selected tab
   const filterTransactions = useCallback(
     (transactions: TransactionsSchema[]) => {
-      let filtered = transactions.filter(
-        item => item.type === selectedTab && item.mno === selectedMno
-      );
+
+
+        console.log('Filtering:', { selectedTab, selectedMno });
+        console.log('Transactions before filter:', transactions.length);
+
+
+      let filtered = transactions.filter(item => {
+        const match = item.type === selectedTab && item.mno === selectedMno;
+        console.log(`Check item: type=${item.type}, mno=${item.mno} => match=${match}`);
+        return match;
+      });
+
       return searchQuery.trim() === ''
         ? filtered
         : filtered.filter(item =>

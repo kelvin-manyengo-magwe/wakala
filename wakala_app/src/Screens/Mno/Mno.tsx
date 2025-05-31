@@ -18,17 +18,15 @@ export const Mno = () => {
 
 
         return (
-            <ScrollView
-                    contentContainerStyle={styles.scrollContainer}
-                          showsVerticalScrollIndicator={false}
-                >
+
                     <View style={styles.container}>
 
                             <View style={styles.topSection}>
-                                        <View style={styles.pieChart3DContainer}>
+                                       {/*   to be shown later
+                                                <View style={styles.pieChart3DContainer}>
                                                         <PieChart3D />
-
-                                        </View>
+                                               </View>
+                                           */}
 
                                         <View style={styles.mnoServicePanelContainer}>
                                                 <MnoServicePanel selectedMno={selectedMno}
@@ -50,7 +48,7 @@ export const Mno = () => {
 
 
                     </View>
-            </ScrollView>
+
             )
     }
 
