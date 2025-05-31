@@ -88,9 +88,7 @@ export const Reports = () => {
 
       <Text style={styles.sectionTitle}>Maendeleo ya blashara</Text>
 
-      <TouchableOpacity style={styles.downloadButton}>
-        <Text style={styles.downloadButtonText}>Pakua ripoti</Text>
-      </TouchableOpacity>
+      
     </ScrollView>
   );
 };
