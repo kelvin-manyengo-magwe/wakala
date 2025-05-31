@@ -1,40 +1,62 @@
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 
+type MnoServicePanelProps = {
+  selectedMno: string;
+  setSelectedMno: (mno: string) => void;
+};
 
-export const MnoServicePanel = () => {
+const logos = [
+  { id: 'vodacom', logo: require('../../../assets/images/icons/mpesa-logo.jpg') },
+  { id: 'halotel', logo: require('../../../assets/images/icons/halo-pesa-logo.png') },
+  { id: 'mixx', logo: require('../../../assets/images/icons/mixx-by-yas-logo.png') },
+  { id: 'airtel', logo: require('../../../assets/images/icons/airtel-money-logo.png') },
+  { id: 'ttcl', logo: require('../../../assets/images/icons/t-pesa-logo.jpg') },
+];
 
-        return (
-                <View>
-                        <Text style={styles.headerText}>Orodha ya mitandao</Text>
+export const MnoServicePanel = ({ selectedMno, setSelectedMno }: MnoServicePanelProps) => {
+  return (
+    <View>
+      <Text style={styles.headerText}>Orodha ya mitandao</Text>
+      <View style={styles.mnoContainer}>
+        <View style={styles.mnoUpperRow}>
+          {logos.slice(0, 3).map((mno) => (
+            <TouchableOpacity
+              key={mno.id}
+              style={styles.mnoLogoContainer}
+              onPress={() => setSelectedMno(mno.id)}
+            >
+              <Image
+                resizeMode="cover"
+                style={[
+                  styles.mnoLogo,
+                  selectedMno !== mno.id && { opacity: 0.3 },
+                ]}
+                source={mno.logo}
+              />
+            </TouchableOpacity>
+          ))}
+        </View>
 
-                        <View style={styles.mnoContainer}>
-                                    <View style={styles.mnoUpperRow}>
-                                            <View style={styles.mnoLogoContainer}>
-                                                    <Image resizeMode="cover" style={styles.mnoLogo} source={ require('../../../assets/images/icons/mpesa-logo.jpg') } />
-                                            </View>
-
-                                            <View style={styles.mnoLogoContainer}>
-                                                     <Image resizeMode="cover" style={styles.mnoLogo} source={ require('../../../assets/images/icons/halo-pesa-logo.png') } />
-                                            </View>
-
-                                            <View style={styles.mnoLogoContainer}>
-                                                     <Image resizeMode="cover" style={styles.mnoLogo} source={ require('../../../assets/images/icons/mixx-by-yas-logo.png') } />
-                                            </View>
-                                    </View>
-
-
-
-                                    <View style={styles.mnoBottomRow}>
-                                            <View style={styles.mnoLogoContainer}>
-                                                    <Image resizeMode="cover" style={styles.mnoLogo} source={ require('../../../assets/images/icons/airtel-money-logo.png') } />
-                                            </View>
-
-                                            <View style={styles.mnoLogoContainer}>
-                                                   <Image resizeMode="contain" style={styles.mnoLogo} source={ require('../../../assets/images/icons/t-pesa-logo.jpg') } />
-                                            </View>
-                                    </View>
-                        </View>
-                </View>
-            )
-    };
+        <View style={styles.mnoBottomRow}>
+          {logos.slice(3).map((mno) => (
+            <TouchableOpacity
+              key={mno.id}
+              style={styles.mnoLogoContainer}
+              onPress={() => setSelectedMno(mno.id)}
+            >
+              <Image
+                resizeMode="cover"
+                style={[
+                  styles.mnoLogo,
+                  selectedMno !== mno.id && { opacity: 0.3 },
+                ]}
+                source={mno.logo}
+              />
+            </TouchableOpacity>
+          ))}
+        </View>
+      </View>
+    </View>
+  );
+};

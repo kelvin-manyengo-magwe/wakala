@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import React, { useState, useRef } from 'react';
 import { PieChart } from 'react-native-gifted-charts';
 import { styles } from './styles';
@@ -13,16 +13,7 @@ import { TransactionTypeToggle } from '../../components/TransactionTypeToggle/Tr
 export const Mno = () => {
 
     const [selectedTab, setSelectedTab] = useState<'weka' | 'toa'>('weka');
-      const flatListRef = useRef(null);
-      const [headerHeight, setHeaderHeight] = useState(0);
-
-      // Your transaction data
-      const [transactions, setTransactions] = useState([]);
-
-//filter transactions based on selected Selected Tab
-                const filteredTransactions = transactions.filter(
-                    transaction => transaction.type === selectedTab
-                  );
+    const [selectedMno, setSelectedMno] = useState<string>('vodacom');
 
 
 
@@ -40,26 +31,19 @@ export const Mno = () => {
                                         </View>
 
                                         <View style={styles.mnoServicePanelContainer}>
-                                                <MnoServicePanel />
+                                                <MnoServicePanel selectedMno={selectedMno}
+                                                                 setSelectedMno={setSelectedMno} />
                                         </View>
                             </View>
 
-                            <View style={styles.transactionTypeToggleContainer}>
-                                     <TransactionTypeToggle
-                                            onTabChange={setSelectedTab}
-                                            selectedTab={selectedTab}
-                                      />
-                            </View>
+                                    <View style={styles.transactionTypeToggleContainer}>
+                                            <TransactionTypeToggle selectedTab={selectedTab} onTabChange={setSelectedTab} />
+                                    </View>
 
                                 <View style={{ flex: 1 }}>
-                                          {selectedTab === 'toa' && filteredTransactions.length === 0 ? (
-                                                    <View style={styles.emptyState}>
-                                                      <Text style={styles.emptyStateText}>Hakuna miamala ya toa</Text>
-                                                    </View>
-                                          ) :
-                                      (
-                                             <TransactionList transactions={filteredTransactions} />
-                                          )}
+
+                                             <TransactionList selectedTab={selectedTab} selectedMno={selectedMno} />
+
                                         </View>
 
 

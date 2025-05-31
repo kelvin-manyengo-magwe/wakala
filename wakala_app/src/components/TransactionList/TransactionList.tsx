@@ -4,11 +4,18 @@ import { getRealm } from '../../Services/Database/Realm/Realm';
 import { TransactionsSchema } from '../../Services/Database/Schemas/TransactionsSchema';
 import { styles } from './styles';
 
-export const TransactionList = () => {
+
+type Props = {
+  selectedTab: 'weka' | 'toa';
+  selectedMno: string;
+};
+
+
+export const TransactionList = ({ selectedTab, selectedMno }: Props) => {
   const [displayedTransactions, setDisplayedTransactions] = useState<TransactionsSchema[]>([]);
   const realmRef = useRef<Realm | null>(null);
   const transactionsRef = useRef<Realm.Results<TransactionsSchema> | null>(null);
-  const [selectedTab, setSelectedTab] = useState<'weka' | 'toa'>('weka');
+
   const [searchQuery, setSearchQuery] = useState(''); // Added searchQuery state
 
   // Create a stable copy of Realm data
@@ -22,16 +29,20 @@ export const TransactionList = () => {
   }, []);
 
   // Filter transactions based on search query and selected tab
-  const filterTransactions = useCallback((transactions: TransactionsSchema[]) => {
-    let filtered = transactions.filter(item => item.type === selectedTab);
-
-    return searchQuery.trim() === ''
-      ? filtered
-      : filtered.filter(item =>
-          item.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          item.raw?.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-  }, [selectedTab, searchQuery]);
+  const filterTransactions = useCallback(
+    (transactions: TransactionsSchema[]) => {
+      let filtered = transactions.filter(
+        item => item.type === selectedTab && item.mno === selectedMno
+      );
+      return searchQuery.trim() === ''
+        ? filtered
+        : filtered.filter(item =>
+            item.customer_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            item.raw?.toLowerCase().includes(searchQuery.toLowerCase())
+          );
+    },
+    [selectedTab, selectedMno, searchQuery]
+  );
 
   // Load Realm data and set up live updates
   useEffect(() => {
@@ -89,7 +100,7 @@ export const TransactionList = () => {
     <View style={styles.transactionRow}>
       <View style={styles.columnMtandao}>
         <View style={styles.badge}>
-          <Text style={styles.badgeText}>{item.network || 'halotel'}</Text>
+          <Text style={styles.badgeText}>{item.mno || 'halotel'}</Text>
         </View>
       </View>
 
