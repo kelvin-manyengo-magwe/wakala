@@ -38,7 +38,7 @@ export const Mno = () => {
                                             <TransactionTypeToggle selectedTab={selectedTab} onTabChange={setSelectedTab} />
                                     </View>
 
-                                <View style={{ flex: 1 }}>
+                                <View style={styles.transactionListContainer}>
 
                                              <TransactionList selectedTab={selectedTab} selectedMno={selectedMno} />
 

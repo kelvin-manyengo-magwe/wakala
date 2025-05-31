@@ -27,28 +27,19 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
         },
     mnoServicePanelContainer: {
-        flex: 1,
+
         width: '100%',
         padding: 5,
 
         marginBottom: 20,
          },
      topSection: {
-         flex: 1,
+
        },
     transactionTypeToggleContainer: {
-        flex: 1,
+
         marginTop: 5,
         },
-    emptyState: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 20,
-    },
-    emptyStateText: {
-      fontSize: 16,
-      color: '#666',
-    },
+
 
   });
