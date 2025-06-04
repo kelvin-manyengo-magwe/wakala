@@ -66,29 +66,29 @@ export const Reports = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <SalioCard title="Salio" balance={salio} />
+              <SalioCard title="Floti" balance={salio} />
 
-      <SummaryCard title="kamisheni" value={commission} />
+              <SummaryCard title="kamisheni" value={commission} />
 
-      <NetworkCards
-        selectedNetwork={selectedNetwork}
-        onSelect={setSelectedNetwork}
-      />
+              <NetworkCards
+                selectedNetwork={selectedNetwork}
+                onSelect={setSelectedNetwork}
+              />
 
-      <PeriodSelector
-        selectedPeriod={selectedPeriod}
-        onSelectPeriod={setSelectedPeriod}
-      />
+              <PeriodSelector
+                selectedPeriod={selectedPeriod}
+                onSelectPeriod={setSelectedPeriod}
+              />
 
-      <View style={styles.chartContainer}>
-        {selectedPeriod === 'siku' ?
-          <DailyBarChart transactionCount={transactionCount} />
-          : <MonthlyBarChart transactionCount={transactionCount} />}
-      </View>
+              <View style={styles.chartContainer}>
+                {selectedPeriod === 'siku' ?
+                          <DailyBarChart transactionCount={transactionCount} />
+                          : <MonthlyBarChart transactionCount={transactionCount} />}
+              </View>
 
-      <Text style={styles.sectionTitle}>Maendeleo ya blashara</Text>
+              <Text style={styles.sectionTitle}>Maendeleo ya blashara</Text>
 
-      
+
     </ScrollView>
   );
 };

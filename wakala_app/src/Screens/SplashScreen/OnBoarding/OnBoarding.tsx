@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image, StatusBar } from 'react-native';
 import Svg, { Defs, ClipPath, Ellipse, Rect } from 'react-native-svg';
 import { styles } from './styles';
 
@@ -16,7 +16,7 @@ export const OnBoarding = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-
+            <StatusBar barStyle="light-content" backgroundColor="#E63946" />
 
       {/* SVG for clip-path effect */}
       <View style={styles.svgContainer}>
