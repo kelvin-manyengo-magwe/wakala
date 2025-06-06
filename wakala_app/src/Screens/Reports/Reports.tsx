@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { SummaryCard } from '../../components/Reports/SummaryCard/SummaryCard';
 import { NetworkCards } from '../../components/Reports/NetworkCards/NetworkCards';
 import { PeriodSelector } from '../../components/Reports/PeriodSelector/PeriodSelector';
@@ -9,13 +9,21 @@ import { DailyBarChart } from '../../components/Graphs/DailyBarChart/DailyBarCha
 import { MonthlyBarChart } from '../../components/Graphs/MonthlyBarChart/MonthlyBarChart';
 import { getRealm } from '../../Services/Database/Realm/Realm';
 import { TransactionsSchema } from '../../Services/Database/Schemas/TransactionsSchema';
+import { HomeCalculatorSummary } from '../../Services/Database/models/HomeCalculatorSummary';
 
 export const Reports = () => {
   const [selectedNetwork, setSelectedNetwork] = useState('halotel');
   const [selectedPeriod, setSelectedPeriod] = useState<'siku' | 'mwezi'>('siku');
   const [transactionCount, setTransactionCount] = useState(0);
   const [salio, setSalio] = useState('0 Tzs');
-  const [commission, setCommission] = useState('0 Tzs');
+
+  // ✅ Fixed: Initialize with an object using {}
+  const [commission, setCommission] = useState({
+    totalDeposits: 0,
+    totalWithdrawals: 0,
+    totalCommission: 0,
+    totalFloat: 0,
+  });
 
   useEffect(() => {
     let realmInstance: Realm | null = null;
@@ -26,23 +34,17 @@ export const Reports = () => {
         realmInstance = await getRealm();
         transactions = realmInstance.objects<TransactionsSchema>('deposits_transaction');
 
+        const currentCommission = await HomeCalculatorSummary();
+        setCommission(currentCommission);
+
         const updateFinancialData = (collection: Realm.Results<TransactionsSchema>) => {
-          // Calculate total float (salio)
           const totalFloat = collection.sum('float') || 0;
           setSalio(`${totalFloat.toLocaleString()} Tzs`);
-
-          // Calculate total commission
-          const totalCommission = collection.sum('commission') || 0;
-          setCommission(`${totalCommission.toLocaleString()} Tzs`);
-
-          // Get transaction count
           setTransactionCount(collection.length);
         };
 
-        // Initial update
         updateFinancialData(transactions);
 
-        // Set up listener for changes
         transactions.addListener((collection) => {
           updateFinancialData(collection);
         });
@@ -66,29 +68,28 @@ export const Reports = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-              <SalioCard title="Floti" balance={salio} />
+      <SalioCard title="Floti" balance={`${commission.totalFloat.toLocaleString()} Tzs`} />
+      <SummaryCard title="Kamisheni" value={`${commission.totalCommission.toLocaleString()} Tzs`} />
 
-              <SummaryCard title="kamisheni" value={commission} />
+      <NetworkCards
+        selectedNetwork={selectedNetwork}
+        onSelect={setSelectedNetwork}
+      />
 
-              <NetworkCards
-                selectedNetwork={selectedNetwork}
-                onSelect={setSelectedNetwork}
-              />
+      <PeriodSelector
+        selectedPeriod={selectedPeriod}
+        onSelectPeriod={setSelectedPeriod}
+      />
 
-              <PeriodSelector
-                selectedPeriod={selectedPeriod}
-                onSelectPeriod={setSelectedPeriod}
-              />
+      <View style={styles.chartContainer}>
+        {selectedPeriod === 'siku' ? (
+          <DailyBarChart transactionCount={transactionCount} />
+        ) : (
+          <MonthlyBarChart transactionCount={transactionCount} />
+        )}
+      </View>
 
-              <View style={styles.chartContainer}>
-                {selectedPeriod === 'siku' ?
-                          <DailyBarChart transactionCount={transactionCount} />
-                          : <MonthlyBarChart transactionCount={transactionCount} />}
-              </View>
-
-              <Text style={styles.sectionTitle}>Maendeleo ya blashara</Text>
-
-
+      <Text style={styles.sectionTitle}>Maendeleo ya blashara</Text>
     </ScrollView>
   );
 };

@@ -1,52 +1,81 @@
 import React, { useState } from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
-import { styles } from './styles';
+import {
+    Text,
+    View,
+    Image,
+    TextInput,
+    TouchableOpacity,
+    Alert,
+    ActivityIndicator,
+} from 'react-native';
+import { CommonActions } from '@react-navigation/native';
+import { styles } from './styles'; // Make sure this file exists and has correct styles
 
-export const Login = ({ navigation }) => {
+interface LoginScreenProps {
+    navigation: any; // Replace with specific type if using TypeScript Navigation types
+}
 
-            const [name, setName] = useState('');
-              const [password, setPassword] = useState('');
-              const [ loading, setLoading ] = useState(false);
+export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
-              const handleLogin = async () => {
+    const handleLogin = async () => {
+        if (loading) return;
 
-                    if(loading) return;
+        if (!name.trim() || !password.trim()) {
+            Alert.alert(
+                'Taarifa Hazijakamilika',
+                'Tafadhali jaza jina la mtumiaji na nenosiri ili kuendelea.'
+            );
+            return;
+        }
 
-                    setLoading(true);
+        setLoading(true);
+        console.log('Attempting login with:', { name, password });
 
-                try {
-                  const response = await fetch('http://192.168.1.185:8000/api/mobile/login', {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                      Accept: 'application/json',
-                    },
-                    body: JSON.stringify({ name, password }),
-                  });
+        try {
+            const response = await fetch('http://192.168.1.185:8000/api/mobile/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({ name, password }),
+            });
 
+            console.log('Server response status:', response.status);
 
-                  const data = await response.json();
+            const data = await response.json();
+            console.log('Response body:', data);
 
-                    navigation.navigate('mainApp');
+            if (!response.ok) {
+                const errorMessage = data.message || 'Jina la mtumiaji au nenosiri si sahihi.';
+                Alert.alert('Kuingia Kumeshindikana', errorMessage);
+                setLoading(false);
+                return;
+            }
 
-                  if (!response.ok) {
-                    Alert.alert('Kuingia kumeshindikana', data.message);
-                    return;
-                  }
+            console.log('Login successful. Token:', data.token);
 
-                  // Store token (optional: use AsyncStorage)
-                  console.log('Login success', data.token);
+            // TODO: Save token using AsyncStorage if needed
 
-                  // Navigate to your main screen (example)
-                  // navigation.navigate('Home', { user: data.user });
-                } catch (error) {
-                  console.error(error);
-                  Alert.alert('Error', 'Something went wrong');
-                } finally {
-                        setLoading(false);
-                    }
-              };
+            navigation.dispatch(
+                CommonActions.reset({
+                    index: 0,
+                    routes: [{ name: 'mainApp', params: { user: data.user } }],
+                })
+            );
 
+        } catch (error: any) {
+            console.error('Network/server error:', error.message);
+            Alert.alert(
+                'Kosa la Muunganisho',
+                'Imeshindikana kuunganisha na seva. Tafadhali angalia mtandao wako.'
+            );
+            setLoading(false);
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -64,30 +93,41 @@ export const Login = ({ navigation }) => {
             </View>
 
             <View style={styles.formContainer}>
-                <Text style={styles.label}>Jina Kamili</Text>
-                <TextInput style={styles.input}
-                            placeholder="Jina Kamili"
-                            onChangeText={setName}
-                            value={name}/>
+                <Text style={styles.label}>Jina la Mtumiaji</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Weka jina la mtumiaji"
+                    placeholderTextColor="#999"
+                    onChangeText={setName}
+                    value={name}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                />
 
-                <Text style={styles.label}>Neno siri</Text>
-                <TextInput style={styles.input}
-                            placeholder="Neno Siri" onChangeText={setPassword}
-                            value={password}
-                            secureTextEntry />
+                <Text style={styles.label}>Nenosiri</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Weka nenosiri"
+                    placeholderTextColor="#999"
+                    onChangeText={setPassword}
+                    value={password}
+                    secureTextEntry
+                />
 
-                {/* <Text style={styles.forgotText}>umesahau neno siri?</Text> */}
-
-                    <TouchableOpacity
-                      onPress={handleLogin}
-                      style={[styles.loginButton, loading && { backgroundColor: '#ccc' }]}
-                      disabled={loading}
-                    >
-                      <Text style={styles.loginButtonText}>
-                        {loading ? 'Tafadhali Subiri...' : 'Ingia'}
-                      </Text>
-                    </TouchableOpacity>
-
+                <TouchableOpacity
+                    onPress={handleLogin}
+                    style={[
+                        styles.loginButton,
+                        loading && { backgroundColor: '#BE2C28' },
+                    ]}
+                    disabled={loading}
+                >
+                    {loading ? (
+                        <ActivityIndicator size="small" color="#FFFFFF" />
+                    ) : (
+                        <Text style={styles.loginButtonText}>INGIA</Text>
+                    )}
+                </TouchableOpacity>
             </View>
         </View>
     );
