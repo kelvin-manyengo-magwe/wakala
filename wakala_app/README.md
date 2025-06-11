@@ -44,7 +44,7 @@ The graphs used are from dependancy called react-native-gifted charts. The docum
 ### Sms Drilling  Extraction Architecture
 ![image](https://github.com/user-attachments/assets/f35282f9-83fa-4130-b912-955b6453a9f7)
 
-### 2nd Halotel Wakala transaction details.
+### 2nd Halotel ![halotel-tanzania-seeklogo](https://github.com/user-attachments/assets/c9e5668d-5ce9-494b-b26d-c6952b3bc802) Wakala transaction details.
 **Tillno**
 ![WhatsApp Image 2025-06-11 at 22 35 01_e60897fc](https://github.com/user-attachments/assets/9260689d-1023-46de-a3a6-92d771dd3956)
 
