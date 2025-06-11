@@ -3,6 +3,8 @@ import {Text, View, Image, TextInput, TouchableOpacity, Alert, ActivityIndicator
 import { CommonActions } from '@react-navigation/native';
 import { styles } from './styles'; // Make sure this file exists and has correct styles
 import { env } from '../../config/env';
+import { loginCredentials } from './types';
+
 
 
 interface LoginScreenProps {
@@ -28,6 +30,12 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
             return;
         }
 
+        const credentials: loginCredentials = {
+                    name: name.trim(),      //for the removing the spaces to get real content
+                    password: password.trim(),
+            };
+
+
         setLoading(true);
         console.log('Attempting login with:', { name, password });
 
@@ -38,7 +46,7 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
-                body: JSON.stringify({ name, password }),
+                body: JSON.stringify(credentials),
             });
 
             console.log('Server response status:', response.status);
