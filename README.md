@@ -34,7 +34,7 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
  <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/airtel-money-logo.png" width="100" height="100" />
  
 **Kuweka pesa Transaction (Deposit)**
-https://github.com/user-attachments/assets/f9d5c6a6-bece-4b46-9f14-9202cd020012
+<img src="https://github.com/user-attachments/assets/f9d5c6a6-bece-4b46-9f14-9202cd020012" />
 
 
 **Kutoa pesa transaction (Withdrawal)**
