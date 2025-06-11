@@ -38,7 +38,7 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
 
 
 **Kutoa pesa transaction (Withdrawal)**
-
+<img src="https://github.com/user-attachments/assets/6e524731-2783-4ce6-8ff9-952cff2d6485" />
 
 
 # Deployments.
