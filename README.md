@@ -25,11 +25,11 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
 
 <p>Utambulisho wa muamamala: 3281191266. IVAN WULYSTAN MTEGA, namba ya simu  255626762075 ametoa TSH 1,000.00 wakati 2025/05/24 09:13:51. Kamisheni: TSH 220.00. Salio lako la floti ni TSH 1,142.70. Ahsante!</p>
 
-# Customer transaction sms
-![WhatsApp Image 2025-05-24 at 09 31 48_ae8e6cdb](https://github.com/user-attachments/assets/8054a2cf-f22e-4d74-a615-5e3fb4993d12)
+**Customer transaction sms**
+<img src="https://github.com/user-attachments/assets/8054a2cf-f22e-4d74-a615-5e3fb4993d12" width="400px" height="400px" />
 
 
-# Example of Kuweka Pesa (deposit) transactions performed by Halotel Agent.
+# Example of Kuweka Pesa (deposit) transactions performed by Airtel Agent.
  <img src="https://github.com/kelvin-manyengo-magwe/wakala/blob/main/wakala_app/assets/images/icons/airtel-money-logo.png" width="100" height="100" />
  
 **Kuweka pesa Transaction (Deposit)**
