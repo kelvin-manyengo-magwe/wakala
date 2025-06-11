@@ -21,8 +21,8 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
 ![customer transaction message](https://github.com/user-attachments/assets/4ce8de89-c9b3-48ce-984e-b8472e952a06)
 
 # Example of Kutoa Pesa (withdrawal) transactions performed by Halotel Agent.
-
-![WhatsApp Image 2025-05-24 at 09 29 29_e50aeb92](https://github.com/user-attachments/assets/f76f173f-ea9c-4e59-a8a5-5d2a6e3b16bd)
+<img src="![WhatsApp Image 2025-06-11 at 23 11 20_27bdee5c](https://github.com/user-attachments/assets/47585034-9ae9-4735-8668-e2cfe5d64355)
+" />
 
 <p>Utambulisho wa muamamala: 3281191266. IVAN WULYSTAN MTEGA, namba ya simu  255626762075 ametoa TSH 1,000.00 wakati 2025/05/24 09:13:51. Kamisheni: TSH 220.00. Salio lako la floti ni TSH 1,142.70. Ahsante!</p>
 
