@@ -6,7 +6,10 @@ const API_BASE_URL = 'http://192.168.1.185:8000/api';
     //const API_BASE_URL = 'https://9c05-197-186-28-180.ngrok-free.app:8000/api';
 
 
-// Login and get token
+            {/*
+                    It is not used for the real mobile login
+                    for only background login get token for the syncing of transactions to web.
+                */}
 export const login = async (email, password) => {
   const response = await axios.post(`${API_BASE_URL}/login`, {
     email,

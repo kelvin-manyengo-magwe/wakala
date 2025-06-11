@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
-import {
-    Text,
-    View,
-    Image,
-    TextInput,
-    TouchableOpacity,
-    Alert,
-    ActivityIndicator,
-} from 'react-native';
+import {Text, View, Image, TextInput, TouchableOpacity, Alert, ActivityIndicator,
+        } from 'react-native';
 import { CommonActions } from '@react-navigation/native';
 import { styles } from './styles'; // Make sure this file exists and has correct styles
 
