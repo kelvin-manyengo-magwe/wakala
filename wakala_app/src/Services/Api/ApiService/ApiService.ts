@@ -1,9 +1,9 @@
 import axios from 'axios';
+import { env } from '../../../config/env.ts';
 
-const API_BASE_URL = 'http://192.168.1.185:8000/api';
+const API_BASE_URL = env.API_BASE_URL;
 
-//;
-    //const API_BASE_URL = 'https://9c05-197-186-28-180.ngrok-free.app:8000/api';
+
 
 
             {/*
