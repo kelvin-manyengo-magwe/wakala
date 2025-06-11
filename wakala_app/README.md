@@ -50,4 +50,10 @@ The graphs used are from dependancy called react-native-gifted charts. The docum
 **Tillno**
 ![WhatsApp Image 2025-06-11 at 22 35 01_e60897fc](https://github.com/user-attachments/assets/9260689d-1023-46de-a3a6-92d771dd3956)
 
+**Deposit (Kuweka) Transaction message**
+![WhatsApp Image 2025-06-11 at 22 35 01_6c29cfab](https://github.com/user-attachments/assets/a4838fd6-bb8d-45c4-afcb-4ffb66c3fff1)
+
+**Withdrawal (Kutoa) Transaction message**
+![WhatsApp Image 2025-06-11 at 22 35 01_0487cfda](https://github.com/user-attachments/assets/db7b1820-35db-4438-8520-754451610233)
+
 
