@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { routes, AppStackParamList } from './routes';
@@ -11,6 +12,10 @@ const StackNavigator = () => {
 
     return (
         <NavigationContainer>
+
+                {/* Setting red global color to each screen */}
+            <StatusBar backgroundColor="red" barStyle="light-content" />
+
                 <Stack.Navigator initialRouteName="Splash" screenOptions={{headerShown: false}}>
                         {routes.map((route,index) => (
                                 <Stack.Screen key={index}
