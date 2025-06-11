@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import {Text, View, Image, TextInput, TouchableOpacity, Alert, ActivityIndicator,
-        } from 'react-native';
+import {Text, View, Image, TextInput, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 import { CommonActions } from '@react-navigation/native';
 import { styles } from './styles'; // Make sure this file exists and has correct styles
+import { env } from '../../config/env';
+
 
 interface LoginScreenProps {
     navigation: any; // Replace with specific type if using TypeScript Navigation types
 }
+
+const API_BASE_URL = env.API_BASE_URL;
+
 
 export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
     const [name, setName] = useState('');
@@ -28,7 +32,7 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
         console.log('Attempting login with:', { name, password });
 
         try {
-            const response = await fetch('http://192.168.1.185:8000/api/mobile/login', {
+            const response = await fetch('${API_BASE_URL}/mobile/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
