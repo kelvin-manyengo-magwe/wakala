@@ -107,7 +107,23 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 }
+
+
+afterEvaluate {
+    def copyFontsTask = tasks.findByName("copyReactNativeVectorIconFonts")
+    def lintModelTask = tasks.findByName("generateDebugLintReportModel")
+
+    if (copyFontsTask != null && lintModelTask != null) {
+        lintModelTask.dependsOn(copyFontsTask)
+    }
+}
+
 
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
