@@ -1,28 +1,36 @@
-// src/api/loginService.ts
-import { Alert } from 'react-native';
-import { axiosInstance } from './apiService';
-import { loginCredentials } from '../../../Screens/Login/types';
+import { axiosInstance, API_BASE_URL } from './ApiService'; // Uses the configured axios instance
+import { loginCredentials, LoginResponse } from '../../Screens/Login/types'; // Path to your Login types
 
-export const login = async (credentials: loginCredentials) => {
-  console.log('loginService: Attempting login with', credentials);
+export const apiLoginWakala = async (credentials: loginCredentials): Promise<LoginResponse> => {
+    console.log('LoginService: Attempting login with credentials:', credentials);
+    try {
+        // Login does not need the token interceptor to run first, as it's getting the token.
 
-  try {
-    const response = await axiosInstance.post('/mobile/login', credentials);
-    console.log('loginService: Response', response.data);
-    return response.data;
-  } catch (error: any) {
-    console.error('loginService: Error', error.response?.data || error.message);
+        // If axiosInstance is used, will try to add a token if one exists, which is fine.
+        const response = await axiosInstance.post<LoginResponse>(`/mobile/login`, credentials);
 
-    if (error.response?.data?.message) {
-      Alert.alert('Kuingia Kumeshindikana', error.response.data.message);
+
+        // If using axios, response.data is already parsed
+        console.log('LoginService: Login response data:', response.data);
+
+
+        if (response.data.success && response.data.token) {
+            return response.data;
+        }
+
+            else {
+            // Throw an error that includes the message from the backend
+            throw new Error(response.data.message || 'Jina la mtumiaji au nenosiri si sahihi.');
+        }
+    } catch (error: any) {
+        console.error('LoginService: Login API error:', error);
+
+
+        const errorMessage = error.message || // If error is Error object with a message
+                           (typeof error === 'string' ? error : null) || // If error is string from backend throw
+
+                           'Kosa la kuingia. Tafadhali jaribu tena.'; // Fallback
+
+        throw new Error(errorMessage);
     }
-    else {
-      Alert.alert(
-        'Kosa la Muunganisho',
-        'Imeshindikana kuunganisha na seva. Tafadhali angalia mtandao wako.'
-      );
-    }
-
-    throw error.response?.data || error;
-  }
 };
