@@ -1,9 +1,12 @@
+import { styles } from './styles';
 import React, { useState } from 'react';
 import {Text, View, Image, TextInput, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 import { CommonActions } from '@react-navigation/native';
-import { styles } from './styles'; // Make sure this file exists and has correct styles
 import { env } from '../../config/env';
 import { loginCredentials } from './types';
+import { storeAuthData } from '../../auth/authStorage';
+import { apiLoginWakala } from '../../Services/Api/ApiService/LoginService';
+
 
 
 
@@ -11,7 +14,6 @@ interface LoginScreenProps {
     navigation: any; // Replace with specific type if using TypeScript Navigation types
 }
 
-const API_BASE_URL = env.API_BASE_URL;
 
 
 export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
@@ -40,26 +42,24 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
         console.log('Attempting login with:', { name, password });
 
         try {
-            const response = await fetch('${API_BASE_URL}/mobile/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify(credentials),
-            });
+            const response = await apiLoginWakala(credentials);
 
             console.log('Server response status:', response.status);
 
             const data = await response.json();
             console.log('Response body:', data);
 
-            if (!response.ok) {
-                const errorMessage = data.message || 'Jina la mtumiaji au nenosiri si sahihi.';
-                Alert.alert('Kuingia Kumeshindikana', errorMessage);
-                setLoading(false);
-                return;
-            }
+
+            if (!response.success || !response.token || !response.user) {
+                            Alert.alert('Kuingia Kumeshindikana', loginResponse.message || 'Jina la mtumiaji au nenosiri si sahihi.');
+                            setLoading(false);
+
+                            return;
+                        }
+
+
+                        //storing the auth data for later
+                   await storeAuthData(response.token, response.user);
 
             console.log('Login successful. Token:', data.token);
 
@@ -68,7 +68,7 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
             navigation.dispatch(
                 CommonActions.reset({
                     index: 0,
-                    routes: [{ name: 'mainApp', params: { user: data.user } }],
+                    routes: [{ name: 'mainApp', params: { user: response.user } }],
                 })
             );
 
@@ -80,7 +80,7 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
             );
             setLoading(false);
         }
-    };
+    }
 
     return (
         <View style={styles.container}>

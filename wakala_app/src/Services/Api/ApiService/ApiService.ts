@@ -1,7 +1,10 @@
-// src/Services/Api/ApiService.ts
+
 import axios, { InternalAxiosRequestConfig } from 'axios';
-import { env } from '../../config/env';
-import { getAuthToken } from '../auth/authStorage'; // We'll need this for interceptors
+import { env } from '../../../config/env';
+import { getAuthToken } from '../../Storage/authStorage'; // We'll need this for interceptors
+import { apiLoginWakala } from '../../Services/Api/LoginService';
+
+
 
 export const API_BASE_URL = env.API_BASE_URL;
 
@@ -35,7 +38,7 @@ axiosInstance.interceptors.response.use(
     const originalRequest = error.config;
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      console.warn('ApiService: Token expired or invalid. Need to re-authenticate or refresh.');
+      console.log('ApiService: Token expired or invalid. Need to re-authenticate or refresh.');
 
         //functionalites possible here
       // 1. To refresh tokens if having refreshing token mechanism
