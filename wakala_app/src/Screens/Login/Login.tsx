@@ -1,10 +1,10 @@
-import { styles } from './styles';
+import styles from './styles';  //exported default
 import React, { useState } from 'react';
 import {Text, View, Image, TextInput, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 import { CommonActions } from '@react-navigation/native';
 import { env } from '../../config/env';
 import { loginCredentials } from './types';
-import { storeAuthData } from '../../auth/authStorage';
+import { storeAuthData } from '../../Services/Storage/authStorage';
 import { apiLoginWakala } from '../../Services/Api/ApiService/LoginService';
 
 
@@ -41,7 +41,11 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
         setLoading(true);
         console.log('Attempting login with:', { name, password });
 
+
+
         try {
+
+
             const response = await apiLoginWakala(credentials);
 
             console.log('Server response status:', response.status);
@@ -79,6 +83,7 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
                 'Imeshindikana kuunganisha na seva. Tafadhali angalia mtandao wako.'
             );
             setLoading(false);
+
         }
     }
 
@@ -87,11 +92,11 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
             <View style={styles.imagesContainer}>
                 <Image
                     style={styles.wakalaLogoImage}
-                    source={require('../../../assets/images/icons/wakala-logo.jpg')}
+                    source={ require('../../../assets/images/icons/wakala-logo.jpg') }
                 />
                 <Image
                     style={styles.wakalaWordImage}
-                    source={require('../../../assets/images/icons/wakala-word.png')}
+                    source={ require('../../../assets/images/icons/wakala-word.png') }
                     resizeMode="contain"
                 />
                 <Text style={styles.subText}>Fuatilia biashara yako kwa urahisi</Text>
@@ -137,3 +142,5 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
         </View>
     );
 };
+
+
