@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Text, StyleSheet, View, StatusBar, ScrollView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { styles } from './styles';
+import { useNavigation } from '@react-navigation/native';
 import { getRealm } from '../../Services/Database/Realm/Realm';
 import { SlidingCard } from '../../components/SlidingCard/SlidingCard';
 import { CardData } from '../../components/SlidingCard/CardData';
@@ -72,6 +73,12 @@ export const Home = () => {
                 const toggleDrawer = () => {
                         setIsDrawerOpen(!isDrawerOpen);
                     };
+
+
+                        const navigateToNotifications = () => {
+                                // Ensure 'NotificationsScreen' is the correct name in your navigator
+                                navigation.navigate('Notifications');
+                            };
 
 
     return (

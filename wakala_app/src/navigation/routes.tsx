@@ -8,6 +8,7 @@ import { EndScreen } from '../Screens/SplashScreen/EndScreen/EndScreen';
 import { LandingScreen } from '../Screens/SplashScreen/LandingScreen/LandingScreen';
 import { OnBoarding } from '../Screens/SplashScreen/OnBoarding/OnBoarding';
 import { Login } from '../Screens/Login/Login';
+import { Notifications } from '../Screens/Notifications/Notifications';
 
 
 
@@ -51,5 +52,8 @@ export const routes = [
         name: 'Login',
         component: Login
     },
-
+    {
+        name: 'Notifications',
+        component: 'Notifications',
+    },
 ];
