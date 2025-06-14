@@ -117,12 +117,13 @@ android {
 
 afterEvaluate {
     def copyFontsTask = tasks.findByName("copyReactNativeVectorIconFonts")
-    def lintModelTask = tasks.findByName("generateDebugLintReportModel")
+    def lintAnalyzeDebug = tasks.findByName("lintAnalyzeDebug")
 
-    if (copyFontsTask != null && lintModelTask != null) {
-        lintModelTask.dependsOn(copyFontsTask)
+    if (copyFontsTask != null && lintAnalyzeDebug != null) {
+        lintAnalyzeDebug.dependsOn(copyFontsTask)
     }
 }
+
 
 
 dependencies {
