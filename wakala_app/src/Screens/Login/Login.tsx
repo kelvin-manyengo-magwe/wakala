@@ -50,9 +50,6 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
 
             console.log('Server response status:', response.status);
 
-            const data = await response.json();
-            console.log('Response body:', data);
-
 
             if (!response.success || !response.token || !response.user) {
                             Alert.alert('Kuingia Kumeshindikana', loginResponse.message || 'Jina la mtumiaji au nenosiri si sahihi.');
@@ -65,7 +62,7 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
                         //storing the auth data for later
                    await storeAuthData(response.token, response.user);
 
-            console.log('Login successful. Token:', data.token);
+            console.log('Login successful !');
 
             // TODO: Save token using AsyncStorage if needed
 

@@ -10,6 +10,10 @@ import { HomeCalculatorSummary } from '../../Services/Database/models/HomeCalcul
 import { DepositsWithdrawalBarChart } from '../../components/Graphs/DepositsWithdrawalBarChart/DepositsWithdrawalBarChart';
 import { MnoServicePanel } from '../../components/MnoServicePanel/MnoServicePanel';
 import { DepositsWithdrawalDataProvider } from '../../components/Graphs/DepositsWithdrawalBarChart/DepositsWithdrawalDataProvider/DepositsWithdrawalDataProvider';
+import { SideDrawer } from '../../components/SideDrawer/SideDrawer';
+
+
+
 
 export const Home = () => {
 
@@ -17,6 +21,8 @@ export const Home = () => {
           const [airtelWithdrawals, setAirtelWithdrawals] = useState(0);
           const [halotelDeposits, setHalotelDeposits] = useState(0);
           const [halotelWithdrawals, setHalotelWithdrawals] = useState(0);
+
+          const [isDrawerOpen, setIsDrawerOpen] = useState(false); //state for sideDrawer
 
           useEffect(() => {
             let realmInstance: Realm;
@@ -63,54 +69,65 @@ export const Home = () => {
           }, []);
 
 
+                const toggleDrawer = () => {
+                        setIsDrawerOpen(!isDrawerOpen);
+                    };
+
+
     return (
-        <ScrollView>
-                    <View style={styles.whiteBackground}>
-                             <View style={styles.header}>
-                                      <View>
-                                              <Text style={styles.wakalaFont}>Wakala</Text>
-                                      </View>
+        <View style={{ flex: 1 }}>
 
-                                      <View style={styles.iconContainer}>
-                                               <TouchableOpacity style={styles.iconSpacing}>
-                                                        <Ionicons name="notifications-outline" size={20} />
-                                               </TouchableOpacity>
+                    <ScrollView>
+                                <View style={styles.whiteBackground}>
+                                         <View style={styles.header}>
+                                                  <View>
+                                                          <Text style={styles.wakalaFont}>Wakala</Text>
+                                                  </View>
 
-                                               <TouchableOpacity style={styles.iconSpacing}>
-                                                        <Ionicons name="person-outline" size={20} />
-                                               </TouchableOpacity>
-                                      </View>
-                             </View>
+                                                  <View style={styles.iconContainer}>
+                                                           <TouchableOpacity style={styles.iconSpacing}>
+                                                                    <Ionicons name="notifications-outline" size={20} />
+                                                           </TouchableOpacity>
 
-                             <View style={styles.greetingContainer}>
-                                    <Text>Habari za jioni, Magwe</Text>
-                             </View>
-
-
-                             <View style={styles.contentContainers}>
-                                        <View style={styles.slidingCardWrapper}>
-                                                <SlidingCard cardData={CardData} />
-                                        </View>
-
-                                         <View style={styles.summaryParentContainer}>
-                                                <TotalSummary />
+                                                           <TouchableOpacity style={styles.iconSpacing} onPress={toggleDrawer}>
+                                                                    <Ionicons name="person-outline" size={20} />
+                                                           </TouchableOpacity>
+                                                  </View>
                                          </View>
 
-                                         <View style={styles.mnoServicePanel}>
-                                               {/* <MnoServicePanel /> */}
+                                         <View style={styles.greetingContainer}>
+                                                <Text>Habari za jioni, Magwe</Text>
                                          </View>
 
-                                         <View style={styles.depositsWithdrawal}>
-                                                  <DepositsWithdrawalBarChart
-                                                                airtelDeposits={airtelDeposits}
-                                                                airtelWithdrawals={airtelWithdrawals}
-                                                                halotelDeposits={halotelDeposits}
-                                                                halotelWithdrawals={halotelWithdrawals}
-                                                              />
+
+                                         <View style={styles.contentContainers}>
+                                                    <View style={styles.slidingCardWrapper}>
+                                                            <SlidingCard cardData={CardData} />
+                                                    </View>
+
+                                                     <View style={styles.summaryParentContainer}>
+                                                            <TotalSummary />
+                                                     </View>
+
+                                                     <View style={styles.mnoServicePanel}>
+                                                           {/* <MnoServicePanel /> */}
+                                                     </View>
+
+                                                     <View style={styles.depositsWithdrawal}>
+                                                              <DepositsWithdrawalBarChart
+                                                                            airtelDeposits={airtelDeposits}
+                                                                            airtelWithdrawals={airtelWithdrawals}
+                                                                            halotelDeposits={halotelDeposits}
+                                                                            halotelWithdrawals={halotelWithdrawals}
+                                                                          />
+                                                     </View>
                                          </View>
-                             </View>
-                    </View>
-        </ScrollView>
+                                </View>
+                    </ScrollView>
+
+
+                        <SideDrawer isOpen={isDrawerOpen} onClose={toggleDrawer} />
+        </View>
     )
 };
 
