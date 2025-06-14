@@ -77,7 +77,7 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({ isOpen, onClose }) => {
                         navigation.dispatch(
                             CommonActions.reset({
                                 index: 0,
-                                routes: [{ name: 'LoginScreen' }], // Ensure LoginScreen is correct
+                                routes: [{ name: 'Login' }], // Ensure LoginScreen is correct
                             })
                         );
                     },
@@ -133,7 +133,7 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({ isOpen, onClose }) => {
                             {/* Add other role-based items or info if needed */}
                             <View style={styles.separator} />
                             <DrawerItem iconName="help-buoy-outline" label="Msaada na Maoni" onPress={() => {onClose(); Alert.alert("Msaada", "Wasiliana nasi kwa msaada.");}}/>
-                            <DrawerItem iconName="settings-outline" label="Mipangilio Mingine" onPress={() => {onClose(); navigation.navigate('Settings');}} />
+                            <DrawerItem iconName="settings-outline" label="Mipangilio Mingine" onPress={() => {onClose(); navigation.navigate('Mipangilio');}} />
                             {/* ^^^ Assumes you have a separate SettingsScreen in your navigation */}
                              <View style={styles.separator} />
                             <DrawerItem iconName="log-out-outline" label="Ondoka" onPress={handleLogout} />
