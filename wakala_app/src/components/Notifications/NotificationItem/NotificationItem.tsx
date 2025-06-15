@@ -24,16 +24,16 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({ item, isLast
 
     const formattedTimestamp = () => {
         try {
-            // Example: "14 Jun 2025, 7:08 PM"
-            return format(parseISO(item.timestamp), "d MMM yyyy, h:mm aa"
-
-                { locale: sw }
-            );
+            // e.g of date in sw "14 Juni 2025, 7:08 PM"
+            return format(parseISO(item.timestamp), "d MMMM yyyy, h:mm aa", {
+                locale: sw,
+            });
         } catch (e) {
             console.warn("Error formatting timestamp:", item.timestamp, e);
-            return item.timestamp; // Fallback to raw timestamp
+            return item.timestamp;
         }
     };
+
 
     return (
         <TouchableOpacity

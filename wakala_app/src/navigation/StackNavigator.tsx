@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { routes, AppStackParamList } from './routes';
 import { BottomNavigationTab } from './BottomNavigationTab/BottomNavigationTab';
+import { Notifications } from '../Screens/Notifications/Notifications';
 
 
 const Stack= createStackNavigator<AppStackParamList>();
@@ -23,6 +24,8 @@ const StackNavigator = () => {
                                                 component={route.component} />
                         ))}
                                 <Stack.Screen name="mainApp" component={BottomNavigationTab} />
+
+                                <Stack.Screen name="Notifications" component={Notifications} />
 
                 </Stack.Navigator>
         </NavigationContainer>

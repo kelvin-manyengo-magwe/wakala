@@ -21,6 +21,7 @@ export type AppStackParamList = {
     LandingScreen: undefined,
     OnBoarding: undefined,
     Login: undefined,
+    Notifications: undefined,
 };
 
 export const routes = [
@@ -52,8 +53,6 @@ export const routes = [
         name: 'Login',
         component: Login
     },
-    {
-        name: 'Notifications',
-        component: 'Notifications',
-    },
+
+
 ];

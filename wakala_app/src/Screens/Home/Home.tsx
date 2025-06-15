@@ -18,6 +18,10 @@ import { SideDrawer } from '../../components/SideDrawer/SideDrawer';
 
 export const Home = () => {
 
+
+                const navigation = useNavigation<any>();
+
+
             const [airtelDeposits, setAirtelDeposits] = useState(0);
           const [airtelWithdrawals, setAirtelWithdrawals] = useState(0);
           const [halotelDeposits, setHalotelDeposits] = useState(0);
@@ -92,7 +96,7 @@ export const Home = () => {
                                                   </View>
 
                                                   <View style={styles.iconContainer}>
-                                                           <TouchableOpacity style={styles.iconSpacing}>
+                                                           <TouchableOpacity style={styles.iconSpacing} onPress={navigateToNotifications}>
                                                                     <Ionicons name="notifications-outline" size={20} />
                                                            </TouchableOpacity>
 

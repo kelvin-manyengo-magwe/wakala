@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, Platform } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, Platform } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons'; // Assuming use
-import { NotificationItem, NotificationData } from '../../components/NotificationItem/NotificationItem';
+import { NotificationItem } from '../../components/Notifications/NotificationItem/NotificationItem';
 import styles from './styles';
 
 
@@ -21,6 +21,7 @@ const SAMPLE_NOTIFICATIONS: NotificationData[] = [
 
 
 export const Notifications = () => {
+
     const navigation = useNavigation();
     const [notifications, setNotifications] = useState<NotificationData[]>([]);
     const [loading, setLoading] = useState(true);
@@ -69,7 +70,7 @@ export const Notifications = () => {
         <View style={styles.container}>
             {/* Custom Header */}
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                <TouchableOpacity onPress={() => navigation.navigate('Nyumbani')} style={styles.backButton}>
                     <Ionicons name="arrow-back-outline" size={28} color="#333333" />
                 </TouchableOpacity>
                 <Text style={styles.headerTitle}>Notifications</Text>

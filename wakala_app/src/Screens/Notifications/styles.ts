@@ -1,4 +1,4 @@
-import { StyleSheet } from './styles';
+import { StyleSheet } from 'react-native';
 
 
 
