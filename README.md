@@ -17,7 +17,7 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
 ![Agent transaction message](https://github.com/user-attachments/assets/3d125be0-4e6e-4aca-aa03-98bdc6b8886d)
 
 
-# Customer transaction sms
+**Customer transaction sms**
 ![customer transaction message](https://github.com/user-attachments/assets/4ce8de89-c9b3-48ce-984e-b8472e952a06)
 
 # Example of Kutoa Pesa (withdrawal) transactions performed by Halotel Agent.
@@ -26,7 +26,8 @@ Introducing our cutting-edge Wakala Transaction Monitoring Application – a dis
 <p>Utambulisho wa muamamala: 3281191266. IVAN WULYSTAN MTEGA, namba ya simu  255626762075 ametoa TSH 1,000.00 wakati 2025/05/24 09:13:51. Kamisheni: TSH 220.00. Salio lako la floti ni TSH 1,142.70. Ahsante!</p>
 
 **Customer transaction sms**
-<img src="https://github.com/user-attachments/assets/8054a2cf-f22e-4d74-a615-5e3fb4993d12" width="400px" height="400px" />
+<img src="https://github.com/user-attachments/assets/7ec427b7-df4d-4db9-bfad-276a2f9c3355" />
+
 
 
 # Example of Kuweka Pesa (deposit) transactions performed by Airtel Agent.
