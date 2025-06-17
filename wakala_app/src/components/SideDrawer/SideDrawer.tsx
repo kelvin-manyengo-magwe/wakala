@@ -123,16 +123,23 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({ isOpen, onClose }) => {
                             <View style={styles.avatarPlaceholder}>
                                 <Ionicons name="person-circle-outline" size={70} color="#FFFFFF" />
                             </View>
+
+
                             <Text style={styles.profileName}>{userData?.name || 'Jina la Mtumiaji'}</Text>
-                            <Text style={styles.profileEmail}>{userData?.email || 'Barua Pepe'}</Text>
+
+                                    {userData?.email && (
+                                <>
+                                    <Text style={styles.profileEmail}>{userData?.email || 'Barua Pepe'}</Text>
+                                </>
+                                    )}
                         </View>
 
                         {/* Drawer Items */}
                         <View style={styles.drawerItemsContainer}>
-                            <DrawerItem iconName="shield-checkmark-outline" label="Msimamizi" onPress={() => {onClose(); /* Link to role info if any */ Alert.alert("Jukumu", "Wewe ni Msimamizi");}}/>
+                            <DrawerItem iconName="person-circle" label="Msimamizi" onPress={() => {onClose(); /* Link to role info if any */ Alert.alert("Jukumu", "Wewe ni Msimamizi");}}/>
                             {/* Add other role-based items or info if needed */}
                             <View style={styles.separator} />
-                            <DrawerItem iconName="help-buoy-outline" label="Msaada na Maoni" onPress={() => {onClose(); Alert.alert("Msaada", "Wasiliana nasi kwa msaada.");}}/>
+                            <DrawerItem iconName="help-circle-outline" label="Msaada na Maoni" onPress={() => {onClose(); Alert.alert("Msaada", "Wasiliana nasi kwa 0653 434 522.");}}/>
                             <DrawerItem iconName="settings-outline" label="Mipangilio Mingine" onPress={() => {onClose(); navigation.navigate('Mipangilio');}} />
                             {/* ^^^ Assumes you have a separate SettingsScreen in your navigation */}
                              <View style={styles.separator} />

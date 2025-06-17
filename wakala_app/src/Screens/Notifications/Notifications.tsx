@@ -73,7 +73,7 @@ export const Notifications = () => {
                 <TouchableOpacity onPress={() => navigation.navigate('Nyumbani')} style={styles.backButton}>
                     <Ionicons name="arrow-back-outline" size={28} color="#333333" />
                 </TouchableOpacity>
-                <Text style={styles.headerTitle}>Notifications</Text>
+                <Text style={styles.headerTitle}>Taarifa</Text>
                 <View style={styles.headerRightPlaceholder} />
                 {/* Placeholder to balance title if back button takes space */}
             </View>
