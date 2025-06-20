@@ -7,13 +7,13 @@ interface AppConfig {
     }
 
 export const devConfig: AppConfig = {
-        API_BASE_URL: 'https://2318-197-186-17-58.ngrok-free.app/api',
+        API_BASE_URL: 'http://192.168.1.185:8000/api',
         ANALYTICS_KEY: 'DEV_ANALYTICS_KEY',
         DEFAULT_LOCALE: 'sw',
     };
 
 export const prodConfig: AppConfig = {
-        API_BASE_URL: 'https://2318-197-186-17-58.ngrok-free.app/api',
+        API_BASE_URL: 'http://192.168.1.185:8000/api',
         ANALYTICS_KEY: 'PROD_ANALYTICS_KEY',
         DEFAULT_LOCALE: 'sw',
     };

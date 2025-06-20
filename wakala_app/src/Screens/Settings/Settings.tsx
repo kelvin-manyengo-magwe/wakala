@@ -31,14 +31,7 @@ export const Settings = () => {
     return (
         <View style={styles.screenContainer}>
             <StatusBar barStyle={Platform.OS === "ios" ? "dark-content" : "dark-content"} backgroundColor="#FFFFFF" />
-            {/* Custom Header */}
-            <View style={styles.headerContainer}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.headerButton}>
-                    <Ionicons name="arrow-back-outline" size={28} color="#1C1C1E" />
-                </TouchableOpacity>
-                <Text style={styles.headerTitle}>Mipangilio</Text>
-                <View style={styles.headerButton} />
-            </View>
+
 
             <ScrollView
                 style={styles.scrollView}
