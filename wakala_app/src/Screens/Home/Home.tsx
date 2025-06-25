@@ -13,6 +13,7 @@ import { MnoServicePanel } from '../../components/MnoServicePanel/MnoServicePane
 import { DepositsWithdrawalDataProvider } from '../../components/Graphs/DepositsWithdrawalBarChart/DepositsWithdrawalDataProvider/DepositsWithdrawalDataProvider';
 import { SideDrawer } from '../../components/SideDrawer/SideDrawer';
 import { NotificationBell } from '../../components/Notifications/NotificationBell/NotificationBell';
+import { Greeting } from '../../components/Greeting/Greeting';
 
 
 
@@ -106,9 +107,8 @@ export const Home = () => {
                                                   </View>
                                          </View>
 
-                                         <View style={styles.greetingContainer}>
-                                                <Text>Habari za jioni, Magwe</Text>
-                                         </View>
+
+                                            <Greeting />
 
 
                                          <View style={styles.contentContainers}>
