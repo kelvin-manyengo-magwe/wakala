@@ -1,8 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { NotificationAvatar } from '../NotificationAvatar/NotificationAvatar'; // Adjust path if needed
 import { format, parseISO } from 'date-fns'; // For date formatting
 import { sw } from 'date-fns/locale';
+import styles from './styles';
+
+
 
 export interface NotificationData {
     id: string;

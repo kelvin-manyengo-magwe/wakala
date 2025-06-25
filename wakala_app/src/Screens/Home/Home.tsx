@@ -12,6 +12,7 @@ import { DepositsWithdrawalBarChart } from '../../components/Graphs/DepositsWith
 import { MnoServicePanel } from '../../components/MnoServicePanel/MnoServicePanel';
 import { DepositsWithdrawalDataProvider } from '../../components/Graphs/DepositsWithdrawalBarChart/DepositsWithdrawalDataProvider/DepositsWithdrawalDataProvider';
 import { SideDrawer } from '../../components/SideDrawer/SideDrawer';
+import { NotificationBell } from '../../components/Notifications/NotificationBell/NotificationBell';
 
 
 
@@ -96,9 +97,8 @@ export const Home = () => {
                                                   </View>
 
                                                   <View style={styles.iconContainer}>
-                                                           <TouchableOpacity style={styles.iconSpacing} onPress={navigateToNotifications}>
-                                                                    <Ionicons name="notifications-outline" size={20} />
-                                                           </TouchableOpacity>
+
+                                                            <NotificationBell />
 
                                                            <TouchableOpacity style={styles.iconSpacing} onPress={toggleDrawer}>
                                                                     <Ionicons name="person-outline" size={20} />

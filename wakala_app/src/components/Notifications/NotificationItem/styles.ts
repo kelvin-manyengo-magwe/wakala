@@ -1,4 +1,4 @@
-import { StyleSheet } from './styles';
+import { StyleSheet } from 'react-native';
 
 
 
@@ -16,13 +16,13 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0, // No border for the last item
     },
     unreadItem: {
-        // backgroundColor: '#FFF8E1', // Example: slight background tint for unread
+         backgroundColor: '#FFF8E1', // Example: slight background tint for unread
     },
     textContainer: {
         flex: 1,
         justifyContent: 'center',
     },
-    // title: { // If you have a separate title line
+    // title: { // If having a separate title line
     //     fontSize: 16,
     //     fontWeight: '600',
     //     color: '#1A1A1A',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         lineHeight: 21, // For better readability
     },
     unreadText: {
-        // fontWeight: 'bold', // Example: make text bold for unread
+         fontWeight: 'bold', // making text bold for unread
     },
     timestamp: {
         fontSize: 13,
