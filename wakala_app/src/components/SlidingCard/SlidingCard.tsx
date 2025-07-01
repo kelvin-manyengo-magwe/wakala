@@ -28,7 +28,7 @@ export const SlidingCard = React.memo(({ cardData }: slidingCardProps) => {
             flatListRef.current?.scrollToIndex({ index: nextIndex, animated: true });
             return nextIndex;
           });
-        }, 3000); // 3 seconds for slide interval
+        }, 5000); // 3 seconds for slide interval
 
         return () => {
           if (timer.current) clearInterval(timer.current);

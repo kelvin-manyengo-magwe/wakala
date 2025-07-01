@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import { card_width, card_height, width } from './SlidingCard';
 
 export const styles = StyleSheet.create({
-  // This container is for the whole screen, it's likely okay.
+
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -16,10 +16,10 @@ export const styles = StyleSheet.create({
     width: card_width,
     height: card_height,
     borderWidth: 1,
-    borderColor: '#E0E0E0', // Softened the border color for a cleaner look
-    borderRadius: 15,       // Made the corners slightly more rounded
-    alignItems: 'center',     // <-- **FIX:** Horizontally center the content
-    justifyContent: 'center', // <-- **FIX:** Vertically center the content
+    borderColor: '#E0E0E0',
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 15,
     marginHorizontal: (width - card_width) / 2,
     backgroundColor: '#F7F9FC', // Added a very light background color
