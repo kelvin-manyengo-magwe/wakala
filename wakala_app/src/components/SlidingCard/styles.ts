@@ -2,58 +2,50 @@ import { StyleSheet } from 'react-native';
 import { card_width, card_height, width } from './SlidingCard';
 
 export const styles = StyleSheet.create({
+  // This container is for the whole screen, it's likely okay.
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
+
+  // --- CORRECTED CARD STYLE ---
+  // This is the main container for each slide in the carousel.
   card: {
     width: card_width,
     height: card_height,
     borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 10,
-    flex: 1,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    padding: 10,
-    marginHorizontal: (width - card_width)/2,
-     },
-     cardItems: {
-        fontSize: 24,
-        marginBottom: 10,
-        fontWeight: "bold",
-        color: "white",
-     },
-      dotsContainer: {
-        flexDirection: "row",
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20,
-      },
-      dot: {
-        width: 10,
-        height: 10,
-        borderWidth: 1,
-        borderRadius: 5,
-        marginHorizontal: 5,
-        backgroundColor: "gray",
-      },
-    cardContent: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 5,
-        paddingLeft: 18,
-    },
-    cardText: {
-        fontWeight: 'bold',
-        fontSize: 15,
-        color: 'black',
-        marginBottom: 5,
-    },
-    mnoBaseLogo: {
-        width: 45,
-        height: 35,
-    },
+    borderColor: '#E0E0E0', // Softened the border color for a cleaner look
+    borderRadius: 15,       // Made the corners slightly more rounded
+    alignItems: 'center',     // <-- **FIX:** Horizontally center the content
+    justifyContent: 'center', // <-- **FIX:** Vertically center the content
+    padding: 15,
+    marginHorizontal: (width - card_width) / 2,
+    backgroundColor: '#F7F9FC', // Added a very light background color
+    elevation: 3, // Adds a subtle shadow on Android
+    shadowColor: '#000', // Adds a subtle shadow on iOS
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+  },
+
+  // These styles are for the dot indicators and are correct.
+  dotsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  dot: {
+    width: 10,
+    height: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    marginHorizontal: 5,
+    borderColor: '#BDBDBD', // Softened the dot border
+  },
+
+  // NOTE: The old styles 'cardContent', 'cardText', 'mnoBaseLogo', and 'cardItems'
+  // are no longer needed by the new design and have been removed for cleanliness.
 });
