@@ -1,87 +1,102 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+//
+// src/components/Reports/NetworkCards/NetworkCards.tsx - (THE UPGRADED VERSION)
+// This component now displays financial data for each MNO.
+//
 
-// Store network details, including colors and logos, in one place for easy management.
+import React from 'react';
+import { View, Text, Image, StyleSheet } from 'react-native';
+import { AllMnoSummaries } from '../../../Services/Database/models/FloatCommissionCount/FloatCommissionCount'; // Adjusted path based on your image
+
+// Define MNO display properties in one place.
 const NETWORKS = [
-    { id: 'vodacom', name: 'Vodacom', color: '#E60000', logo: require('../../../../assets/images/icons/mpesa-logo.jpg') }, // Assuming you will add these logos
-    { id: 'airtel', name: 'Airtel', color: '#F02C39', logo: require('../../../../assets/images/icons/airtel-money-logo.png') },
-    { id: 'halotel', name: 'Halotel', color: '#00A859', logo: require('../../../../assets/images/icons/halo-pesa-logo.png') },
-    { id: 'tigo', name: 'Tigo', color: '#00529D', logo: require('../../../../assets/images/icons/mixx-by-yas-logo.png') }, // Assuming T-Pesa
+    { id: 'vodacom', name: 'Vodacom', color: '#E60000', logo: require('../../../../assets/images/icons/mpesa-logo.jpg') }, // Assuming Vodacom -> M-Pesa
+    { id: 'airtel', name: 'Airtel', color: '#D82A2F', logo: require('../../../../assets/images/icons/airtel-money-logo.png') },
+    { id: 'halotel', name: 'Halotel', color: '#00A750', logo: require('../../../../assets/images/icons/halo-pesa-logo.png') },
+    { id: 'tigo', name: 'Tigo', color: '#01529C', logo: require('../../../../assets/images/icons/mixx-by-yas-logo.png') },
 ];
 
+// --- Helper function to format numbers ---
+const formatValue = (num: number) => num ? num.toLocaleString(undefined, { maximumFractionDigits: 0 }) : '0';
+
+
+// --- THE NEW PROPS ---
+// The component now needs all summary data to display.
 type NetworkCardsProps = {
-  selectedNetwork: string;
-  onSelect: (networkId: string) => void;
+  summaries: AllMnoSummaries;
 };
 
-export const NetworkCards = ({ selectedNetwork, onSelect }: NetworkCardsProps) => {
+export const NetworkCards = ({ summaries }: NetworkCardsProps) => {
   return (
     <View style={styles.container}>
       {NETWORKS.map((network) => {
-        const isSelected = selectedNetwork === network.id;
+        // Get the specific data for this MNO from the passed summaries.
+        // If it doesn't exist, provide a default zero-value object.
+        const networkData = summaries[network.id] || { totalFloat: 0, totalCommission: 0 };
+
         return (
-          <TouchableOpacity
-            key={network.id}
-            style={[
-              styles.networkCard,
-              { backgroundColor: isSelected ? network.color : '#FFFFFF' },
-              isSelected ? styles.selectedCard : styles.unselectedCard
-            ]}
-            onPress={() => onSelect(network.id)}
-            activeOpacity={0.8}
-          >
+          <View key={network.id} style={styles.card}>
             <Image source={network.logo} style={styles.logo} />
-            <Text style={[styles.networkName, { color: isSelected ? '#FFFFFF' : '#333333' }]}>
-              {network.name}
-            </Text>
-          </TouchableOpacity>
+
+            {/* Displaying Float */}
+            <View style={styles.dataRow}>
+                <Text style={styles.dataLabel}>Floti:</Text>
+                <Text style={[styles.dataValue, { color: network.color }]}>
+                    {formatValue(networkData.totalFloat)}
+                </Text>
+            </View>
+
+            {/* Displaying Commission */}
+            <View style={styles.dataRow}>
+                <Text style={styles.dataLabel}>Kamisheni:</Text>
+                <Text style={[styles.dataValue, { color: network.color }]}>
+                    {formatValue(networkData.totalCommission)}
+                </Text>
+            </View>
+          </View>
         );
       })}
     </View>
   );
 };
 
-
-// These styles are self-contained for the new design
+// --- REDESIGNED STYLES for the new "data-first" look ---
 const styles = StyleSheet.create({
-    container: {
-      flexDirection: 'row',
-      justifyContent: 'space-around', // Distribute cards evenly
-      marginVertical: 16,
-      gap: 10, // Add a gap between cards
-    },
-    networkCard: {
-      flex: 1, // Allow each card to grow and take up equal space
-      height: 90, // Consistent height for all cards
-      borderRadius: 12,
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 10,
-    },
-    unselectedCard: {
-      borderWidth: 1,
-      borderColor: '#E0E0E0',
-      elevation: 2,
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 1 },
-      shadowOpacity: 0.1,
-      shadowRadius: 2,
-    },
-    selectedCard: {
-      elevation: 5,
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-    },
-    logo: {
-      width: 40,
-      height: 40,
-      resizeMode: 'contain',
-      marginBottom: 8,
-    },
-    networkName: {
-      fontSize: 14,
-      fontWeight: '600',
-    },
-  });
+  container: {
+    flexDirection: 'row',
+    flexWrap: 'wrap', // Allows cards to wrap to the next line (2x2 grid)
+    justifyContent: 'space-between',
+    marginVertical: 12,
+  },
+  card: {
+    width: '48%', // Two cards per row with a small gap
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 12,
+    alignItems: 'center',
+    marginBottom: 12, // Space between rows
+    // Clean, professional border instead of heavy shadows
+    borderWidth: 1,
+    borderColor: '#F3F4F6',
+  },
+  logo: {
+    width: 35,
+    height: 35,
+    resizeMode: 'contain',
+    marginBottom: 10,
+  },
+  dataRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: 4,
+  },
+  dataLabel: {
+    fontSize: 14,
+    color: '#6B7280', // A soft gray for labels
+  },
+  dataValue: {
+    fontSize: 14,
+    fontWeight: '700', // Bold value to make it stand out
+  },
+});

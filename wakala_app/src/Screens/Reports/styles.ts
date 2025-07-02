@@ -34,4 +34,13 @@ export const styles = StyleSheet.create({
         elevation: 2,
         height: 300,
       },
+  headerRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      gap: 12,
+      marginBottom: 8,
+    },
+    summaryCard: {
+      flex: 1, // Makes each card take up half the width
+    },
 });
