@@ -54,4 +54,7 @@ export const styles = StyleSheet.create({
           marginTop: 10,
           marginHorizontal: 15,
       },
+    depositsWithdrawal: {
+            marginTop: 12,
+        },
 });
