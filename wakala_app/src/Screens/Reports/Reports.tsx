@@ -1,13 +1,13 @@
 //
-// src/Screens/Reports/Reports.tsx - (THE UPGRADED VERSION)
-// The logic is now simplified to calculate totals and display the data.
+// src/Screens/Reports/Reports.tsx - (DEFINITIVE UPGRADE)
 //
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { View, Text, ScrollView, ActivityIndicator } from 'react-native';
 import { getRealm } from '../../Services/Database/Realm/Realm';
 import { TransactionsSchema } from '../../Services/Database/Schemas/TransactionsSchema';
-import { processMnoSummaries, AllMnoSummaries } from '../../Services/Database/models/FloatCommissionCount/FloatCommissionCount';
+// Import the new powerful data processor and its types
+import { processMnoSummaries, AllMnoSummaries, DailyChartData, MonthlyChartData } from '../../Services/Database/models/FloatCommissionCount/FloatCommissionCount';
 
 // Import UI components
 import { SummaryCard } from '../../components/Reports/SummaryCard/SummaryCard';
@@ -17,16 +17,14 @@ import { DailyBarChart } from '../../components/Graphs/DailyBarChart/DailyBarCha
 import { MonthlyBarChart } from '../../components/Graphs/MonthlyBarChart/MonthlyBarChart';
 import { styles } from './styles';
 
-// Helper to format numbers with commas
-const formatNumber = (num: number) => num.toLocaleString(undefined, { maximumFractionDigits: 2 });
-
+const formatNumber = (num: number) => num ? num.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '0';
 
 export const Reports = () => {
-  // One state to hold all summary data, and one for loading.
-  const [allSummaries, setAllSummaries] = useState<AllMnoSummaries>({});
+  // We now have state for ALL our processed data
+  const [summaries, setSummaries] = useState<AllMnoSummaries>({});
+  const [dailyData, setDailyData] = useState<DailyChartData[]>([]);
+  const [monthlyData, setMonthlyData] = useState<MonthlyChartData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  // Default state for the period selector
   const [selectedPeriod, setSelectedPeriod] = useState<'siku' | 'mwezi'>('mwezi');
 
 
@@ -38,21 +36,23 @@ export const Reports = () => {
       realmInstance = await getRealm();
       const transactions = realmInstance.objects<TransactionsSchema>('deposits_transaction');
 
+      // The update function is now much simpler, it just sets the state
       const updateData = (collection: Realm.Results<TransactionsSchema>) => {
-        const summaries = processMnoSummaries(collection);
-        setAllSummaries(summaries);
-        setIsLoading(false); // Stop loading after data is processed
+        const { summaries, dailyChartData, monthlyChartData } = processMnoSummaries(collection);
+        setSummaries(summaries);
+        setDailyData(dailyChartData);
+        setMonthlyData(monthlyChartData);
+        setIsLoading(false);
       };
 
       // Initial load
       updateData(transactions);
-      // Setup listener for live updates
+      // Setup listener
       transactions.addListener(updateData);
     };
 
     loadAndListen();
 
-    // Cleanup function
     return () => {
       if (realmInstance && !realmInstance.isClosed) {
         realmInstance.objects('deposits_transaction').removeAllListeners();
@@ -60,50 +60,45 @@ export const Reports = () => {
     };
   }, []);
 
-  // --- NEW: Calculate GRAND TOTALS using useMemo for efficiency ---
   const grandTotals = useMemo(() => {
     let totalFloat = 0;
     let totalCommission = 0;
-
-    // Loop through the values of our summaries object to calculate grand totals
-    for (const mnoId in allSummaries) {
-      const summary = allSummaries[mnoId];
-      totalFloat += summary.totalFloat;
-      totalCommission += summary.totalCommission;
+    for (const mnoId in summaries) {
+      totalFloat += summaries[mnoId].totalFloat;
+      totalCommission += summaries[mnoId].totalCommission;
     }
     return { totalFloat, totalCommission };
-  }, [allSummaries]); // This logic only re-runs when the summary data changes
+  }, [summaries]);
 
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.headerRow}>
-          {/* THE BIG CARDS NOW SHOW THE CALCULATED GRAND TOTALS */}
           <SummaryCard title="Jumla ya Floti" value={`${formatNumber(grandTotals.totalFloat)} Tzs`} style={styles.summaryCard} />
           <SummaryCard title="Jumla ya Kamisheni" value={`${formatNumber(grandTotals.totalCommission)} Tzs`} style={styles.summaryCard} />
         </View>
 
-        {/* --- REMOVED SELECT FUNCTIONALITY. JUST DISPLAY ALL CARDS. --- */}
-        {/* Pass the entire 'allSummaries' object down to the NetworkCards component. */}
         {isLoading ? (
           <ActivityIndicator size="large" color="#E60000" style={{marginVertical: 40}} />
         ) : (
-          <NetworkCards summaries={allSummaries} />
+          <NetworkCards summaries={summaries} />
         )}
 
-        {/* The rest of your report screen remains */}
         <PeriodSelector
           selectedPeriod={selectedPeriod}
           onSelectPeriod={setSelectedPeriod}
         />
+
+        {/* --- DYNAMIC CHARTS IN ACTION --- */}
         <View style={styles.chartContainer}>
           {selectedPeriod === 'siku' ? (
-            <DailyBarChart transactionCount={0} /> // These can now be powered by `allSummaries` as well
+            <DailyBarChart data={dailyData} />
           ) : (
-            <MonthlyBarChart transactionCount={0} />
+            <MonthlyBarChart data={monthlyData} />
           )}
         </View>
-        <Text style={styles.sectionTitle}>Maendeleo ya blashara</Text>
+
+        <Text style={styles.sectionTitle}>Maendeleo ya biashara</Text>
     </ScrollView>
   );
 };
