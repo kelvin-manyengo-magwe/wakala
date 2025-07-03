@@ -1,90 +1,91 @@
+//
+// src/Services/Database/models/FloatCommissionCount/FloatCommissionCount.ts - (THE DEFINITIVE BRAIN)
+// This file is the single source of truth for all calculations on the Reports screen.
+//
 import { TransactionsSchema } from '../../Schemas/TransactionsSchema';
 
-// --- NEW DATA STRUCTURES FOR CHARTS ---
-// Data point for a single MNO on a specific day
-export interface DailyMnoData {
-  mno: string;
-  count: number;
-}
-// Data for a single day, containing an array of MNO data
-export interface DailyChartData {
-  date: string; // e.g., "Jumatatu"
-  data: DailyMnoData[];
-}
-// Data for a single MNO over an entire month
-export interface MonthlyMnoData {
-  mno: string;
-  count: number;
-}
-// Data for a single month, containing an array of MNO data
-export interface MonthlyChartData {
-  month: string; // e.g., "April"
-  data: MonthlyMnoData[];
-}
+// --- DATA STRUCTURES (DEFINING THE OUTPUT) ---
 
-
-// --- ORIGINAL DATA STRUCTURES (Kept for compatibility) ---
+// For the individual MNO cards and summary calculations
 export interface MnoReportSummary {
   totalCommission: number;
-  totalFloat: number;
-  transactionCount: number;
+  totalFloat: number; // The latest known float for this MNO
 }
 export interface AllMnoSummaries {
-  [mnoName: string]: MnoReportSummary;
+  [mnoName: string]: MnoReportSummary; // e.g., { airtel: { ... }, halotel: { ... } }
 }
 
-// --- FINAL COMBINED OUTPUT of our new data processor ---
+// For the Monthly Bar Chart
+export interface MonthlyMnoData { mno: string; count: number; }
+export interface MonthlyChartData { month: string; data: MonthlyMnoData[]; }
+
+// For the Daily Bar Chart
+export interface DailyMnoData { mno: string; count: number; }
+export interface DailyChartData { date: string; data: DailyMnoData[]; }
+
+// The final, comprehensive object that this function returns
 export interface ProcessedReportData {
     summaries: AllMnoSummaries;
-    dailyChartData: DailyChartData[];
     monthlyChartData: MonthlyChartData[];
+    dailyChartData: DailyChartData[];
 }
 
-// --- THE MAIN DATA PROCESSING FUNCTION (Rebuilt) ---
+// --- THE MAIN DATA PROCESSING FUNCTION ---
 export const processMnoSummaries = (transactions: Realm.Results<TransactionsSchema>): ProcessedReportData => {
   const summaries: AllMnoSummaries = {};
-  const dailyCounts: { [date: string]: { [mno: string]: number } } = {};
-  const monthlyCounts: { [month: string]: { [mno: string]: number } } = {};
+  const monthlyCounts: { [yearMonth: string]: { [mno: string]: number } } = {};
+  const dailyCounts: { [fullDate: string]: { [mno: string]: number } } = {};
 
-  const sortedTransactions = transactions.sorted('createdAt', true); // Newest first
-
-  const getDayName = (date: Date) => ['Jumapili', 'Jumatatu', 'Jumanne', 'Jumatano', 'Alhamisi', 'Ijumaa', 'Jumamosi'][date.getDay()];
   const getMonthName = (date: Date) => ['Jan', 'Feb', 'Mac', 'Apr', 'Mei', 'Jun', 'Jul', 'Ago', 'Sep', 'Okt', 'Nov', 'Des'][date.getMonth()];
+  const getDayName = (date: Date) => ['Jumapili', 'Jumatatu', 'Jumanne', 'Jumatano', 'Alhamisi', 'Ijumaa', 'Jumamosi'][date.getDay()];
 
-  // Get today's date and the date 7 days ago to filter for the last week
+  // Filter for the last 7 days for the Daily chart
   const today = new Date();
-  const last7Days = new Date();
-  last7Days.setDate(today.getDate() - 6); // Includes today
+  const last7DaysDate = new Date();
+  last7DaysDate.setDate(today.getDate() - 6);
 
-  sortedTransactions.forEach(txn => {
-    const mno = txn.mno.toLowerCase();
+  // --- LOOP THROUGH ALL TRANSACTIONS ONCE ---
+  transactions.sorted('createdAt').forEach(txn => {
+    let mno = txn.mno.toLowerCase();
+    // Consolidate "tigo" into "yas"
+    if (mno === 'tigo') mno = 'yas';
+
     const txnDate = txn.date;
 
-    // --- Process Summary Cards ---
+    // --- 1. Calculate Per-MNO Summaries (Float & Commission) ---
     if (!summaries[mno]) {
-      summaries[mno] = { totalCommission: 0, totalFloat: txn.float, transactionCount: 0 };
+      summaries[mno] = { totalCommission: 0, totalFloat: 0 };
     }
     summaries[mno].totalCommission += txn.commission;
-    summaries[mno].transactionCount++;
+    summaries[mno].totalFloat = txn.float; // The last one in the sorted list will be the latest float
 
-    // --- Process Daily Chart Data (for the last 7 days) ---
-    if(txnDate >= last7Days && txnDate <= today) {
-        const dayName = getDayName(txnDate);
-        if(!dailyCounts[dayName]) dailyCounts[dayName] = {};
-        if(!dailyCounts[dayName][mno]) dailyCounts[dayName][mno] = 0;
-        dailyCounts[dayName][mno]++;
+    // --- 2. Calculate Monthly Transaction Counts ---
+    const yearMonthKey = `${txnDate.getFullYear()}-${String(txnDate.getMonth()).padStart(2, '0')}`;
+    if (!monthlyCounts[yearMonthKey]) monthlyCounts[yearMonthKey] = {};
+    if (!monthlyCounts[yearMonthKey][mno]) monthlyCounts[yearMonthKey][mno] = 0;
+    monthlyCounts[yearMonthKey][mno]++;
+
+    // --- 3. Calculate Daily Transaction Counts (for the last 7 days) ---
+    if (txnDate >= last7DaysDate) {
+        const fullDateKey = txnDate.toISOString().split('T')[0]; // "2024-07-28"
+        if (!dailyCounts[fullDateKey]) dailyCounts[fullDateKey] = {};
+        if (!dailyCounts[fullDateKey][mno]) dailyCounts[fullDateKey][mno] = 0;
+        dailyCounts[fullDateKey][mno]++;
     }
-
-    // --- Process Monthly Chart Data ---
-    const monthName = getMonthName(txnDate);
-    if (!monthlyCounts[monthName]) monthlyCounts[monthName] = {};
-    if (!monthlyCounts[monthName][mno]) monthlyCounts[monthName][mno] = 0;
-    monthlyCounts[monthName][mno]++;
   });
 
-  // --- Format Chart Data for consumption by the component ---
-  const dailyChartData = Object.entries(dailyCounts).map(([date, data]) => ({ date, data: Object.entries(data).map(([mno, count])=> ({ mno, count})) }));
-  const monthlyChartData = Object.entries(monthlyCounts).map(([month, data]) => ({ month, data: Object.entries(data).map(([mno, count]) => ({ mno, count})) }));
+  // --- 4. Format Data for Charts ---
+  // Guarantees MONTHS are in correct chronological order
+  const monthlyChartData = Object.keys(monthlyCounts).sort().map(key => ({
+      month: getMonthName(new Date(`${key}-02`)),
+      data: Object.entries(monthlyCounts[key]).map(([mno, count]) => ({ mno, count })),
+  }));
+
+  // Guarantees DAYS are in correct chronological order
+  const dailyChartData = Object.keys(dailyCounts).sort().map(key => ({
+      date: getDayName(new Date(key)),
+      data: Object.entries(dailyCounts[key]).map(([mno, count]) => ({ mno, count })),
+  }));
 
   return { summaries, dailyChartData, monthlyChartData };
 };

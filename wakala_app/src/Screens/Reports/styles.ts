@@ -28,12 +28,13 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
     chartContainer: {
-
         backgroundColor: '#fff',
-        borderRadius: 10,
-        elevation: 2,
-        height: 300,
-      },
+        borderRadius: 12,        // Match other cards
+        borderWidth: 1,          // Use a border instead of elevation/shadow
+        borderColor: '#F3F4F6',  // A very light border color
+        minHeight: 330,          // Ensure it has enough space
+        marginTop: 8,            // Add a little space above the chart
+    },
   headerRow: {
       flexDirection: 'row',
       justifyContent: 'space-between',

@@ -20,6 +20,8 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+
 
     const handleLogin = async () => {
         if (loading) return;
@@ -112,14 +114,23 @@ export const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
                 />
 
                 <Text style={styles.label}>Nenosiri</Text>
-                <TextInput
+
+                <View style={styles.passwordContainer}>
+                  <TextInput
                     style={styles.input}
                     placeholder="Weka nenosiri"
                     placeholderTextColor="#999"
                     onChangeText={setPassword}
                     value={password}
-                    secureTextEntry
-                />
+                    secureTextEntry={!showPassword}
+                  />
+                  <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                    <Text style={styles.toggleText}>
+                      {showPassword ? 'Ficha' : 'Ona'}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
 
                 <TouchableOpacity
                     onPress={handleLogin}

@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
                     borderRadius: 4,
                     paddingHorizontal: 10,
                     marginBottom: 15,
+                    color: '#212121',
                 },
                 forgotText: {
                     fontSize: 13,
@@ -59,6 +60,22 @@ const styles = StyleSheet.create({
                     fontSize: 16,
                     fontWeight: 'bold',
                 },
+            /*passwordContainer: {
+              flexDirection: 'row',
+              alignItems: 'center',
+              borderWidth: 1,
+              borderColor: '#ccc',
+              borderRadius: 5,
+              paddingHorizontal: 10,
+              marginBottom: 15,
+            },*/
+
+            toggleText: {
+              marginLeft: 10,
+              color: '#BE2C28',
+              fontWeight: 'bold',
+            },
+
 });
 
 export default styles;
